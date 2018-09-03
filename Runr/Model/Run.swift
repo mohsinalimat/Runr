@@ -19,19 +19,34 @@ class Run: Object {
 	
 	@objc dynamic var endDate: Date = Date()
 	
-	@objc dynamic var averagePace: Double = 0.0
+	let runPortions = List<RunPortion>()
 	
-	@objc dynamic var distance: Double = 0.0
+	@objc dynamic var distance: Double {
+		return runPortions.reduce(0.0) { (result, next) -> Double in
+			return result + next.distance
+		}
+	}
 	
-	@objc dynamic var duration: TimeInterval = 0.0
+	@objc dynamic var elevation: Double {
+		return runPortions.reduce(0.0, { (result, next) -> Double in
+			return result + next.elevation
+		})
+	}
 	
-	@objc dynamic var elevation: Double = 0.0
+	@objc dynamic var averagePace: Double {
+		return distance / (endDate.timeIntervalSince(startDate))
+	}
 	
-	@objc dynamic var averageHeartRate: Int = 0
+	@objc dynamic var averageHeartRate: Int {
+		let allHeartRates = runPortions.flatMap({ $0.heartRates }).compactMap { $0.heartRate }
+		
+		let sum = allHeartRates.reduce(0) { (result, next) -> Double in
+			return result + next
+		}
+		return Int(sum) / allHeartRates.count
+	}
 	
-	@objc dynamic var estimatedCalories: Int = 0
-	
-	let locations = List<Location>()
-	
-	let heartRates = List<HeartRateObject>()
+	@objc dynamic var estimatedCalories: Int {
+		return Int(endDate.timeIntervalSince(startDate))
+	}
 }

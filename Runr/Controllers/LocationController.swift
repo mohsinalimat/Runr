@@ -9,21 +9,41 @@
 import Foundation
 import CoreLocation
 
-protocol LocationDelegate: class {
+protocol LocationControllerDelegate: class {
 	func didUpdateLocations(with locations: [CLLocation])
 	func didFail(with error: Error)
 	func didChangeAuthoriztionStatus(_ status: CLAuthorizationStatus)
 }
 
-class LocationController: NSObject, CLLocationManagerDelegate {
+class LocationController: NSObject {
 	
-	weak var delegate: LocationDelegate?
+	weak var delegate: LocationControllerDelegate?
 	
-	init(with delegate: LocationDelegate) {
+	private var locationManager: CLLocationManager
+	
+	init(delegate: LocationControllerDelegate) {
 		self.delegate = delegate
+		
+		locationManager = CLLocationManager()
+		
 		super.init()
+		
+		locationManager.delegate = self
+		
+		locationManager.startUpdatingLocation()
 	}
 	
+	
+	func stopLocationUpdates() {
+		locationManager.stopUpdatingLocation()
+	}
+}
+
+
+
+// MARK: - CLLocationManagerDelegate
+
+extension LocationController: CLLocationManagerDelegate {
 	
 	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 		delegate?.didUpdateLocations(with: locations)

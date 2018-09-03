@@ -19,26 +19,39 @@ class RunningController {
 	
 	private var currentRun: Run = Run()
 	
+	
+	private var locationController: LocationController?
+	
+	
 	func startRun(with runType: RunType) {
 		switch runType {
 		case .outdoor:
-			currentRun.runType = .outdoor
-			
+			startOutdoorRun()
 		case .indoor:
-			currentRun.runType = .indoor
-			
+			startIndoorRun()
 		}
 	}
 	
 	
 	func pauseRun() {
-		
+		switch currentRun.runType {
+		case .outdoor:
+			locationController?.stopLocationUpdates()
+		case .indoor:
+			break
+		}
 	}
 	
 	
 	func endRun() {
-		
+		switch currentRun.runType {
+		case .outdoor:
+			locationController?.stopLocationUpdates()
+		case .indoor:
+			break
+		}
 	}
+	
 	
 	
 	// MARK: - Outdoor Run
@@ -46,7 +59,7 @@ class RunningController {
 	private func startOutdoorRun() {
 		currentRun.runType = .outdoor
 		
-		
+		locationController = LocationController(delegate: self)
 	}
 	
 	
@@ -61,7 +74,7 @@ class RunningController {
 }
 
 
-extension RunningController: LocationDelegate {
+extension RunningController: LocationControllerDelegate {
 	
 	func didUpdateLocations(with locations: [CLLocation]) {
 		
