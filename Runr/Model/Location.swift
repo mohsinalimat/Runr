@@ -17,7 +17,7 @@ class Location: Object {
 	
 	@objc dynamic var altitude: CLLocationDistance = 0
 	
-	@objc dynamic var floor: Double = 0
+	@objc dynamic var floor: CLFloor?
 	
 	@objc dynamic var horizontalAccuracy: CLLocationAccuracy = 0.0
 	

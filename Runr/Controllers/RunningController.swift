@@ -17,13 +17,22 @@ import CoreMotion
 
 class RunningController {
 	
-	private var currentRun: Run = Run()
+	private var currentRun: Run?
 	
+	private var currentRunPortion: RunPortion?
 	
 	private var locationController: LocationController?
 	
 	
 	func startRun(with runType: RunType) {
+		if currentRun == nil {
+			// Create a new run if starting a new run. If `currentRun` is not nil,
+			// then the run has been paused and just needs to be started again
+			currentRun = Run()
+		}
+		currentRunPortion = RunPortion()
+		currentRun?.runPortions.append(currentRunPortion!)
+		
 		switch runType {
 		case .outdoor:
 			startOutdoorRun()
@@ -34,22 +43,27 @@ class RunningController {
 	
 	
 	func pauseRun() {
+		guard let currentRun = currentRun else { return }
 		switch currentRun.runType {
 		case .outdoor:
 			locationController?.stopLocationUpdates()
 		case .indoor:
 			break
 		}
+		currentRunPortion = nil
 	}
 	
 	
 	func endRun() {
+		guard let currentRun = currentRun else { return }
 		switch currentRun.runType {
 		case .outdoor:
 			locationController?.stopLocationUpdates()
 		case .indoor:
 			break
 		}
+		self.currentRun = nil
+		self.currentRunPortion = nil
 	}
 	
 	
@@ -57,7 +71,7 @@ class RunningController {
 	// MARK: - Outdoor Run
 	
 	private func startOutdoorRun() {
-		currentRun.runType = .outdoor
+		currentRun?.runType = .outdoor
 		
 		locationController = LocationController(delegate: self)
 	}
@@ -67,7 +81,7 @@ class RunningController {
 	// MARK: - Indoor Run
 	
 	private func startIndoorRun() {
-		currentRun.runType = .indoor
+		currentRun?.runType = .indoor
 		
 		
 	}
@@ -77,14 +91,23 @@ class RunningController {
 extension RunningController: LocationControllerDelegate {
 	
 	func didUpdateLocations(with locations: [CLLocation]) {
-		
+		locations.forEach {
+			let location = Location()
+			location.coordinate = $0.coordinate
+			location.altitude = $0.altitude
+			location.floor = $0.floor
+			location.horizontalAccuracy = $0.horizontalAccuracy
+			location.verticalAccuracy = $0.verticalAccuracy
+			location.timestamp = $0.timestamp
+			currentRunPortion?.locations.append(location)
+		}
 	}
 	
 	func didFail(with error: Error) {
-		
+		// TODO: alert the user there has been a failure
 	}
 	
 	func didChangeAuthoriztionStatus(_ status: CLAuthorizationStatus) {
-		
+		// TODO: handle authorization status
 	}
 }
