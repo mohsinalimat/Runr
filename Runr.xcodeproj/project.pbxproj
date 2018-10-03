@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		AD401646C6D9F31D08CBFA0B /* Pods_RunrTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94F0BFAB670617FBACD55610 /* Pods_RunrTests.framework */; };
 		CD971F57DD093263C4528BDF /* Pods_Runr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30FD183EB645688C170A691A /* Pods_Runr.framework */; };
-		DD066B90213DCEB4009C2FEE /* RunPortion.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD066B8F213DCEB4009C2FEE /* RunPortion.swift */; };
 		DD21B4C021321B94004B22E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD21B4BF21321B94004B22E7 /* AppDelegate.swift */; };
 		DD21B4C221321B94004B22E7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD21B4C121321B94004B22E7 /* ViewController.swift */; };
 		DD21B4C521321B94004B22E7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD21B4C321321B94004B22E7 /* Main.storyboard */; };
@@ -41,7 +40,6 @@
 		88F96C4D40C6091F5FE35233 /* Pods-Runr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runr.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Runr/Pods-Runr.debug.xcconfig"; sourceTree = "<group>"; };
 		94F0BFAB670617FBACD55610 /* Pods_RunrTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunrTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D95966DFA07AB8B2BE7900DA /* Pods-Runr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runr.release.xcconfig"; path = "Pods/Target Support Files/Pods-Runr/Pods-Runr.release.xcconfig"; sourceTree = "<group>"; };
-		DD066B8F213DCEB4009C2FEE /* RunPortion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunPortion.swift; sourceTree = "<group>"; };
 		DD21B4BC21321B94004B22E7 /* Runr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Runr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD21B4BF21321B94004B22E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD21B4C121321B94004B22E7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -148,7 +146,6 @@
 			isa = PBXGroup;
 			children = (
 				DDDEE3AC21324CF000C8DC65 /* Run.swift */,
-				DD066B8F213DCEB4009C2FEE /* RunPortion.swift */,
 				DDDEE3AE2132572900C8DC65 /* Location.swift */,
 				DDDEE3B521325E0C00C8DC65 /* HeartRateObject.swift */,
 			);
@@ -342,7 +339,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD066B90213DCEB4009C2FEE /* RunPortion.swift in Sources */,
 				DDDEE3B821334CA400C8DC65 /* LocationController.swift in Sources */,
 				DD21B4C221321B94004B22E7 /* ViewController.swift in Sources */,
 				DDDEE3B621325E0C00C8DC65 /* HeartRateObject.swift in Sources */,

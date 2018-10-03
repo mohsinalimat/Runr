@@ -11,6 +11,12 @@ import CoreLocation
 
 import RealmSwift
 
+enum RunState {
+	case running
+	case paused
+	case ended
+}
+
 class Run: Object {
 	
 	@objc dynamic var runType: RunType = .outdoor
@@ -19,34 +25,36 @@ class Run: Object {
 	
 	@objc dynamic var endDate: Date = Date()
 	
-	let runPortions = List<RunPortion>()
+	@objc dynamic var duration: TimeInterval = 0.0
 	
-	@objc dynamic var distance: Double {
-		return runPortions.reduce(0.0) { (result, next) -> Double in
-			return result + next.distance
-		}
-	}
+	var state: RunState = .running
+	
+	let locations = List<Location>()
+	
+	let heartRates = List<HeartRateObject>()
+	
+	@objc dynamic var distance: Double = 0.0
 	
 	@objc dynamic var elevation: Double {
-		return runPortions.reduce(0.0, { (result, next) -> Double in
-			return result + next.elevation
+		return locations.reduce(0.0, { (result, next) -> Double in
+			return result + next.altitude
 		})
 	}
 	
 	@objc dynamic var averagePace: Double {
-		return distance / (endDate.timeIntervalSince(startDate))
+		return distance / duration
 	}
 	
 	@objc dynamic var averageHeartRate: Int {
-		let allHeartRates = runPortions.flatMap({ $0.heartRates }).compactMap { $0.heartRate }
 		
-		let sum = allHeartRates.reduce(0) { (result, next) -> Double in
-			return result + next
+		let sum = heartRates.reduce(0) { (result, next) -> Double in
+			return result + next.heartRate
 		}
-		return Int(sum) / allHeartRates.count
+		return Int(sum) / heartRates.count
 	}
 	
 	@objc dynamic var estimatedCalories: Int {
-		return Int(endDate.timeIntervalSince(startDate))
+		// TODO: implement calorie calculations
+		return Int(duration)
 	}
 }

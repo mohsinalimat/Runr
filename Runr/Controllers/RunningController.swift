@@ -19,8 +19,6 @@ class RunningController {
 	
 	private var currentRun: Run?
 	
-	private var currentRunPortion: RunPortion?
-	
 	private var locationController: LocationController?
 	
 	
@@ -30,8 +28,6 @@ class RunningController {
 			// then the run has been paused and just needs to be started again
 			currentRun = Run()
 		}
-		currentRunPortion = RunPortion()
-		currentRun?.runPortions.append(currentRunPortion!)
 		
 		switch runType {
 		case .outdoor:
@@ -50,7 +46,6 @@ class RunningController {
 		case .indoor:
 			break
 		}
-		currentRunPortion = nil
 	}
 	
 	
@@ -63,7 +58,6 @@ class RunningController {
 			break
 		}
 		self.currentRun = nil
-		self.currentRunPortion = nil
 	}
 	
 	
@@ -91,9 +85,11 @@ class RunningController {
 extension RunningController: LocationControllerDelegate {
 	
 	func didUpdateLocations(with locations: [CLLocation]) {
+		guard let currentRun = currentRun, currentRun.state == .running else { return }
+		
 		locations.forEach {
 			let location = Location(cllocation: $0)
-			currentRunPortion?.locations.append(location)
+			currentRun.locations.append(location)
 		}
 	}
 	
