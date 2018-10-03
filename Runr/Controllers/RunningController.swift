@@ -92,13 +92,7 @@ extension RunningController: LocationControllerDelegate {
 	
 	func didUpdateLocations(with locations: [CLLocation]) {
 		locations.forEach {
-			let location = Location()
-			location.coordinate = $0.coordinate
-			location.altitude = $0.altitude
-			location.floor = $0.floor
-			location.horizontalAccuracy = $0.horizontalAccuracy
-			location.verticalAccuracy = $0.verticalAccuracy
-			location.timestamp = $0.timestamp
+			let location = Location(cllocation: $0)
 			currentRunPortion?.locations.append(location)
 		}
 	}

@@ -24,4 +24,15 @@ class Location: Object {
 	@objc dynamic var verticalAccuracy: CLLocationAccuracy = 0.0
 	
 	@objc dynamic var timestamp: Date = Date()
+	
+	
+	convenience init(cllocation: CLLocation) {
+		self.init()
+		self.coordinate = cllocation.coordinate
+		self.altitude = cllocation.altitude
+		self.floor = cllocation.floor
+		self.horizontalAccuracy = cllocation.horizontalAccuracy
+		self.verticalAccuracy = cllocation.verticalAccuracy
+		self.timestamp = cllocation.timestamp
+	}
 }
