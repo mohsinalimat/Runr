@@ -68,6 +68,7 @@ class RunningController {
 		currentRun?.runType = .outdoor
 		
 		locationController = LocationController(delegate: self)
+		locationController?.startUpdatingLocations()
 	}
 	
 	

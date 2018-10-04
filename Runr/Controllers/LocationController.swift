@@ -29,7 +29,10 @@ class LocationController: NSObject {
 		super.init()
 		
 		locationManager.delegate = self
-		
+	}
+	
+	
+	func startUpdatingLocations() {
 		locationManager.startUpdatingLocation()
 	}
 	
