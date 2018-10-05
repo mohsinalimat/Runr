@@ -35,11 +35,70 @@ class DataController {
 	
 	// MARK: - Adding Runs
 	
+	func add(run: Run) {
+		try! realm.write {
+			realm.add(run)
+		}
+	}
 	
 	
 	// MARK: - Editing Runs
 	
+	func update(run: Run, startDate: Date) {
+		try! realm.write {
+			run.startDate = startDate
+		}
+	}
+	
+	
+	func update(run: Run, endDate: Date) {
+		try! realm.write {
+			run.endDate = endDate
+		}
+	}
+	
+	
+	func update(run: Run, duration: TimeInterval) {
+		try! realm.write {
+			run.duration = duration
+		}
+	}
+	
+	
+	func update(run: Run, state: RunState) {
+		try! realm.write {
+			run.state = state
+		}
+	}
+	
+	
+	func update(run: Run, distance: Double) {
+		try! realm.write {
+			run.distance = distance
+		}
+	}
+	
+	
+	func update(run: Run, newLocations: [Location]) {
+		try! realm.write {
+			run.locations.append(objectsIn: newLocations)
+		}
+	}
+	
+	
+	func update(run: Run, newHeartRates: [HeartRateObject]) {
+		try! realm.write {
+			run.heartRates.append(objectsIn: newHeartRates)
+		}
+	}
+	
 	
 	
 	// MARK: - Removing Runs
+	
+	func remove(run: Run) {
+		try! realm.write {
+			realm.delete(run)
+		}
+	}
 }
