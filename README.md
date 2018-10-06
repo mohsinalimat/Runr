@@ -1,7 +1,7 @@
 # Runr🏃🏻‍♂️
 
 ## Design
-![](Current Design Screenshot.png)
+![alt text](Current_Design_Screenshot.png "Design Screenshot")
 Here is the current design I have come up with for Runr. The idea is to have a very simple UI which is easy for the user to use when out for a run. Open to ideas on how to improve!
 
 ## Purpose
