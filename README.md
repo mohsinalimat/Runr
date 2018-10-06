@@ -17,3 +17,4 @@ However, please do not ship this app under your own account. Paid or free.
 - Cloud backup using CloudKit
 - Pace alerts
 - Siri Shortcut integrations
+- Add localizations for as many different languages as possible
