@@ -22,3 +22,4 @@ However, please do not ship this app under your own account. Paid or free.
 - Pace alerts
 - Siri Shortcut integrations
 - Add localizations for as many different languages as possible
+- Motivation system provided by local notifications/ reminders
