@@ -9,8 +9,10 @@
 /* Begin PBXBuildFile section */
 		AD401646C6D9F31D08CBFA0B /* Pods_RunrTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94F0BFAB670617FBACD55610 /* Pods_RunrTests.framework */; };
 		CD971F57DD093263C4528BDF /* Pods_Runr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30FD183EB645688C170A691A /* Pods_Runr.framework */; };
+		DD09BA31216AF21B002090B8 /* RunManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD09BA30216AF21B002090B8 /* RunManagerViewController.swift */; };
+		DD09BA34216B056A002090B8 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD09BA33216B056A002090B8 /* UIViewController+Extensions.swift */; };
 		DD21B4C021321B94004B22E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD21B4BF21321B94004B22E7 /* AppDelegate.swift */; };
-		DD21B4C221321B94004B22E7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD21B4C121321B94004B22E7 /* ViewController.swift */; };
+		DD21B4C221321B94004B22E7 /* RunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD21B4C121321B94004B22E7 /* RunViewController.swift */; };
 		DD21B4C521321B94004B22E7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD21B4C321321B94004B22E7 /* Main.storyboard */; };
 		DD21B4C721321B96004B22E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD21B4C621321B96004B22E7 /* Assets.xcassets */; };
 		DD21B4CA21321B96004B22E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD21B4C821321B96004B22E7 /* LaunchScreen.storyboard */; };
@@ -40,9 +42,11 @@
 		88F96C4D40C6091F5FE35233 /* Pods-Runr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runr.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Runr/Pods-Runr.debug.xcconfig"; sourceTree = "<group>"; };
 		94F0BFAB670617FBACD55610 /* Pods_RunrTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunrTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D95966DFA07AB8B2BE7900DA /* Pods-Runr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runr.release.xcconfig"; path = "Pods/Target Support Files/Pods-Runr/Pods-Runr.release.xcconfig"; sourceTree = "<group>"; };
+		DD09BA30216AF21B002090B8 /* RunManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunManagerViewController.swift; sourceTree = "<group>"; };
+		DD09BA33216B056A002090B8 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		DD21B4BC21321B94004B22E7 /* Runr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Runr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD21B4BF21321B94004B22E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DD21B4C121321B94004B22E7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DD21B4C121321B94004B22E7 /* RunViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunViewController.swift; sourceTree = "<group>"; };
 		DD21B4C421321B94004B22E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DD21B4C621321B96004B22E7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DD21B4C921321B96004B22E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -98,6 +102,31 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		DD09BA2E216AF127002090B8 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DD21B4C121321B94004B22E7 /* RunViewController.swift */,
+				DD09BA30216AF21B002090B8 /* RunManagerViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		DD09BA2F216AF144002090B8 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				DD21B4C321321B94004B22E7 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		DD09BA32216B0551002090B8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DD09BA33216B056A002090B8 /* UIViewController+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		DD21B4B321321B94004B22E7 = {
 			isa = PBXGroup;
 			children = (
@@ -122,10 +151,11 @@
 			isa = PBXGroup;
 			children = (
 				DD21B4BF21321B94004B22E7 /* AppDelegate.swift */,
-				DD21B4C121321B94004B22E7 /* ViewController.swift */,
+				DD09BA2E216AF127002090B8 /* View Controllers */,
+				DD09BA2F216AF144002090B8 /* Storyboards */,
 				DDDEE3B0213259A900C8DC65 /* Controllers */,
 				DDDEE3AB21324CDE00C8DC65 /* Model */,
-				DD21B4C321321B94004B22E7 /* Main.storyboard */,
+				DD09BA32216B0551002090B8 /* Extensions */,
 				DD21B4C621321B96004B22E7 /* Assets.xcassets */,
 				DD21B4C821321B96004B22E7 /* LaunchScreen.storyboard */,
 				DD21B4CB21321B96004B22E7 /* Info.plist */,
@@ -340,13 +370,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				DDDEE3B821334CA400C8DC65 /* LocationController.swift in Sources */,
-				DD21B4C221321B94004B22E7 /* ViewController.swift in Sources */,
+				DD21B4C221321B94004B22E7 /* RunViewController.swift in Sources */,
 				DDDEE3B621325E0C00C8DC65 /* HeartRateObject.swift in Sources */,
+				DD09BA31216AF21B002090B8 /* RunManagerViewController.swift in Sources */,
 				DDDEE3B4213259E300C8DC65 /* DataController.swift in Sources */,
 				DDDEE3AD21324CF000C8DC65 /* Run.swift in Sources */,
 				DDDEE3AF2132572900C8DC65 /* Location.swift in Sources */,
 				DD21B4C021321B94004B22E7 /* AppDelegate.swift in Sources */,
 				DDDEE3B2213259D500C8DC65 /* RunningController.swift in Sources */,
+				DD09BA34216B056A002090B8 /* UIViewController+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
