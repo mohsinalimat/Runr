@@ -13,11 +13,11 @@ import RealmSwift
 
 class Location: Object {
 	
-	@objc dynamic var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: -1, longitude: -1)
+	@objc dynamic var coordinate: Coordinate? = Coordinate(latitude: 0, longitude: 0)
 	
 	@objc dynamic var altitude: CLLocationDistance = 0
 	
-	@objc dynamic var floor: CLFloor?
+	@objc dynamic var floor: Int = 0
 	
 	@objc dynamic var horizontalAccuracy: CLLocationAccuracy = 0.0
 	
@@ -28,9 +28,9 @@ class Location: Object {
 	
 	convenience init(cllocation: CLLocation) {
 		self.init()
-		self.coordinate = cllocation.coordinate
+		self.coordinate = Coordinate(latitude: cllocation.coordinate.latitude, longitude: cllocation.coordinate.longitude)
 		self.altitude = cllocation.altitude
-		self.floor = cllocation.floor
+		self.floor = cllocation.floor?.level ?? 0
 		self.horizontalAccuracy = cllocation.horizontalAccuracy
 		self.verticalAccuracy = cllocation.verticalAccuracy
 		self.timestamp = cllocation.timestamp
