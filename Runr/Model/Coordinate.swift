@@ -12,8 +12,8 @@ import RealmSwift
 
 class Coordinate: Object {
 	
-	public var latitude: Double = 0
-	public var longitude: Double = 0
+	@objc dynamic var latitude: Double = 0
+	@objc dynamic var longitude: Double = 0
 	
 	convenience init(latitude: Double, longitude: Double) {
 		self.init()
