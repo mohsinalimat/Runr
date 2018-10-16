@@ -19,6 +19,8 @@ class DataController {
 	init() {
 		realm = try! Realm()
 		
+		debugPrint("realm path: \(String(describing: realm.configuration.fileURL))")
+		
 		performInitialDataFetch()
 	}
 	
@@ -54,6 +56,13 @@ class DataController {
 	func update(run: Run, endDate: Date) {
 		try! realm.write {
 			run.endDate = endDate
+		}
+	}
+	
+	
+	func update(run: Run, runType: RunType) {
+		try! realm.write {
+			run.runType = runType
 		}
 	}
 	

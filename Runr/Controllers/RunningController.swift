@@ -19,7 +19,16 @@ class RunningController {
 	
 	private var currentRun: Run?
 	
-	private var locationController: LocationController?
+	var locationController: LocationController
+	
+	var dataController: DataController
+	
+	
+	init(locationController: LocationController, dataController: DataController) {
+		self.locationController = locationController
+		self.dataController = dataController
+		self.locationController.delegate = self
+	}
 	
 	
 	func startRun(with runType: RunType) {
@@ -27,6 +36,7 @@ class RunningController {
 			// Create a new run if starting a new run. If `currentRun` is not nil,
 			// then the run has been paused and just needs to be started again
 			currentRun = Run()
+			dataController.add(run: currentRun!)
 		}
 		
 		switch runType {
@@ -40,9 +50,11 @@ class RunningController {
 	
 	func pauseRun() {
 		guard let currentRun = currentRun else { return }
+		debugPrint(#function)
 		switch currentRun.runType {
 		case .outdoor:
-			locationController?.stopLocationUpdates()
+			dataController.update(run: currentRun, state: .paused)
+			locationController.stopLocationUpdates()
 		case .indoor:
 			break
 		}
@@ -51,9 +63,11 @@ class RunningController {
 	
 	func endRun() {
 		guard let currentRun = currentRun else { return }
+		debugPrint(#function)
 		switch currentRun.runType {
 		case .outdoor:
-			locationController?.stopLocationUpdates()
+			dataController.update(run: currentRun, state: .ended)
+			locationController.stopLocationUpdates()
 		case .indoor:
 			break
 		}
@@ -65,10 +79,12 @@ class RunningController {
 	// MARK: - Outdoor Run
 	
 	private func startOutdoorRun() {
-		currentRun?.runType = .outdoor
+		debugPrint(#function)
+		guard let currentRun = currentRun else { return }
+		dataController.update(run: currentRun, runType: .outdoor)
+		dataController.update(run: currentRun, state: .running)
 		
-		locationController = LocationController(delegate: self)
-		locationController?.startUpdatingLocations()
+		locationController.startUpdatingLocations()
 	}
 	
 	
@@ -76,8 +92,8 @@ class RunningController {
 	// MARK: - Indoor Run
 	
 	private func startIndoorRun() {
-		currentRun?.runType = .indoor
-		
+		guard let currentRun = currentRun else { return }
+		dataController.update(run: currentRun, runType: .indoor)
 		
 	}
 }
@@ -88,9 +104,12 @@ extension RunningController: LocationControllerDelegate {
 	func didUpdateLocations(with locations: [CLLocation]) {
 		guard let currentRun = currentRun, currentRun.state == .running else { return }
 		
+		debugPrint("currentRun: \(currentRun.locations)")
+		debugPrint("new locations: \(locations)")
+		
 		locations.forEach {
 			let location = Location(cllocation: $0)
-			currentRun.locations.append(location)
+			dataController.update(run: currentRun, newLocations: [location])
 		}
 	}
 	

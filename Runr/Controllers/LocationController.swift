@@ -19,11 +19,9 @@ class LocationController: NSObject {
 	
 	weak var delegate: LocationControllerDelegate?
 	
-	private var locationManager: CLLocationManager
+	internal var locationManager: CLLocationManager
 	
-	init(delegate: LocationControllerDelegate) {
-		self.delegate = delegate
-		
+	override init() {
 		locationManager = CLLocationManager()
 		
 		super.init()
