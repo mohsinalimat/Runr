@@ -107,8 +107,9 @@ extension RunningController: LocationControllerDelegate {
 		debugPrint("currentRun: \(currentRun.locations)")
 		debugPrint("new locations: \(locations)")
 		
-		locations.forEach {
-			let location = Location(cllocation: $0)
+		locations.forEach { (location) in
+			guard location.horizontalAccuracy >= 0, location.verticalAccuracy >= 0 else { return }
+			let location = Location(cllocation: location)
 			dataController.update(run: currentRun, newLocations: [location])
 		}
 	}
