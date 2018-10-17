@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import HealthKit
 
 class RunViewController: UIViewController {
 	
@@ -63,8 +64,28 @@ class RunViewController: UIViewController {
 		if locationStatus != .authorizedWhenInUse || locationStatus != .authorizedAlways {
 			self.locationController.locationManager.requestWhenInUseAuthorization()
 		}
+		
+		self.authorizeHealthKit()
 	}
 	
+	
+	// TODO: move me elsewhere
+	private func authorizeHealthKit() {
+		if HKHealthStore.isHealthDataAvailable() {
+			let healthKitStore = HKHealthStore()
+			
+			let recordsToWrite = Set([
+				HKObjectType.quantityType(forIdentifier: .activeEnergyBurned)!,
+				HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!,
+				HKObjectType.quantityType(forIdentifier: .heartRate)!
+				])
+			
+			// TODO: handle what to do in the event the user declines
+			healthKitStore.requestAuthorization(toShare: recordsToWrite, read: nil) { (success, error) in
+				debugPrint("healthkit success: \(success), error: \(String(describing: error?.localizedDescription))")
+			}
+		}
+	}
 	
 	
 	// TODO: remove me and move to RunManagerViewController
