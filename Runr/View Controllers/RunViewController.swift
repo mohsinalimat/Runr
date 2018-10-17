@@ -77,7 +77,8 @@ class RunViewController: UIViewController {
 			let recordsToWrite = Set([
 				HKObjectType.quantityType(forIdentifier: .activeEnergyBurned)!,
 				HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!,
-				HKObjectType.quantityType(forIdentifier: .heartRate)!
+				HKObjectType.quantityType(forIdentifier: .heartRate)!,
+				HKObjectType.workoutType()
 				])
 			
 			// TODO: handle what to do in the event the user declines
