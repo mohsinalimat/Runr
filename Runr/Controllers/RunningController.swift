@@ -23,6 +23,8 @@ class RunningController {
 	
 	var dataController: DataController
 	
+	private var timer: Timer?
+	
 	
 	init(locationController: LocationController, dataController: DataController) {
 		self.locationController = locationController
@@ -39,6 +41,8 @@ class RunningController {
 			dataController.add(run: currentRun!)
 		}
 		
+		startTimer()
+		
 		switch runType {
 		case .outdoor:
 			startOutdoorRun()
@@ -51,6 +55,8 @@ class RunningController {
 	func pauseRun() {
 		guard let currentRun = currentRun else { return }
 		debugPrint(#function)
+		dataController.update(run: currentRun, endDate: Date())
+		timer?.invalidate()
 		switch currentRun.runType {
 		case .outdoor:
 			dataController.update(run: currentRun, state: .paused)
@@ -64,6 +70,8 @@ class RunningController {
 	func endRun() {
 		guard let currentRun = currentRun else { return }
 		debugPrint(#function)
+		dataController.update(run: currentRun, endDate: Date())
+		timer?.invalidate()
 		switch currentRun.runType {
 		case .outdoor:
 			dataController.update(run: currentRun, state: .ended)
@@ -72,6 +80,22 @@ class RunningController {
 			break
 		}
 		self.currentRun = nil
+	}
+	
+	
+	
+	// MARK: - Timer Functionality
+	
+	@objc private func timerUpdated(_ timer: Timer) {
+		guard let currentRun = currentRun else { return }
+		let newDuration: TimeInterval = currentRun.duration + 0.01
+		dataController.update(run: currentRun, duration: newDuration)
+	}
+	
+	
+	private func startTimer() {
+		timer = Timer(timeInterval: 0.01, target: self, selector: #selector(timerUpdated(_:)), userInfo: nil, repeats: true)
+		RunLoop.current.add(timer!, forMode: .common)
 	}
 	
 	
