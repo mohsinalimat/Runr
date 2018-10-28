@@ -128,7 +128,6 @@ extension RunningController: LocationControllerDelegate {
 	func didUpdateLocations(with locations: [CLLocation]) {
 		guard let currentRun = currentRun, currentRun.state == .running else { return }
 		
-		debugPrint("currentRun: \(currentRun.locations)")
 		debugPrint("new locations: \(locations)")
 		
 		locations.forEach { (location) in

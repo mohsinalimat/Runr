@@ -2,12 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSHealthUpdateUsageDescription</key>
-	<string>Runr needs access to your Health so it can record your runs</string>
-	<key>NSHealthShareUsageDescription</key>
-	<string>Runr needs access to your Health so it can record your runs</string>
-	<key>NSHealthClinicalHealthRecordsShareUsageDescription</key>
-	<string>Runr needs access to your Health so it can record your runs</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -28,10 +22,20 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSHealthClinicalHealthRecordsShareUsageDescription</key>
+	<string>Runr needs access to your Health so it can record your runs</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>Runr needs access to your Health so it can record your runs</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>Runr needs access to your Health so it can record your runs</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Runr needs access to your location in order to track your runs</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Runr needs access to your location in order to track your runs</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

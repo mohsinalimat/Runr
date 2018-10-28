@@ -26,6 +26,7 @@ class LocationController: NSObject {
 		
 		super.init()
 		
+		locationManager.allowsBackgroundLocationUpdates = true
 		locationManager.delegate = self
 	}
 	
