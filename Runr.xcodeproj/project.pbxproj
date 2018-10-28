@@ -161,7 +161,6 @@
 		DD21B4BE21321B94004B22E7 /* Runr */ = {
 			isa = PBXGroup;
 			children = (
-				DDFD6E852176CA3E001E3C76 /* Runr.entitlements */,
 				DD21B4BF21321B94004B22E7 /* AppDelegate.swift */,
 				DD09BA2E216AF127002090B8 /* View Controllers */,
 				DD09BA2F216AF144002090B8 /* Storyboards */,
@@ -170,7 +169,7 @@
 				DD09BA32216B0551002090B8 /* Extensions */,
 				DD21B4C621321B96004B22E7 /* Assets.xcassets */,
 				DD21B4C821321B96004B22E7 /* LaunchScreen.storyboard */,
-				DD21B4CB21321B96004B22E7 /* Info.plist */,
+				DDFFF41A218564920089FEF7 /* Info */,
 			);
 			path = Runr;
 			sourceTree = "<group>";
@@ -204,6 +203,15 @@
 				DDDEE3B721334CA400C8DC65 /* LocationController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		DDFFF41A218564920089FEF7 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				DD21B4CB21321B96004B22E7 /* Info.plist */,
+				DDFD6E852176CA3E001E3C76 /* Runr.entitlements */,
+			);
+			path = Info;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
