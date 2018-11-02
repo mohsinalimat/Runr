@@ -23,6 +23,8 @@ class Location: Object {
 	
 	@objc dynamic var verticalAccuracy: CLLocationAccuracy = 0.0
 	
+	@objc dynamic var speed: Double = 0.0
+	
 	@objc dynamic var timestamp: Date = Date()
 	
 	
@@ -33,6 +35,9 @@ class Location: Object {
 		self.floor = cllocation.floor?.level ?? 0
 		self.horizontalAccuracy = cllocation.horizontalAccuracy
 		self.verticalAccuracy = cllocation.verticalAccuracy
+		if cllocation.speed >= 0 {
+			self.speed = cllocation.speed
+		}
 		self.timestamp = cllocation.timestamp
 	}
 }

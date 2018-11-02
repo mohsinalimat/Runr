@@ -573,10 +573,10 @@
 			baseConfigurationReference = 88F96C4D40C6091F5FE35233 /* Pods-Runr.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Runr/Runr.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Runr/Info/Runr.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SX8ZGV2EQD;
-				INFOPLIST_FILE = Runr/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Runr/Info/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -593,10 +593,10 @@
 			baseConfigurationReference = D95966DFA07AB8B2BE7900DA /* Pods-Runr.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Runr/Runr.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Runr/Info/Runr.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SX8ZGV2EQD;
-				INFOPLIST_FILE = Runr/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Runr/Info/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
