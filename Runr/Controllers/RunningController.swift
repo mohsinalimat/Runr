@@ -9,6 +9,7 @@
 import Foundation
 import CoreLocation
 import CoreMotion
+import HealthKit
 
 @objc enum RunType: Int {
 	case outdoor
@@ -25,10 +26,18 @@ class RunningController {
 	
 	private var timer: Timer?
 	
+	private var routeBuilder: HKWorkoutRouteBuilder
+	
+	private var healthStore: HKHealthStore
+	
 	
 	init(locationController: LocationController, dataController: DataController) {
 		self.locationController = locationController
 		self.dataController = dataController
+		
+		healthStore = HKHealthStore()
+		routeBuilder = HKWorkoutRouteBuilder(healthStore: healthStore, device: nil)
+		
 		self.locationController.delegate = self
 	}
 	
@@ -79,6 +88,17 @@ class RunningController {
 		case .indoor:
 			break
 		}
+		
+		
+		
+		
+		// handle saving the workout and the route to the workout
+		// TODO: handle getting the workout which was saved on the apple watch, if there was any. if user is not
+		// using a watch, create workout here
+		let workout = HKWorkout(activityType: .running, start: currentRun.startDate, end: currentRun.endDate)
+		routeBuilder.finishRoute(with: workout, metadata: [:]) { (_, _) in }
+		
+		
 		self.currentRun = nil
 	}
 	
@@ -130,10 +150,12 @@ extension RunningController: LocationControllerDelegate {
 		
 		debugPrint("new locations: \(locations)")
 		
-		locations.forEach { (location) in
-			guard location.horizontalAccuracy >= 0, location.verticalAccuracy >= 0 else { return }
-			let location = Location(cllocation: location)
+		locations.forEach { (cllocation) in
+			guard cllocation.horizontalAccuracy >= 0, cllocation.horizontalAccuracy <= 50.0, cllocation.verticalAccuracy >= 0 else { return }
+			let location = Location(cllocation: cllocation)
 			dataController.update(run: currentRun, newLocations: [location])
+			
+			routeBuilder.insertRouteData([cllocation]) { (_, _) in }
 		}
 	}
 	

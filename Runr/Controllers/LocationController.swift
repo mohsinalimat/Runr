@@ -27,6 +27,7 @@ class LocationController: NSObject {
 		super.init()
 		
 		locationManager.allowsBackgroundLocationUpdates = true
+		locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
 		locationManager.delegate = self
 	}
 	
