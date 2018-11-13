@@ -1,8 +1,8 @@
 //
-//  InterfaceController.swift
+//  WorkoutInterfaceController.swift
 //  Watch Extension
 //
-//  Created by Philip Sawyer on 11/1/18.
+//  Created by Philip Sawyer on 11/12/18.
 //  Copyright © 2018 Philip Sawyer. All rights reserved.
 //
 
@@ -11,41 +11,69 @@ import Foundation
 import HealthKit
 
 
-class InterfaceController: WKInterfaceController {
+class WorkoutInterfaceController: WKInterfaceController {
 	
+	static let interfaceName: String = "WorkoutInterfaceController"
+
 	private var healthStore: HKHealthStore
 	
 	private var workoutSession: HKWorkoutSession?
+	
 	
 	override init() {
 		healthStore = HKHealthStore()
 		
 		super.init()
 	}
-
+	
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        
-        // Configure interface objects here.
+		
+		// Start a workout session with the configuration
+		if let workoutConfiguration = context as? HKWorkoutConfiguration {
+			do {
+				workoutSession = try HKWorkoutSession(healthStore: healthStore, configuration: workoutConfiguration)
+				workoutSession?.delegate = self
+				
+//				workoutStartDate = Date()
+				
+				workoutSession?.startActivity(with: Date())
+			} catch {
+				debugPrint("error starting workout: \(error.localizedDescription)")
+			}
+		}
     }
-    
+
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
     }
-    
+
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
     }
 
 	
+	// MARK: - Actions
 	
-	/// Starts the run within HealthKit. Call this method with a `Date` object if the user has already started a workout
-	/// from iOS and begins to use the watch during the middle of the workout
-	/// - Parameter date: An optional date value. Only pass in if user is starting to use watch during middle of workout
-	func beginRun(with date: Date?) {
-		
+	@IBAction func didTapStartButton() {
+		startRun()
+	}
+	
+	@IBAction func didTapPauseButton() {
+		workoutSession?.pause()
+	}
+	
+	@IBAction func didTapEndButton() {
+		workoutSession?.end()
+	}
+	
+	
+	
+	// MARK: - Run functionality
+	
+	private func startRun() {
 		let configuration = HKWorkoutConfiguration()
 		configuration.activityType = .running
 		configuration.locationType = .outdoor
@@ -54,16 +82,11 @@ class InterfaceController: WKInterfaceController {
 			workoutSession = try HKWorkoutSession(healthStore: self.healthStore, configuration: configuration)
 			
 			workoutSession?.delegate = self
-			workoutSession?.startActivity(with: date)
+			workoutSession?.startActivity(with: Date())
 		} catch let error as NSError {
 			// Perform proper error handling here...
 			fatalError("*** Unable to create the workout session: \(error.localizedDescription) ***")
 		}
-	}
-	
-	
-	func endRun() {
-		workoutSession?.end()
 	}
 	
 	
@@ -86,15 +109,15 @@ class InterfaceController: WKInterfaceController {
 								  predicate: predicate,
 								  limit: Int(HKObjectQueryNoLimit),
 								  sortDescriptors: [sortByDate]) { (_, returnedSamples, error) in
-			
-			guard let samples = returnedSamples as? [HKQuantitySample] else {
-				// Handle the error here.
-				print("*** an error occurred: \(String(describing: error?.localizedDescription)) ***")
-				return
-			}
-			
-			// Create the workout here.
-			self.createWorkout(with: samples)
+									
+									guard let samples = returnedSamples as? [HKQuantitySample] else {
+										// Handle the error here.
+										print("*** an error occurred: \(String(describing: error?.localizedDescription)) ***")
+										return
+									}
+									
+									// Create the workout here.
+									self.createWorkout(with: samples)
 		}
 		
 		healthStore.execute(query)
@@ -137,6 +160,7 @@ class InterfaceController: WKInterfaceController {
 				return
 			}
 			
+			debugPrint("healthstore save successful")
 			// Associate active energy burned samples with the workout.
 			self.updateSamples(for: workout, samples: samples)
 		})
@@ -163,18 +187,33 @@ class InterfaceController: WKInterfaceController {
 }
 
 
-
-// MARK: - HKWorkoutSessionDelegate
-
-extension InterfaceController: HKWorkoutSessionDelegate {
+extension WorkoutInterfaceController: HKWorkoutSessionDelegate {
 	
 	func workoutSession(_ workoutSession: HKWorkoutSession,
 						didChangeTo toState: HKWorkoutSessionState,
-						from fromState: HKWorkoutSessionState, date: Date) {
-		debugPrint(#function)
+						from fromState: HKWorkoutSessionState,
+						date: Date) {
+		switch toState {
+		case .running:
+//			if fromState == .notStarted {
+//				startAccumulatingData(startDate: workoutStartDate!)
+//			} else {
+//				resumeAccumulatingData()
+//			}
+			break
+		case .paused:
+//			pauseAccumulatingData()
+			break
+		case .ended:
+//			stopAccumulatingData()
+//			saveWorkout()
+			queryForCalories()
+		default:
+			break
+		}
 	}
 	
 	func workoutSession(_ workoutSession: HKWorkoutSession, didFailWithError error: Error) {
-		debugPrint("workout session didFailWithError: \(error.localizedDescription)")
+		debugPrint(#function)
 	}
 }

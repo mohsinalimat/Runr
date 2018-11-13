@@ -11,6 +11,8 @@
 		CD971F57DD093263C4528BDF /* Pods_Runr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30FD183EB645688C170A691A /* Pods_Runr.framework */; };
 		DD09BA31216AF21B002090B8 /* RunManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD09BA30216AF21B002090B8 /* RunManagerViewController.swift */; };
 		DD09BA34216B056A002090B8 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD09BA33216B056A002090B8 /* UIViewController+Extensions.swift */; };
+		DD1C6540219A7555001F3407 /* WorkoutInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1C653F219A7555001F3407 /* WorkoutInterfaceController.swift */; };
+		DD1C6543219A77B0001F3407 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD1C6542219A77B0001F3407 /* HealthKit.framework */; };
 		DD21B4C021321B94004B22E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD21B4BF21321B94004B22E7 /* AppDelegate.swift */; };
 		DD21B4C221321B94004B22E7 /* RunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD21B4C121321B94004B22E7 /* RunViewController.swift */; };
 		DD21B4C521321B94004B22E7 /* RunViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD21B4C321321B94004B22E7 /* RunViewController.storyboard */; };
@@ -28,7 +30,6 @@
 		DDF1C475218BF47C00557C11 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF1C473218BF47C00557C11 /* Interface.storyboard */; };
 		DDF1C477218BF47E00557C11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDF1C476218BF47E00557C11 /* Assets.xcassets */; };
 		DDF1C47E218BF47E00557C11 /* Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DDF1C47D218BF47E00557C11 /* Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		DDF1C483218BF47E00557C11 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF1C482218BF47E00557C11 /* InterfaceController.swift */; };
 		DDF1C485218BF47E00557C11 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF1C484218BF47E00557C11 /* ExtensionDelegate.swift */; };
 		DDF1C487218BF47E00557C11 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF1C486218BF47E00557C11 /* NotificationController.swift */; };
 		DDF1C489218BF47F00557C11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDF1C488218BF47F00557C11 /* Assets.xcassets */; };
@@ -94,6 +95,9 @@
 		D95966DFA07AB8B2BE7900DA /* Pods-Runr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runr.release.xcconfig"; path = "Pods/Target Support Files/Pods-Runr/Pods-Runr.release.xcconfig"; sourceTree = "<group>"; };
 		DD09BA30216AF21B002090B8 /* RunManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunManagerViewController.swift; sourceTree = "<group>"; };
 		DD09BA33216B056A002090B8 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		DD1C653F219A7555001F3407 /* WorkoutInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutInterfaceController.swift; sourceTree = "<group>"; };
+		DD1C6541219A77B0001F3407 /* Watch Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Watch Extension.entitlements"; sourceTree = "<group>"; };
+		DD1C6542219A77B0001F3407 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS5.1.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
 		DD21B4BC21321B94004B22E7 /* Runr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Runr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD21B4BF21321B94004B22E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD21B4C121321B94004B22E7 /* RunViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunViewController.swift; sourceTree = "<group>"; };
@@ -118,7 +122,6 @@
 		DDF1C476218BF47E00557C11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DDF1C478218BF47E00557C11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DDF1C47D218BF47E00557C11 /* Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DDF1C482218BF47E00557C11 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
 		DDF1C484218BF47E00557C11 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		DDF1C486218BF47E00557C11 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		DDF1C488218BF47F00557C11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -157,6 +160,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD1C6543219A77B0001F3407 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,6 +170,7 @@
 		047D939FE787300865D71BB3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DD1C6542219A77B0001F3407 /* HealthKit.framework */,
 				DDFD6E862176CA3E001E3C76 /* HealthKit.framework */,
 				30FD183EB645688C170A691A /* Pods_Runr.framework */,
 				94F0BFAB670617FBACD55610 /* Pods_RunrTests.framework */,
@@ -294,7 +299,8 @@
 		DDF1C481218BF47E00557C11 /* Watch Extension */ = {
 			isa = PBXGroup;
 			children = (
-				DDF1C482218BF47E00557C11 /* InterfaceController.swift */,
+				DD1C6541219A77B0001F3407 /* Watch Extension.entitlements */,
+				DD1C653F219A7555001F3407 /* WorkoutInterfaceController.swift */,
 				DDF1C484218BF47E00557C11 /* ExtensionDelegate.swift */,
 				DDF1C486218BF47E00557C11 /* NotificationController.swift */,
 				DDF1C488218BF47F00557C11 /* Assets.xcassets */,
@@ -422,6 +428,14 @@
 					};
 					DDF1C47C218BF47E00557C11 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes.watchos.extension = {
+								enabled = 1;
+							};
+							com.apple.HealthKit.watchos = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -589,7 +603,7 @@
 			files = (
 				DDF1C487218BF47E00557C11 /* NotificationController.swift in Sources */,
 				DDF1C485218BF47E00557C11 /* ExtensionDelegate.swift in Sources */,
-				DDF1C483218BF47E00557C11 /* InterfaceController.swift in Sources */,
+				DD1C6540219A7555001F3407 /* WorkoutInterfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -845,6 +859,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "Watch Extension/Watch Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SX8ZGV2EQD;
 				INFOPLIST_FILE = "Watch Extension/Info.plist";
@@ -867,6 +882,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "Watch Extension/Watch Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SX8ZGV2EQD;
 				INFOPLIST_FILE = "Watch Extension/Info.plist";

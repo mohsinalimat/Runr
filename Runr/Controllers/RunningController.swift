@@ -10,13 +10,14 @@ import Foundation
 import CoreLocation
 import CoreMotion
 import HealthKit
+import WatchConnectivity
 
 @objc enum RunType: Int {
 	case outdoor
 	case indoor
 }
 
-class RunningController {
+class RunningController: NSObject {
 	
 	private var currentRun: Run?
 	
@@ -30,6 +31,8 @@ class RunningController {
 	
 	private var healthStore: HKHealthStore
 	
+	private var wcSessionActivationCompletion: ((WCSession) -> Void)?
+	
 	
 	init(locationController: LocationController, dataController: DataController) {
 		self.locationController = locationController
@@ -37,6 +40,8 @@ class RunningController {
 		
 		healthStore = HKHealthStore()
 		routeBuilder = HKWorkoutRouteBuilder(healthStore: healthStore, device: nil)
+		
+		super.init()
 		
 		self.locationController.delegate = self
 	}
@@ -49,6 +54,23 @@ class RunningController {
 			currentRun = Run()
 			dataController.add(run: currentRun!)
 		}
+		
+		let workoutConfiguration = HKWorkoutConfiguration()
+		workoutConfiguration.activityType = .running
+		workoutConfiguration.locationType = .outdoor
+		
+		/// start apple watch if applicable
+		getActiveWCSession { (wcSession) in
+			if wcSession.activationState == .activated && wcSession.isWatchAppInstalled {
+				self.healthStore.startWatchApp(with: workoutConfiguration, completion: { (success, error) in
+					// Handle errors
+					debugPrint("success: \(success)")
+					debugPrint("error: \(String(describing: error?.localizedDescription))")
+				})
+			}
+		}
+		
+		return
 		
 		startTimer()
 		
@@ -140,8 +162,29 @@ class RunningController {
 		dataController.update(run: currentRun, runType: .indoor)
 		
 	}
+	
+	
+	
+	// MARK: - watchOS functionality
+	
+	private func getActiveWCSession(completion: @escaping (WCSession) -> Void) {
+		guard WCSession.isSupported() else { return }
+		
+		let wcSession = WCSession.default
+		wcSession.delegate = self
+		
+		if wcSession.activationState == .activated {
+			completion(wcSession)
+		} else {
+			wcSession.activate()
+			wcSessionActivationCompletion = completion
+		}
+	}
 }
 
+
+
+// MARK: - LocationControllerDelegate
 
 extension RunningController: LocationControllerDelegate {
 	
@@ -165,5 +208,33 @@ extension RunningController: LocationControllerDelegate {
 	
 	func didChangeAuthoriztionStatus(_ status: CLAuthorizationStatus) {
 		// TODO: handle authorization status
+	}
+}
+
+
+
+// MARK: - WCSessionDelegate
+
+extension RunningController: WCSessionDelegate {
+	
+	func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+		if activationState == .activated {
+			if let activationCompletion = wcSessionActivationCompletion {
+				activationCompletion(session)
+				wcSessionActivationCompletion = nil
+			}
+		}
+	}
+	
+	func sessionDidBecomeInactive(_ session: WCSession) {
+		
+	}
+	
+	func sessionDidDeactivate(_ session: WCSession) {
+		
+	}
+	
+	func session(_ session: WCSession, didReceiveMessage message: [String: Any]) {
+		
 	}
 }
