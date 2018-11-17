@@ -9,24 +9,14 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14460.16"/>
     </dependencies>
     <scenes>
-        <!--Workout Interface Controller-->
+        <!--MainInterface-->
         <scene sceneID="zF3-zF-tcG">
             <objects>
-                <controller id="wVb-Vt-ipq" customClass="WorkoutInterfaceController" customModule="Watch_Extension">
+                <controller identifier="MainInterface" id="wVb-Vt-ipq" customClass="MainInterfaceController" customModule="Watch_Extension">
                     <items>
                         <button width="1" alignment="left" title="Start" id="ySn-ol-Xx5">
                             <connections>
-                                <action selector="didTapStartButton" destination="wVb-Vt-ipq" id="Wkt-t2-OMt"/>
-                            </connections>
-                        </button>
-                        <button width="1" alignment="left" title="Pause" id="cqM-Dp-j35">
-                            <connections>
-                                <action selector="didTapPauseButton" destination="wVb-Vt-ipq" id="uZ2-xM-cEp"/>
-                            </connections>
-                        </button>
-                        <button width="1" alignment="left" title="End" id="aMR-sb-3UJ">
-                            <connections>
-                                <action selector="didTapEndButton" destination="wVb-Vt-ipq" id="XVt-cf-C7g"/>
+                                <action selector="didTapStartButton" destination="wVb-Vt-ipq" id="PtX-Fg-Yj1"/>
                             </connections>
                         </button>
                     </items>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14460.31" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14460.16"/>
+    </dependencies>
+    <scenes>
+        <!--WorkoutInterface-->
+        <scene sceneID="aC8-Hp-dle">
+            <objects>
+                <controller identifier="WorkoutInterface" id="vWP-Dp-Oh4" customClass="WorkoutInterfaceController" customModule="Watch_Extension">
+                    <items>
+                        <timer alignment="left" id="oHA-Ar-2aG"/>
+                        <label alignment="left" text="Heart Rate" id="vvm-8F-0zE"/>
+                        <label alignment="left" text="Calories" id="kTs-vY-0WW"/>
+                        <label alignment="left" text="Distance" id="UsW-hy-RRj"/>
+                        <button width="1" alignment="left" title="Pause" id="Cpj-rP-iKa">
+                            <connections>
+                                <action selector="didTapPauseButton" destination="vWP-Dp-Oh4" id="vkJ-fw-qJH"/>
+                            </connections>
+                        </button>
+                        <button width="1" alignment="left" title="End" id="D3y-V0-XNG">
+                            <connections>
+                                <action selector="didTapEndButton" destination="vWP-Dp-Oh4" id="s6d-9q-UGS"/>
+                            </connections>
+                        </button>
+                    </items>
+                    <connections>
+                        <outlet property="caloriesLabel" destination="kTs-vY-0WW" id="LUp-ey-obM"/>
+                        <outlet property="distanceLabel" destination="UsW-hy-RRj" id="lpv-Rc-JBJ"/>
+                        <outlet property="elapsedTimer" destination="oHA-Ar-2aG" id="KZu-i6-naP"/>
+                        <outlet property="heartRateLabel" destination="vvm-8F-0zE" id="nL4-cb-7Nf"/>
+                        <outlet property="pauseResumeButton" destination="Cpj-rP-iKa" id="1g5-fO-bcS"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="-97" y="44"/>
+        </scene>
+    </scenes>
+</document>

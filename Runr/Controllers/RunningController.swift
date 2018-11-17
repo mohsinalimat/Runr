@@ -227,14 +227,15 @@ extension RunningController: WCSessionDelegate {
 	}
 	
 	func sessionDidBecomeInactive(_ session: WCSession) {
-		
+		// start updating location here on ios
 	}
 	
 	func sessionDidDeactivate(_ session: WCSession) {
-		
+		// Begin the activation process for the new Apple Watch.
+		WCSession.default.activate()
 	}
 	
-	func session(_ session: WCSession, didReceiveMessage message: [String: Any]) {
-		
+	func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
+		debugPrint("userInfo received: \(userInfo)")
 	}
 }

@@ -74,22 +74,18 @@ class RunViewController: UIViewController {
 		if HKHealthStore.isHealthDataAvailable() {
 			let healthKitStore = HKHealthStore()
 			
-			let recordsToWrite = Set([
-				HKObjectType.quantityType(forIdentifier: .activeEnergyBurned)!,
-				HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!,
-				HKObjectType.quantityType(forIdentifier: .heartRate)!,
+			let typesToShare = Set([
 				HKObjectType.workoutType()
 			])
 			
-			let recordsToRead = Set([
-				HKObjectType.quantityType(forIdentifier: .activeEnergyBurned)!,
-				HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!,
-				HKObjectType.quantityType(forIdentifier: .heartRate)!,
-				HKObjectType.workoutType()
+			let typesToRead = Set([
+				HKQuantityType.quantityType(forIdentifier: .heartRate)!,
+				HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)!,
+				HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)!
 			])
 			
 			// TODO: handle what to do in the event the user declines
-			healthKitStore.requestAuthorization(toShare: recordsToWrite, read: recordsToRead) { (success, error) in
+			healthKitStore.requestAuthorization(toShare: typesToShare, read: typesToRead) { (success, error) in
 				debugPrint("healthkit success: \(success), error: \(String(describing: error?.localizedDescription))")
 			}
 		}
