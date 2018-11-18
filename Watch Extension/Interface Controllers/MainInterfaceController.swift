@@ -27,10 +27,13 @@ class MainInterfaceController: WKInterfaceController {
 		super.didAppear()
 		
 		let typesToShare = Set([
-			HKObjectType.workoutType()
+			HKObjectType.workoutType(),
+			HKObjectType.seriesType(forIdentifier: HKWorkoutRouteTypeIdentifier)!
 			])
 		
 		let typesToRead = Set([
+			HKObjectType.workoutType(),
+			HKObjectType.seriesType(forIdentifier: HKWorkoutRouteTypeIdentifier)!,
 			HKQuantityType.quantityType(forIdentifier: .heartRate)!,
 			HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)!,
 			HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)!

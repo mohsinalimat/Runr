@@ -29,12 +29,19 @@ class WorkoutInterfaceController: WKInterfaceController {
 	
 	private var workoutSession: HKWorkoutSession!
 	private var builder: HKLiveWorkoutBuilder!
+	private var routeBuilder: HKWorkoutRouteBuilder
+	
+	private var locationController: LocationController
 	
 	
 	override init() {
 		healthStore = HKHealthStore()
+		locationController = LocationController()
+		routeBuilder = HKWorkoutRouteBuilder(healthStore: healthStore, device: nil)
 		
 		super.init()
+		
+		locationController.delegate = self
 	}
 	
     override func awake(withContext context: Any?) {
@@ -58,6 +65,9 @@ class WorkoutInterfaceController: WKInterfaceController {
 			workoutSession.startActivity(with: nil)
 			builder.beginCollection(withStart: Date()) { (_, _) in
 				self.setDurationTimerDate()
+				DispatchQueue.main.async {
+					self.locationController.startUpdatingLocations()
+				}
 			}
 		}
     }
@@ -69,17 +79,34 @@ class WorkoutInterfaceController: WKInterfaceController {
 	@IBAction func didTapPauseButton() {
 		if workoutSession.state == .running {
 			workoutSession?.pause()
+			DispatchQueue.main.async {
+				self.locationController.stopLocationUpdates()
+			}
 		} else {
 			workoutSession.resume()
+			DispatchQueue.main.async {
+				self.locationController.startUpdatingLocations()
+			}
 		}
 	}
 	
 	@IBAction func didTapEndButton() {
 		workoutSession?.end()
+		DispatchQueue.main.async {
+			self.locationController.stopLocationUpdates()
+		}
 		builder.endCollection(withEnd: Date()) { (_, _) in
-			self.builder.finishWorkout(completion: { (_, _) in
-				DispatchQueue.main.async {
-					self.dismiss()
+			self.builder.finishWorkout(completion: { (workout, _) in
+				if let workout = workout {
+					self.routeBuilder.finishRoute(with: workout, metadata: nil, completion: { (_, error) in
+						if let error = error {
+							debugPrint(#file, #function, error.localizedDescription)
+						}
+					
+						DispatchQueue.main.async {
+							self.dismiss()
+						}
+					})
 				}
 			})
 		}
@@ -167,6 +194,30 @@ extension WorkoutInterfaceController: HKWorkoutSessionDelegate {
 	}
 	
 	func workoutSession(_ workoutSession: HKWorkoutSession, didFailWithError error: Error) {
-		debugPrint(#function)
+		debugPrint(#function, error.localizedDescription)
+	}
+}
+
+
+
+// MARK: - LocationControllerDelegate
+
+extension WorkoutInterfaceController: LocationControllerDelegate {
+	
+	func didUpdateLocations(with locations: [CLLocation]) {
+		debugPrint("locations: \(locations)")
+		routeBuilder.insertRouteData(locations) { (success, error) in
+			if !success, let error = error {
+				debugPrint(#file, #function, #line, error.localizedDescription)
+			}
+		}
+	}
+	
+	func didFail(with error: Error) {
+		debugPrint(#file, #function, #line, error.localizedDescription)
+	}
+	
+	func didChangeAuthoriztionStatus(_ status: CLAuthorizationStatus) {
+		debugPrint(#file, #function, #line, status)
 	}
 }

@@ -21,6 +21,7 @@
 		DD21B4D521321B96004B22E7 /* RunrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD21B4D421321B96004B22E7 /* RunrTests.swift */; };
 		DD304B0E216C4A6100ABE7C2 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD304B0D216C4A6100ABE7C2 /* Coordinate.swift */; };
 		DD304B10216C4AF100ABE7C2 /* RunManagerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD304B0F216C4AF100ABE7C2 /* RunManagerViewController.storyboard */; };
+		DDAB3B6C21A106CE0014C240 /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDEE3B721334CA400C8DC65 /* LocationController.swift */; };
 		DDDEE3AD21324CF000C8DC65 /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDEE3AC21324CF000C8DC65 /* Run.swift */; };
 		DDDEE3AF2132572900C8DC65 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDEE3AE2132572900C8DC65 /* Location.swift */; };
 		DDDEE3B2213259D500C8DC65 /* RunningController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDEE3B1213259D500C8DC65 /* RunningController.swift */; };
@@ -627,6 +628,7 @@
 				DDF1C487218BF47E00557C11 /* NotificationController.swift in Sources */,
 				DDF1C485218BF47E00557C11 /* ExtensionDelegate.swift in Sources */,
 				DDE26A5C219FBC840097D731 /* MainInterfaceController.swift in Sources */,
+				DDAB3B6C21A106CE0014C240 /* LocationController.swift in Sources */,
 				DD1C6540219A7555001F3407 /* WorkoutInterfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
