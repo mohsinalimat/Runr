@@ -205,7 +205,6 @@ extension WorkoutInterfaceController: HKWorkoutSessionDelegate {
 extension WorkoutInterfaceController: LocationControllerDelegate {
 	
 	func didUpdateLocations(with locations: [CLLocation]) {
-		debugPrint("locations: \(locations)")
 		routeBuilder.insertRouteData(locations) { (success, error) in
 			if !success, let error = error {
 				debugPrint(#file, #function, #line, error.localizedDescription)

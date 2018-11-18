@@ -21,6 +21,8 @@
 		DD21B4D521321B96004B22E7 /* RunrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD21B4D421321B96004B22E7 /* RunrTests.swift */; };
 		DD304B0E216C4A6100ABE7C2 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD304B0D216C4A6100ABE7C2 /* Coordinate.swift */; };
 		DD304B10216C4AF100ABE7C2 /* RunManagerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD304B0F216C4AF100ABE7C2 /* RunManagerViewController.storyboard */; };
+		DD45F16F21A1277500C1DA72 /* ConnectivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD45F16E21A1277500C1DA72 /* ConnectivityController.swift */; };
+		DD45F17021A1277A00C1DA72 /* ConnectivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD45F16E21A1277500C1DA72 /* ConnectivityController.swift */; };
 		DDAB3B6C21A106CE0014C240 /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDEE3B721334CA400C8DC65 /* LocationController.swift */; };
 		DDDEE3AD21324CF000C8DC65 /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDEE3AC21324CF000C8DC65 /* Run.swift */; };
 		DDDEE3AF2132572900C8DC65 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDEE3AE2132572900C8DC65 /* Location.swift */; };
@@ -113,6 +115,7 @@
 		DD21B4D621321B96004B22E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD304B0D216C4A6100ABE7C2 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 		DD304B0F216C4AF100ABE7C2 /* RunManagerViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RunManagerViewController.storyboard; sourceTree = "<group>"; };
+		DD45F16E21A1277500C1DA72 /* ConnectivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityController.swift; sourceTree = "<group>"; };
 		DDC48B16216DA74900F1262B /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		DDDEE3AC21324CF000C8DC65 /* Run.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Run.swift; sourceTree = "<group>"; };
 		DDDEE3AE2132572900C8DC65 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -223,6 +226,7 @@
 		DD21B4B321321B94004B22E7 = {
 			isa = PBXGroup;
 			children = (
+				DDE6263021A122D600C89F61 /* Shared */,
 				DD21B4BE21321B94004B22E7 /* Runr */,
 				DD21B4D321321B96004B22E7 /* RunrTests */,
 				DDF1C472218BF47C00557C11 /* Watch */,
@@ -286,7 +290,6 @@
 			children = (
 				DDDEE3B1213259D500C8DC65 /* RunningController.swift */,
 				DDDEE3B3213259E300C8DC65 /* DataController.swift */,
-				DDDEE3B721334CA400C8DC65 /* LocationController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -307,6 +310,23 @@
 				DD1C653F219A7555001F3407 /* WorkoutInterfaceController.swift */,
 			);
 			path = "Interface Controllers";
+			sourceTree = "<group>";
+		};
+		DDE6263021A122D600C89F61 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				DDE6263121A123A400C89F61 /* Controllers */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		DDE6263121A123A400C89F61 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DDDEE3B721334CA400C8DC65 /* LocationController.swift */,
+				DD45F16E21A1277500C1DA72 /* ConnectivityController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		DDF1C472218BF47C00557C11 /* Watch */ = {
@@ -609,6 +629,7 @@
 				DDDEE3AF2132572900C8DC65 /* Location.swift in Sources */,
 				DD21B4C021321B94004B22E7 /* AppDelegate.swift in Sources */,
 				DDDEE3B2213259D500C8DC65 /* RunningController.swift in Sources */,
+				DD45F16F21A1277500C1DA72 /* ConnectivityController.swift in Sources */,
 				DD09BA34216B056A002090B8 /* UIViewController+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -629,6 +650,7 @@
 				DDF1C485218BF47E00557C11 /* ExtensionDelegate.swift in Sources */,
 				DDE26A5C219FBC840097D731 /* MainInterfaceController.swift in Sources */,
 				DDAB3B6C21A106CE0014C240 /* LocationController.swift in Sources */,
+				DD45F17021A1277A00C1DA72 /* ConnectivityController.swift in Sources */,
 				DD1C6540219A7555001F3407 /* WorkoutInterfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
