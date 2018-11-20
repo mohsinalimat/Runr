@@ -12,44 +12,24 @@ import HealthKit
 
 class RunViewController: UIViewController {
 	
+	static func build(runrController: RunrController) -> RunViewController {
+		let storyboard = UIStoryboard(name: className, bundle: nil)
+		let viewController = storyboard.instantiateInitialViewController() as! RunViewController
+		viewController.runrController = runrController
+		return viewController
+	}
+	
 	// MARK: - Variables
 	
-	private var dataController: DataController
-	
-	private var runningController: RunningController
-	
-	private var locationController: LocationController
+	private var runrController: RunrController!
 	
 	private lazy var runManagerViewController: RunManagerViewController = {
-		let viewController = RunManagerViewController.build(dataController: dataController,
-															runningController: runningController)
+		let viewController = RunManagerViewController.build(runrController: runrController)
 		return viewController
 	}()
 	
 	
 	// MARK: - Lifecycle Methods
-	
-	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-		self.dataController = DataController()
-		self.locationController = LocationController()
-		self.runningController = RunningController(
-			locationController: self.locationController,
-			dataController: self.dataController)
-		
-		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-	}
-	
-	
-	required init?(coder aDecoder: NSCoder) {
-		self.dataController = DataController()
-		self.locationController = LocationController()
-		self.runningController = RunningController(
-			locationController: self.locationController,
-			dataController: self.dataController)
-		
-		super.init(coder: aDecoder)
-	}
-	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -62,7 +42,7 @@ class RunViewController: UIViewController {
 		
 		let locationStatus = CLLocationManager.authorizationStatus()
 		if locationStatus != .authorizedWhenInUse || locationStatus != .authorizedAlways {
-			self.locationController.locationManager.requestWhenInUseAuthorization()
+			self.runrController.locationController.locationManager.requestWhenInUseAuthorization()
 		}
 		
 		self.authorizeHealthKit()
@@ -95,16 +75,16 @@ class RunViewController: UIViewController {
 	// TODO: remove me and move to RunManagerViewController
 	
 	@IBAction func startRun(_ sender: UIButton) {
-		runningController.startRun(with: .outdoor)
+		runrController.runningController.startRun(with: .outdoor)
 	}
 	
 	
 	@IBAction func pauseRun(_ sender: UIButton) {
-		runningController.pauseRun()
+		runrController.runningController.pauseRun()
 	}
 	
 	
 	@IBAction func endRun(_ sender: UIButton) {
-		runningController.endRun()
+		runrController.runningController.endRun()
 	}
 }

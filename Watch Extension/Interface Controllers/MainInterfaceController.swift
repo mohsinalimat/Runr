@@ -8,7 +8,7 @@
 
 import WatchKit
 import HealthKit
-
+import WatchConnectivity
 
 class MainInterfaceController: WKInterfaceController {
 	
@@ -20,6 +20,8 @@ class MainInterfaceController: WKInterfaceController {
         super.awake(withContext: context)
         
         // Configure interface objects here.
+		WCSession.default.delegate = self
+		WCSession.default.activate()
     }
 	
 	
@@ -54,5 +56,13 @@ class MainInterfaceController: WKInterfaceController {
 		workoutConfiguration.locationType = .outdoor
 		
 		self.presentController(withName: WorkoutInterfaceController.interfaceName, context: workoutConfiguration)
+	}
+}
+
+
+extension MainInterfaceController: WCSessionDelegate {
+	
+	func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+		debugPrint(#function, session, activationState, String(describing: error))
 	}
 }

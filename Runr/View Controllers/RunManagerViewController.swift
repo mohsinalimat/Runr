@@ -10,11 +10,10 @@ import UIKit
 
 class RunManagerViewController: UIViewController {
 	
-	class func build(dataController: DataController, runningController: RunningController) -> RunManagerViewController {
+	class func build(runrController: RunrController) -> RunManagerViewController {
 		let storyboard = UIStoryboard(name: className, bundle: nil)
 		let viewController = storyboard.instantiateInitialViewController() as! RunManagerViewController
-		viewController.dataController = dataController
-		viewController.runningController = runningController
+		viewController.runrController = runrController
 		return viewController
 	}
 	
@@ -22,9 +21,7 @@ class RunManagerViewController: UIViewController {
 	
 	// MARK: - Variables
 	
-	private var dataController: DataController!
-	
-	private var runningController: RunningController!
+	private var runrController: RunrController!
 	
 	
 	

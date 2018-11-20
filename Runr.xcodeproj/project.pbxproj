@@ -24,6 +24,7 @@
 		DD45F16F21A1277500C1DA72 /* ConnectivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD45F16E21A1277500C1DA72 /* ConnectivityController.swift */; };
 		DD45F17021A1277A00C1DA72 /* ConnectivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD45F16E21A1277500C1DA72 /* ConnectivityController.swift */; };
 		DDAB3B6C21A106CE0014C240 /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDEE3B721334CA400C8DC65 /* LocationController.swift */; };
+		DDDB8F7821A3C2C600BA5E41 /* RunrController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB8F7721A3C2C600BA5E41 /* RunrController.swift */; };
 		DDDEE3AD21324CF000C8DC65 /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDEE3AC21324CF000C8DC65 /* Run.swift */; };
 		DDDEE3AF2132572900C8DC65 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDEE3AE2132572900C8DC65 /* Location.swift */; };
 		DDDEE3B2213259D500C8DC65 /* RunningController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDEE3B1213259D500C8DC65 /* RunningController.swift */; };
@@ -117,6 +118,7 @@
 		DD304B0F216C4AF100ABE7C2 /* RunManagerViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RunManagerViewController.storyboard; sourceTree = "<group>"; };
 		DD45F16E21A1277500C1DA72 /* ConnectivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityController.swift; sourceTree = "<group>"; };
 		DDC48B16216DA74900F1262B /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
+		DDDB8F7721A3C2C600BA5E41 /* RunrController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunrController.swift; sourceTree = "<group>"; };
 		DDDEE3AC21324CF000C8DC65 /* Run.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Run.swift; sourceTree = "<group>"; };
 		DDDEE3AE2132572900C8DC65 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		DDDEE3B1213259D500C8DC65 /* RunningController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningController.swift; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 		DDDEE3B0213259A900C8DC65 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				DDDB8F7721A3C2C600BA5E41 /* RunrController.swift */,
 				DDDEE3B1213259D500C8DC65 /* RunningController.swift */,
 				DDDEE3B3213259E300C8DC65 /* DataController.swift */,
 			);
@@ -630,6 +633,7 @@
 				DD21B4C021321B94004B22E7 /* AppDelegate.swift in Sources */,
 				DDDEE3B2213259D500C8DC65 /* RunningController.swift in Sources */,
 				DD45F16F21A1277500C1DA72 /* ConnectivityController.swift in Sources */,
+				DDDB8F7821A3C2C600BA5E41 /* RunrController.swift in Sources */,
 				DD09BA34216B056A002090B8 /* UIViewController+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

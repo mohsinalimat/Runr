@@ -9,6 +9,7 @@
 import WatchKit
 import Foundation
 import HealthKit
+import WatchConnectivity
 
 
 class WorkoutInterfaceController: WKInterfaceController {
@@ -42,6 +43,9 @@ class WorkoutInterfaceController: WKInterfaceController {
 		super.init()
 		
 		locationController.delegate = self
+		
+		WCSession.default.delegate = self
+		WCSession.default.activate()
 	}
 	
     override func awake(withContext context: Any?) {
@@ -218,5 +222,13 @@ extension WorkoutInterfaceController: LocationControllerDelegate {
 	
 	func didChangeAuthoriztionStatus(_ status: CLAuthorizationStatus) {
 		debugPrint(#file, #function, #line, status)
+	}
+}
+
+
+extension WorkoutInterfaceController: WCSessionDelegate {
+	
+	func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+		debugPrint(#function, session, activationState, String(describing: error))
 	}
 }

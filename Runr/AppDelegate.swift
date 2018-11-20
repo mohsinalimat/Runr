@@ -7,15 +7,34 @@
 //
 
 import UIKit
+import WatchConnectivity
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
 	
+	private lazy var connectivityController: ConnectivityController = {
+		return ConnectivityController()
+	}()
+	
+	private lazy var runrController: RunrController = {
+		return RunrController(connectivityController: connectivityController)
+	}()
 	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
+		
+		if WCSession.isSupported() {
+			WCSession.default.delegate = connectivityController
+			WCSession.default.activate()
+		}
+		
+		let mainViewController = RunViewController.build(runrController: runrController)
+		self.window = UIWindow(frame: UIScreen.main.bounds)
+		self.window?.rootViewController = mainViewController
+		self.window?.makeKeyAndVisible()
+		
 		return true
 	}
 
@@ -40,6 +59,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func applicationWillTerminate(_ application: UIApplication) {
 		// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 	}
-
-
 }

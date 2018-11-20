@@ -7,10 +7,17 @@
 //
 
 import Foundation
+import WatchConnectivity
+
+protocol ConnectivityControllerDelegate: class {
+	func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?)
+}
 
 class ConnectivityController: NSObject {
 	
-	enum UpdateType {
+	weak var connectionDelegate: ConnectivityControllerDelegate?
+	
+	enum UpdateType: Int {
 		case start
 		case pause
 		case resume
@@ -23,4 +30,29 @@ class ConnectivityController: NSObject {
 	
 	
 	
+}
+
+
+extension ConnectivityController: WCSessionDelegate {
+	
+	func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+		connectionDelegate?.session(session, activationDidCompleteWith: activationState, error: error)
+	}
+	
+	// WCSessionDelegate methods for iOS only.
+	//
+	#if os(iOS)
+	func sessionDidBecomeInactive(_ session: WCSession) {
+		print("\(#function): activationState = \(session.activationState.rawValue)")
+	}
+	
+	func sessionDidDeactivate(_ session: WCSession) {
+		// Activate the new session after having switched to a new watch.
+		session.activate()
+	}
+	
+	func sessionWatchStateDidChange(_ session: WCSession) {
+		print("\(#function): activationState = \(session.activationState.rawValue)")
+	}
+	#endif
 }
