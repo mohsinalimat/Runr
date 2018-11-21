@@ -19,6 +19,8 @@ enum RunState {
 
 class Run: Object {
 	
+	@objc dynamic var uuid: UUID = UUID()
+	
 	@objc dynamic var runType: RunType = .outdoor
 	
 	@objc dynamic var startDate: Date = Date()

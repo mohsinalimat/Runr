@@ -12,11 +12,6 @@ import CoreMotion
 import HealthKit
 import WatchConnectivity
 
-@objc enum RunType: Int {
-	case outdoor
-	case indoor
-}
-
 class RunningController: NSObject {
 	
 	private var currentRun: Run?

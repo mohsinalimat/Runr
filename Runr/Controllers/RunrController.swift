@@ -32,6 +32,9 @@ class RunrController: NSObject {
 }
 
 
+
+// MARK: - ConnectivityControllerDelegate
+
 extension RunrController: ConnectivityControllerDelegate {
 	
 	func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
