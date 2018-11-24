@@ -34,6 +34,8 @@ class WorkoutInterfaceController: WKInterfaceController {
 	
 	private var locationController: LocationController
 	
+	private let runUUID = UUID()
+	
 	
 	override init() {
 		healthStore = HKHealthStore()
@@ -157,6 +159,8 @@ extension WorkoutInterfaceController: HKLiveWorkoutBuilderDelegate {
 				let heartRateUnit = HKUnit.count().unitDivided(by: HKUnit.minute())
 				if let bpm = statistics.mostRecentQuantity()?.doubleValue(for: heartRateUnit) {
 					heartRateLabel.setText("\(bpm) bpm")
+					let heartRateModel = HeartRateModel(runUUID: self.runUUID, heartRate: bpm, timeStamp: Date())
+					self.sendData(with: heartRateModel)
 				}
 			case HKQuantityTypeIdentifier.activeEnergyBurned.rawValue:
 				let largeCalorieUnit = HKUnit.largeCalorie()
@@ -167,6 +171,9 @@ extension WorkoutInterfaceController: HKLiveWorkoutBuilderDelegate {
 					formatter.unitOptions = [.providedUnit]
 					
 					caloriesLabel.setText(formatter.string(from: measurement))
+					
+					let calorieModel = ActiveEnergyModel(runUUID: self.runUUID, calorieCount: calories)
+					self.sendData(with: calorieModel)
 				}
 			case HKQuantityTypeIdentifier.distanceWalkingRunning.rawValue:
 				let mileUnit = HKUnit.mile()
@@ -176,6 +183,9 @@ extension WorkoutInterfaceController: HKLiveWorkoutBuilderDelegate {
 					formatter.numberFormatter.maximumFractionDigits = 2
 					
 					distanceLabel.setText(formatter.string(from: measurement))
+					
+					let distanceModel = DistanceModel(runUUID: self.runUUID, distance: miles)
+					self.sendData(with: distanceModel)
 				}
 			default:
 				break
@@ -194,7 +204,24 @@ extension WorkoutInterfaceController: HKWorkoutSessionDelegate {
 						didChangeTo toState: HKWorkoutSessionState,
 						from fromState: HKWorkoutSessionState,
 						date: Date) {
-		debugPrint(#function)
+		if fromState == .notStarted, toState == .running {
+			// starting
+			let runType: RunType = workoutSession.workoutConfiguration.locationType == .outdoor ? .outdoor : .indoor
+			let startModel = StartModel(runUUID: self.runUUID, startTime: date, runType: runType)
+			self.sendData(with: startModel)
+		} else if toState == .paused {
+			// paused
+			let pausedModel = PauseModel(runUUID: self.runUUID, pauseTime: date)
+			self.sendData(with: pausedModel)
+		} else if fromState == .paused, toState == .running {
+			// resume
+			let resumeModel = ResumeModel(runUUID: self.runUUID, resumeTime: date)
+			self.sendData(with: resumeModel)
+		} else if toState == .ended {
+			// ended
+			let endModel = EndModel(runUUID: self.runUUID, endTime: date)
+			self.sendData(with: endModel)
+		}
 	}
 	
 	func workoutSession(_ workoutSession: HKWorkoutSession, didFailWithError error: Error) {
@@ -230,5 +257,15 @@ extension WorkoutInterfaceController: WCSessionDelegate {
 	
 	func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
 		debugPrint(#function, session, activationState, String(describing: error))
+	}
+}
+
+
+
+extension WorkoutInterfaceController {
+	
+	fileprivate func sendData(with model: ConnectivityModel) {
+		guard let data = model.data else { return }
+		WCSession.default.transferUserInfo([ConnectivityController.userInfoDataKey: data])
 	}
 }

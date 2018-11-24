@@ -20,6 +20,8 @@ protocol ConnectivityControllerDelegate: class {
 
 class ConnectivityController: NSObject {
 	
+	static let userInfoDataKey = "userInfo"
+	
 	weak var connectionDelegate: ConnectivityControllerDelegate?
 	
 	enum UpdateType: Int, Codable {
