@@ -65,16 +65,16 @@ class RunningController: NSObject {
 			}
 		}
 		
-		return
-		
-		startTimer()
-		
-		switch runType {
-		case .outdoor:
-			startOutdoorRun()
-		case .indoor:
-			startIndoorRun()
-		}
+//		return
+//		
+//		startTimer()
+//
+//		switch runType {
+//		case .outdoor:
+//			startOutdoorRun()
+//		case .indoor:
+//			startIndoorRun()
+//		}
 	}
 	
 	
