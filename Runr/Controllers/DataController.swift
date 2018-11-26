@@ -111,3 +111,61 @@ class DataController {
 		}
 	}
 }
+
+
+
+// MARK: - ConnectivityModel Updates
+
+extension DataController {
+	
+	func createRun(from startModel: StartModel) {
+		let run = Run(uuid: startModel.runUUID)
+		run.startDate = startModel.startTime
+		run.runType = startModel.runType
+		
+		DispatchQueue.main.async {
+			self.add(run: run)
+		}
+	}
+	
+	
+	func endRun(with endModel: EndModel) {
+		DispatchQueue.main.async {
+			let predicate = NSPredicate(format: "uuidString == %@", endModel.runUUID.uuidString)
+			guard let run = self.realm.objects(Run.self).filter(predicate).first else { return }
+			self.update(run: run, endDate: endModel.endTime)
+		}
+	}
+	
+	
+	func handleHeartRate(with heartRateModel: HeartRateModel) {
+		DispatchQueue.main.async {
+			let predicate = NSPredicate(format: "uuidString == %@", heartRateModel.runUUID.uuidString)
+			guard let run = self.realm.objects(Run.self).filter(predicate).first else { return }
+			let heartRateObject = HeartRateObject()
+			heartRateObject.heartRate = heartRateModel.heartRate
+			heartRateObject.timestamp = heartRateModel.timeStamp
+			
+			self.update(run: run, newHeartRates: [heartRateObject])
+		}
+	}
+	
+	
+	func handleLocation(with locationModel: LocationModel) {
+		DispatchQueue.main.async {
+			let predicate = NSPredicate(format: "uuidString == %@", locationModel.runUUID.uuidString)
+			guard let run = self.realm.objects(Run.self).filter(predicate).first else { return }
+			let location = Location()
+			location.coordinate?.latitude = locationModel.latitude
+			location.coordinate?.longitude = locationModel.longitude
+			location.altitude = locationModel.altitude
+			location.floor = locationModel.floor
+			location.horizontalAccuracy = locationModel.horizontalAccuracy
+			location.verticalAccuracy = locationModel.verticalAccuracy
+			location.speed = locationModel.speed
+			location.timestamp = locationModel.timeStamp
+			
+			self.update(run: run, newLocations: [location])
+		}
+	}
+}

@@ -55,14 +55,17 @@ class RunViewController: UIViewController {
 			let healthKitStore = HKHealthStore()
 			
 			let typesToShare = Set([
-				HKObjectType.workoutType()
-			])
+				HKObjectType.workoutType(),
+				HKObjectType.seriesType(forIdentifier: HKWorkoutRouteTypeIdentifier)!
+				])
 			
 			let typesToRead = Set([
+				HKObjectType.workoutType(),
+				HKObjectType.seriesType(forIdentifier: HKWorkoutRouteTypeIdentifier)!,
 				HKQuantityType.quantityType(forIdentifier: .heartRate)!,
 				HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)!,
 				HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)!
-			])
+				])
 			
 			// TODO: handle what to do in the event the user declines
 			healthKitStore.requestAuthorization(toShare: typesToShare, read: typesToRead) { (success, error) in

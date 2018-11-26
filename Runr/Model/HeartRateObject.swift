@@ -12,7 +12,7 @@ import RealmSwift
 
 class HeartRateObject: Object {
 	
-	@objc dynamic var timestamp: Double = 0
+	@objc dynamic var timestamp: Date = Date()
 	
 	@objc dynamic var heartRate: Double = 0
 }

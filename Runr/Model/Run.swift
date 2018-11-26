@@ -59,4 +59,11 @@ class Run: Object {
 		// TODO: implement calorie calculations
 		return Int(duration)
 	}
+	
+	
+	convenience init(uuid: UUID = UUID()) {
+		self.init()
+		
+		self.uuidString = uuid.uuidString
+	}
 }

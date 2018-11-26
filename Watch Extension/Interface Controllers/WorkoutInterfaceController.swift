@@ -236,10 +236,25 @@ extension WorkoutInterfaceController: HKWorkoutSessionDelegate {
 extension WorkoutInterfaceController: LocationControllerDelegate {
 	
 	func didUpdateLocations(with locations: [CLLocation]) {
-		routeBuilder.insertRouteData(locations) { (success, error) in
+		
+		let filteredLocations = locations.filter({ $0.horizontalAccuracy >= 0 && $0.horizontalAccuracy <= 50.0 && $0.verticalAccuracy >= 0 })
+		
+		guard filteredLocations.count > 0 else {
+			debugPrint("no locations")
+			return
+		}
+		
+		routeBuilder.insertRouteData(filteredLocations) { (success, error) in
 			if !success, let error = error {
 				debugPrint(#file, #function, #line, error.localizedDescription)
 			}
+		}
+		
+		filteredLocations.forEach {
+			let locationModel = LocationModel(runUUID: self.runUUID, latitude: $0.coordinate.latitude, longitude: $0.coordinate.longitude,
+											  altitude: $0.altitude, floor: $0.floor?.level ?? 0, horizontalAccuracy: $0.horizontalAccuracy,
+											  verticalAccuracy: $0.verticalAccuracy, speed: $0.speed, timeStamp: $0.timestamp)
+			self.sendData(with: locationModel)
 		}
 	}
 	
@@ -266,6 +281,9 @@ extension WorkoutInterfaceController {
 	
 	fileprivate func sendData(with model: ConnectivityModel) {
 		guard let data = model.data else { return }
-		WCSession.default.transferUserInfo([ConnectivityController.userInfoDataKey: data])
+		WCSession.default.transferUserInfo([
+			ConnectivityController.updateTypeKey: model.updateType.rawValue,
+			ConnectivityController.userInfoDataKey: data
+			])
 	}
 }

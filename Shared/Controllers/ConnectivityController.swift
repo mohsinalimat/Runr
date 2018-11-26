@@ -16,11 +16,14 @@ import WatchConnectivity
 
 protocol ConnectivityControllerDelegate: class {
 	func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?)
+	func session(_ session: WCSession, didReceiveUserInfo userInfo: [String: Any])
 }
 
 class ConnectivityController: NSObject {
 	
-	static let userInfoDataKey = "userInfo"
+	static let userInfoDataKey = "userInfoKey"
+	
+	static let updateTypeKey = "updateTypeKey"
 	
 	weak var connectionDelegate: ConnectivityControllerDelegate?
 	
@@ -59,4 +62,10 @@ extension ConnectivityController: WCSessionDelegate {
 		print("\(#function): activationState = \(session.activationState.rawValue)")
 	}
 	#endif
+	
+	
+	func session(_ session: WCSession, didReceiveUserInfo userInfo: [String: Any] = [:]) {
+		debugPrint(#function, userInfo)
+		connectionDelegate?.session(session, didReceiveUserInfo: userInfo)
+	}
 }

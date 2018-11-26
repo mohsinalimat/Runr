@@ -28,10 +28,13 @@ class RunningController: NSObject {
 	
 	private var wcSessionActivationCompletion: ((WCSession) -> Void)?
 	
+	private var connectivityController: ConnectivityController
 	
-	init(locationController: LocationController, dataController: DataController) {
+	
+	init(locationController: LocationController, dataController: DataController, connectivityController: ConnectivityController) {
 		self.locationController = locationController
 		self.dataController = dataController
+		self.connectivityController = connectivityController
 		
 		healthStore = HKHealthStore()
 		routeBuilder = HKWorkoutRouteBuilder(healthStore: healthStore, device: nil)
@@ -166,7 +169,7 @@ class RunningController: NSObject {
 		guard WCSession.isSupported() else { return }
 		
 		let wcSession = WCSession.default
-		wcSession.delegate = self
+		wcSession.delegate = self.connectivityController
 		
 		if wcSession.activationState == .activated {
 			completion(wcSession)
@@ -203,34 +206,5 @@ extension RunningController: LocationControllerDelegate {
 	
 	func didChangeAuthoriztionStatus(_ status: CLAuthorizationStatus) {
 		// TODO: handle authorization status
-	}
-}
-
-
-
-// MARK: - WCSessionDelegate
-
-extension RunningController: WCSessionDelegate {
-	
-	func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-		if activationState == .activated {
-			if let activationCompletion = wcSessionActivationCompletion {
-				activationCompletion(session)
-				wcSessionActivationCompletion = nil
-			}
-		}
-	}
-	
-	func sessionDidBecomeInactive(_ session: WCSession) {
-		// start updating location here on ios
-	}
-	
-	func sessionDidDeactivate(_ session: WCSession) {
-		// Begin the activation process for the new Apple Watch.
-		WCSession.default.activate()
-	}
-	
-	func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
-		debugPrint("userInfo received: \(userInfo)")
 	}
 }
