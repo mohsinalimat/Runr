@@ -68,12 +68,12 @@ class WorkoutInterfaceController: WKInterfaceController {
 			builder.delegate = self
 			builder.dataSource = HKLiveWorkoutDataSource(healthStore: healthStore, workoutConfiguration: workoutConfiguration)
 			
-			workoutSession.startActivity(with: nil)
+			workoutSession.startActivity(with: Date())
+			
+			self.locationController.startUpdatingLocations()
+			
 			builder.beginCollection(withStart: Date()) { (_, _) in
 				self.setDurationTimerDate()
-				DispatchQueue.main.async {
-					self.locationController.startUpdatingLocations()
-				}
 			}
 		}
     }
@@ -97,10 +97,15 @@ class WorkoutInterfaceController: WKInterfaceController {
 	}
 	
 	@IBAction func didTapEndButton() {
-		workoutSession?.end()
+		
 		DispatchQueue.main.async {
 			self.locationController.stopLocationUpdates()
 		}
+		
+		let endModel = EndModel(runUUID: self.runUUID, endTime: Date())
+		self.sendData(with: endModel)
+		
+		workoutSession.end()
 		builder.endCollection(withEnd: Date()) { (_, _) in
 			self.builder.finishWorkout(completion: { (workout, _) in
 				if let workout = workout {
@@ -108,11 +113,10 @@ class WorkoutInterfaceController: WKInterfaceController {
 						if let error = error {
 							debugPrint(#file, #function, error.localizedDescription)
 						}
-					
-						DispatchQueue.main.async {
-							self.dismiss()
-						}
+						self.dismiss()
 					})
+				} else {
+					self.dismiss()
 				}
 			})
 		}
@@ -123,16 +127,14 @@ class WorkoutInterfaceController: WKInterfaceController {
 	// MARK: - UI Functionality
 	
 	private func setDurationTimerDate() {
-		let timerDate = Date(timeInterval: -builder.elapsedTime, since: Date())
-		let sessionState = workoutSession.state
-		
+		let timerDate = Date(timeInterval: -self.builder.elapsedTime, since: Date())
 		DispatchQueue.main.async {
 			self.elapsedTimer.setDate(timerDate)
-			if sessionState == .running {
-				self.elapsedTimer.stop()
-			} else {
-				self.elapsedTimer.start()
-			}
+		}
+		
+		let sessionState = self.workoutSession.state
+		DispatchQueue.main.async {
+			sessionState == .running ? self.elapsedTimer.start() : self.elapsedTimer.stop()
 		}
 	}
 }
@@ -217,10 +219,6 @@ extension WorkoutInterfaceController: HKWorkoutSessionDelegate {
 			// resume
 			let resumeModel = ResumeModel(runUUID: self.runUUID, resumeTime: date)
 			self.sendData(with: resumeModel)
-		} else if toState == .ended {
-			// ended
-			let endModel = EndModel(runUUID: self.runUUID, endTime: date)
-			self.sendData(with: endModel)
 		}
 	}
 	
