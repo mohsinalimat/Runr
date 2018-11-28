@@ -22,6 +22,10 @@ class MainInterfaceController: WKInterfaceController {
         // Configure interface objects here.
 		WCSession.default.delegate = self
 		WCSession.default.activate()
+		
+		if let workoutConfiguration = context as? HKWorkoutConfiguration {
+			openWorkoutInterfaceController(with: workoutConfiguration)
+		}
     }
 	
 	
@@ -55,7 +59,11 @@ class MainInterfaceController: WKInterfaceController {
 		workoutConfiguration.activityType = .running
 		workoutConfiguration.locationType = .outdoor
 		
-		self.presentController(withName: WorkoutInterfaceController.interfaceName, context: workoutConfiguration)
+		openWorkoutInterfaceController(with: workoutConfiguration)
+	}
+	
+	func openWorkoutInterfaceController(with configuration: HKWorkoutConfiguration) {
+		self.presentController(withName: WorkoutInterfaceController.interfaceName, context: configuration)
 	}
 }
 

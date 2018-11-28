@@ -113,10 +113,14 @@ class WorkoutInterfaceController: WKInterfaceController {
 						if let error = error {
 							debugPrint(#file, #function, error.localizedDescription)
 						}
-						self.dismiss()
+						DispatchQueue.main.async {
+							self.dismiss()
+						}
 					})
 				} else {
-					self.dismiss()
+					DispatchQueue.main.async {
+						self.dismiss()
+					}
 				}
 			})
 		}

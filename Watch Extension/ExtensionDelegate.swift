@@ -60,6 +60,10 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
 	
 	func handle(_ workoutConfiguration: HKWorkoutConfiguration) {
-		WKInterfaceController.reloadRootControllers(withNames: [WorkoutInterfaceController.interfaceName], contexts: [workoutConfiguration])
+		let visibleInterfaceController = WKExtension.shared().visibleInterfaceController
+		
+		if let mainInterfaceController = visibleInterfaceController as? MainInterfaceController {
+			mainInterfaceController.openWorkoutInterfaceController(with: workoutConfiguration)
+		}
 	}
 }
