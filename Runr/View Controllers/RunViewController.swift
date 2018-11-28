@@ -12,6 +12,8 @@ import HealthKit
 
 class RunViewController: UIViewController {
 	
+	@IBOutlet weak var connectivityTextView: UITextView!
+	
 	static func build(runrController: RunrController) -> RunViewController {
 		let storyboard = UIStoryboard(name: className, bundle: nil)
 		let viewController = storyboard.instantiateInitialViewController() as! RunViewController
@@ -21,7 +23,7 @@ class RunViewController: UIViewController {
 	
 	// MARK: - Variables
 	
-	private var runrController: RunrController!
+	@objc dynamic private var runrController: RunrController!
 	
 	private lazy var runManagerViewController: RunManagerViewController = {
 		let viewController = RunManagerViewController.build(runrController: runrController)
@@ -37,6 +39,8 @@ class RunViewController: UIViewController {
 	}
 	
 	
+	private var debugStringObserver: NSKeyValueObservation?
+	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		
@@ -46,6 +50,14 @@ class RunViewController: UIViewController {
 		}
 		
 		self.authorizeHealthKit()
+		
+		
+		debugStringObserver = self.observe(\RunViewController.runrController?.currentModelInfoDebugString, changeHandler: { (_, _) in
+			DispatchQueue.main.async {
+				let currentText = self.connectivityTextView.text.appending(self.runrController.currentModelInfoDebugString ?? "")
+				self.connectivityTextView.text = currentText
+			}
+		})
 	}
 	
 	

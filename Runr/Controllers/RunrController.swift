@@ -19,6 +19,10 @@ class RunrController: NSObject {
 	
 	var locationController: LocationController
 	
+	
+	@objc dynamic var currentModelInfoDebugString: String?
+	
+	
 	init(connectivityController: ConnectivityController) {
 		self.connectivityController = connectivityController
 		self.dataController = DataController()
@@ -56,30 +60,38 @@ extension RunrController: ConnectivityControllerDelegate {
 			let startModel = try! JSONDecoder().decode(StartModel.self, from: updateData)
 			debugPrint(startModel)
 			dataController.createRun(from: startModel)
+			currentModelInfoDebugString = String(describing: startModel)
 		case .pause:
 			let pauseModel = try! JSONDecoder().decode(PauseModel.self, from: updateData)
 			debugPrint(pauseModel)
+			currentModelInfoDebugString = String(describing: pauseModel)
 		case .resume:
 			let resumeModel = try! JSONDecoder().decode(ResumeModel.self, from: updateData)
 			debugPrint(resumeModel)
+			currentModelInfoDebugString = String(describing: resumeModel)
 		case .end:
 			let endModel = try! JSONDecoder().decode(EndModel.self, from: updateData)
 			debugPrint(endModel)
 			dataController.endRun(with: endModel)
+			currentModelInfoDebugString = String(describing: endModel)
 		case .heartRate:
 			let heartRateModel = try! JSONDecoder().decode(HeartRateModel.self, from: updateData)
 			debugPrint(heartRateModel)
 			dataController.handleHeartRate(with: heartRateModel)
+			currentModelInfoDebugString = String(describing: heartRateModel)
 		case .activeEnergyBurned:
 			let activeEnergyModel = try! JSONDecoder().decode(ActiveEnergyModel.self, from: updateData)
 			debugPrint(activeEnergyModel)
+			currentModelInfoDebugString = String(describing: activeEnergyModel)
 		case .distance:
 			let distanceModel = try! JSONDecoder().decode(DistanceModel.self, from: updateData)
 			debugPrint(distanceModel)
+			currentModelInfoDebugString = String(describing: distanceModel)
 		case .location:
 			let locationModel = try! JSONDecoder().decode(LocationModel.self, from: updateData)
 			debugPrint(locationModel)
 			dataController.handleLocation(with: locationModel)
+			currentModelInfoDebugString = String(describing: locationModel)
 		}
 	}
 }
