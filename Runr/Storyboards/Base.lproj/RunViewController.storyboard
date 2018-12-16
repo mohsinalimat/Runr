@@ -17,53 +17,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="44" translatesAutoresizingMaskIntoConstraints="NO" id="kJp-T3-aFS">
-                                <rect key="frame" x="151" y="244.5" width="73" height="178"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KxE-AR-OjF">
-                                        <rect key="frame" x="0.0" y="0.0" width="73" height="30"/>
-                                        <state key="normal" title="Start Run"/>
-                                        <connections>
-                                            <action selector="startRun:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0Xs-kk-Ort"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iur-1c-50l">
-                                        <rect key="frame" x="0.0" y="74" width="73" height="30"/>
-                                        <state key="normal" title="Pause Run"/>
-                                        <connections>
-                                            <action selector="pauseRun:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HQ5-ID-S38"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kz4-Pk-v7O">
-                                        <rect key="frame" x="0.0" y="148" width="73" height="30"/>
-                                        <state key="normal" title="End Run"/>
-                                        <connections>
-                                            <action selector="endRun:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YFz-Mx-GkW"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xtB-wn-5NP">
-                                <rect key="frame" x="5" y="427.5" width="365" height="234.5"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6YB-F8-mRH">
+                                <rect key="frame" x="0.0" y="320" width="375" height="347"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xtB-wn-5NP" secondAttribute="trailing" constant="5" id="5rc-nF-q4E"/>
-                            <constraint firstItem="xtB-wn-5NP" firstAttribute="top" secondItem="kJp-T3-aFS" secondAttribute="bottom" constant="5" id="8f5-we-R4g"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="xtB-wn-5NP" secondAttribute="bottom" constant="5" id="Agy-fk-dxS"/>
-                            <constraint firstItem="kJp-T3-aFS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="IB0-ex-zmc"/>
-                            <constraint firstItem="xtB-wn-5NP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="5" id="c1m-Ln-aXe"/>
-                            <constraint firstItem="kJp-T3-aFS" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="kFB-2R-u4d"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="6YB-F8-mRH" secondAttribute="bottom" id="GYe-5i-A6G"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="6YB-F8-mRH" secondAttribute="trailing" id="Wht-qq-pHE"/>
+                            <constraint firstItem="6YB-F8-mRH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="gM7-Zj-ePZ"/>
+                            <constraint firstItem="6YB-F8-mRH" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="300" id="hqO-qZ-d8y"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <connections>
-                        <outlet property="connectivityTextView" destination="xtB-wn-5NP" id="wcd-fJ-mWb"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

@@ -12,7 +12,7 @@ import HealthKit
 
 class RunViewController: UIViewController {
 	
-	@IBOutlet weak var connectivityTextView: UITextView!
+	@IBOutlet weak var runningView: UIView!
 	
 	static func build(runrController: RunrController) -> RunViewController {
 		let storyboard = UIStoryboard(name: className, bundle: nil)
@@ -25,8 +25,8 @@ class RunViewController: UIViewController {
 	
 	@objc dynamic private var runrController: RunrController!
 	
-	private lazy var runManagerViewController: RunningViewController = {
-		let viewController = RunningViewController.build(runrController: runrController)
+	private lazy var runningViewController: RunningViewController = {
+		let viewController = RunningViewController.build(runningController: runrController.runningController)
 		return viewController
 	}()
 	
@@ -35,11 +35,16 @@ class RunViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		// Do any additional setup after loading the view, typically from a nib.
+		
+		runningView.addSubview(runningViewController.view)
+		runningViewController.view.translatesAutoresizingMaskIntoConstraints = false
+		NSLayoutConstraint.activate([
+			runningViewController.view.topAnchor.constraint(equalTo: runningView.topAnchor),
+			runningViewController.view.leadingAnchor.constraint(equalTo: runningView.leadingAnchor),
+			runningViewController.view.trailingAnchor.constraint(equalTo: runningView.trailingAnchor),
+			runningViewController.view.bottomAnchor.constraint(equalTo: runningView.bottomAnchor),
+		])
 	}
-	
-	
-	private var debugStringObserver: NSKeyValueObservation?
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
@@ -50,14 +55,6 @@ class RunViewController: UIViewController {
 		}
 		
 		self.authorizeHealthKit()
-		
-		
-		debugStringObserver = self.observe(\RunViewController.runrController?.currentModelInfoDebugString, changeHandler: { (_, _) in
-			DispatchQueue.main.async {
-				let currentText = self.connectivityTextView.text.appending(self.runrController.currentModelInfoDebugString ?? "")
-				self.connectivityTextView.text = currentText
-			}
-		})
 	}
 	
 	

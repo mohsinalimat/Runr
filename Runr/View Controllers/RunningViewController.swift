@@ -10,18 +10,17 @@ import UIKit
 
 class RunningViewController: UIViewController {
 	
-	class func build(runrController: RunrController) -> RunningViewController {
+	class func build(runningController: RunningController) -> RunningViewController {
 		let storyboard = UIStoryboard(name: className, bundle: nil)
 		let viewController = storyboard.instantiateInitialViewController() as! RunningViewController
-		viewController.runrController = runrController
+		viewController.runningController = runningController
 		return viewController
 	}
 	
 	
-	
 	// MARK: - Variables
 	
-	private var runrController: RunrController!
+	private var runningController: RunningController!
 	
 	
 	
@@ -38,16 +37,16 @@ class RunningViewController: UIViewController {
 	// MARK: - User Actions
 	
 	@IBAction func startRun(_ sender: UIButton) {
-		
+		runningController.startRun(with: .outdoor)
 	}
 	
 	
 	@IBAction func pauseRun(_ sender: UIButton) {
-		
+		runningController.pauseRun()
 	}
 	
 	
 	@IBAction func endRun(_ sender: UIButton) {
-		
+		runningController.endRun()
 	}
 }

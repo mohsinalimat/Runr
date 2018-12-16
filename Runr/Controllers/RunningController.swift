@@ -23,7 +23,7 @@ protocol RunningControllerDelegate: class {
 
 class RunningController: NSObject {
 	
-	private var currentRun: Run?
+	var currentRun: Run?
 	
 	private var timer: Timer?
 	

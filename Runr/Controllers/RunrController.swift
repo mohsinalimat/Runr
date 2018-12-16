@@ -34,6 +34,7 @@ class RunrController: NSObject {
 		super.init()
 		
 		self.connectivityController.connectionDelegate = self
+		self.locationController.delegate = self
 		self.runningController.runningControllerDelegate = self
 	}
 	
@@ -108,27 +109,48 @@ extension RunrController: ConnectivityControllerDelegate {
 extension RunrController: RunningControllerDelegate {
 	
 	func create(run: Run) {
-		debugPrint(#function)
+		dataController.add(run: run)
 	}
 	
 	func startLocationUpdates() {
-		debugPrint(#function)
+		locationController.startUpdatingLocations()
 	}
 	
 	func stopLocationUpdates() {
-		debugPrint(#function)
+		locationController.stopLocationUpdates()
 	}
 	
 	func updateRunState(_ state: RunState) {
-		debugPrint(#function)
+		guard let run = runningController.currentRun else { return }
+		dataController.update(run: run, state: state)
 	}
 	
 	func locations(for run: Run) -> [CLLocation] {
-		debugPrint(#function)
+		// do i still need this?
 		return []
 	}
 	
 	func update(duration: TimeInterval) {
-		debugPrint(#function)
+		guard let run = runningController.currentRun else { return }
+		dataController.update(run: run, duration: duration)
+	}
+}
+
+
+extension RunrController: LocationControllerDelegate {
+	
+	func didUpdateLocations(with locations: [CLLocation]) {
+		guard let run = runningController.currentRun else { return }
+		let convertedLocations = locations.map { Location(cllocation: $0) }
+		run.locations.append(objectsIn: convertedLocations)
+		dataController.update(run: run, newLocations: convertedLocations)
+	}
+	
+	func didFail(with error: Error) {
+		debugPrint(#file, #function, error.localizedDescription)
+	}
+	
+	func didChangeAuthoriztionStatus(_ status: CLAuthorizationStatus) {
+		debugPrint(#file, #function, status)
 	}
 }

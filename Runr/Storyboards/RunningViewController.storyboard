@@ -16,7 +16,39 @@
                     <view key="view" contentMode="scaleToFill" id="AKt-zv-I0M">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="51" translatesAutoresizingMaskIntoConstraints="NO" id="uDS-fn-Tqa">
+                                <rect key="frame" x="0.0" y="20" width="375" height="192"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T7T-s3-hKe">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                                        <state key="normal" title="Start"/>
+                                        <connections>
+                                            <action selector="endRun:" destination="eDX-6Z-H6H" eventType="touchUpInside" id="kvL-pC-XKc"/>
+                                            <action selector="startRun:" destination="eDX-6Z-H6H" eventType="touchUpInside" id="4Ed-jE-6GF"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jf6-EO-MYe">
+                                        <rect key="frame" x="0.0" y="81" width="375" height="30"/>
+                                        <state key="normal" title="Pause"/>
+                                        <connections>
+                                            <action selector="pauseRun:" destination="eDX-6Z-H6H" eventType="touchUpInside" id="ImF-Jb-Xm1"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nxO-Um-1vX">
+                                        <rect key="frame" x="0.0" y="162" width="375" height="30"/>
+                                        <state key="normal" title="End"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="uDS-fn-Tqa" firstAttribute="top" secondItem="A8G-mF-MPA" secondAttribute="top" id="7ge-hQ-ycK"/>
+                            <constraint firstItem="A8G-mF-MPA" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="uDS-fn-Tqa" secondAttribute="bottom" id="N5c-CI-aeF"/>
+                            <constraint firstItem="uDS-fn-Tqa" firstAttribute="leading" secondItem="A8G-mF-MPA" secondAttribute="leading" id="ghz-Ty-w3H"/>
+                            <constraint firstItem="A8G-mF-MPA" firstAttribute="trailing" secondItem="uDS-fn-Tqa" secondAttribute="trailing" id="ixv-ON-P5u"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="A8G-mF-MPA"/>
                     </view>
                 </viewController>
