@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		AD401646C6D9F31D08CBFA0B /* Pods_RunrTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94F0BFAB670617FBACD55610 /* Pods_RunrTests.framework */; };
 		CD971F57DD093263C4528BDF /* Pods_Runr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30FD183EB645688C170A691A /* Pods_Runr.framework */; };
-		DD09BA31216AF21B002090B8 /* RunManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD09BA30216AF21B002090B8 /* RunManagerViewController.swift */; };
+		DD09BA31216AF21B002090B8 /* RunningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD09BA30216AF21B002090B8 /* RunningViewController.swift */; };
 		DD09BA34216B056A002090B8 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD09BA33216B056A002090B8 /* UIViewController+Extensions.swift */; };
 		DD1C6540219A7555001F3407 /* WorkoutInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1C653F219A7555001F3407 /* WorkoutInterfaceController.swift */; };
 		DD1C6543219A77B0001F3407 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD1C6542219A77B0001F3407 /* HealthKit.framework */; };
@@ -20,7 +20,7 @@
 		DD21B4CA21321B96004B22E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD21B4C821321B96004B22E7 /* LaunchScreen.storyboard */; };
 		DD21B4D521321B96004B22E7 /* RunrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD21B4D421321B96004B22E7 /* RunrTests.swift */; };
 		DD304B0E216C4A6100ABE7C2 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD304B0D216C4A6100ABE7C2 /* Coordinate.swift */; };
-		DD304B10216C4AF100ABE7C2 /* RunManagerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD304B0F216C4AF100ABE7C2 /* RunManagerViewController.storyboard */; };
+		DD304B10216C4AF100ABE7C2 /* RunningViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD304B0F216C4AF100ABE7C2 /* RunningViewController.storyboard */; };
 		DD45F16F21A1277500C1DA72 /* ConnectivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD45F16E21A1277500C1DA72 /* ConnectivityController.swift */; };
 		DD45F17021A1277A00C1DA72 /* ConnectivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD45F16E21A1277500C1DA72 /* ConnectivityController.swift */; };
 		DDAB3B6C21A106CE0014C240 /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDEE3B721334CA400C8DC65 /* LocationController.swift */; };
@@ -103,7 +103,7 @@
 		88F96C4D40C6091F5FE35233 /* Pods-Runr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runr.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Runr/Pods-Runr.debug.xcconfig"; sourceTree = "<group>"; };
 		94F0BFAB670617FBACD55610 /* Pods_RunrTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunrTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D95966DFA07AB8B2BE7900DA /* Pods-Runr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runr.release.xcconfig"; path = "Pods/Target Support Files/Pods-Runr/Pods-Runr.release.xcconfig"; sourceTree = "<group>"; };
-		DD09BA30216AF21B002090B8 /* RunManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunManagerViewController.swift; sourceTree = "<group>"; };
+		DD09BA30216AF21B002090B8 /* RunningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningViewController.swift; sourceTree = "<group>"; };
 		DD09BA33216B056A002090B8 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		DD1C653F219A7555001F3407 /* WorkoutInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutInterfaceController.swift; sourceTree = "<group>"; };
 		DD1C6541219A77B0001F3407 /* Watch Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Watch Extension.entitlements"; sourceTree = "<group>"; };
@@ -119,7 +119,7 @@
 		DD21B4D421321B96004B22E7 /* RunrTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunrTests.swift; sourceTree = "<group>"; };
 		DD21B4D621321B96004B22E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD304B0D216C4A6100ABE7C2 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
-		DD304B0F216C4AF100ABE7C2 /* RunManagerViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RunManagerViewController.storyboard; sourceTree = "<group>"; };
+		DD304B0F216C4AF100ABE7C2 /* RunningViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RunningViewController.storyboard; sourceTree = "<group>"; };
 		DD45F16E21A1277500C1DA72 /* ConnectivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityController.swift; sourceTree = "<group>"; };
 		DDC48B16216DA74900F1262B /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		DDDB8F7721A3C2C600BA5E41 /* RunrController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunrController.swift; sourceTree = "<group>"; };
@@ -209,7 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				DD21B4C121321B94004B22E7 /* RunViewController.swift */,
-				DD09BA30216AF21B002090B8 /* RunManagerViewController.swift */,
+				DD09BA30216AF21B002090B8 /* RunningViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -218,7 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				DD21B4C321321B94004B22E7 /* RunViewController.storyboard */,
-				DD304B0F216C4AF100ABE7C2 /* RunManagerViewController.storyboard */,
+				DD304B0F216C4AF100ABE7C2 /* RunningViewController.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -528,7 +528,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD21B4CA21321B96004B22E7 /* LaunchScreen.storyboard in Resources */,
-				DD304B10216C4AF100ABE7C2 /* RunManagerViewController.storyboard in Resources */,
+				DD304B10216C4AF100ABE7C2 /* RunningViewController.storyboard in Resources */,
 				DD21B4C721321B96004B22E7 /* Assets.xcassets in Resources */,
 				DD21B4C521321B94004B22E7 /* RunViewController.storyboard in Resources */,
 			);
@@ -641,7 +641,7 @@
 				DDDEE3B821334CA400C8DC65 /* LocationController.swift in Sources */,
 				DD21B4C221321B94004B22E7 /* RunViewController.swift in Sources */,
 				DDDEE3B621325E0C00C8DC65 /* HeartRateObject.swift in Sources */,
-				DD09BA31216AF21B002090B8 /* RunManagerViewController.swift in Sources */,
+				DD09BA31216AF21B002090B8 /* RunningViewController.swift in Sources */,
 				DDDEE3B4213259E300C8DC65 /* DataController.swift in Sources */,
 				DD304B0E216C4A6100ABE7C2 /* Coordinate.swift in Sources */,
 				DDDEE3AD21324CF000C8DC65 /* Run.swift in Sources */,

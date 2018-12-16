@@ -25,8 +25,8 @@ class RunViewController: UIViewController {
 	
 	@objc dynamic private var runrController: RunrController!
 	
-	private lazy var runManagerViewController: RunManagerViewController = {
-		let viewController = RunManagerViewController.build(runrController: runrController)
+	private lazy var runManagerViewController: RunningViewController = {
+		let viewController = RunningViewController.build(runrController: runrController)
 		return viewController
 	}()
 	

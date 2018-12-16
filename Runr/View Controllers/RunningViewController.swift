@@ -8,11 +8,11 @@
 
 import UIKit
 
-class RunManagerViewController: UIViewController {
+class RunningViewController: UIViewController {
 	
-	class func build(runrController: RunrController) -> RunManagerViewController {
+	class func build(runrController: RunrController) -> RunningViewController {
 		let storyboard = UIStoryboard(name: className, bundle: nil)
-		let viewController = storyboard.instantiateInitialViewController() as! RunManagerViewController
+		let viewController = storyboard.instantiateInitialViewController() as! RunningViewController
 		viewController.runrController = runrController
 		return viewController
 	}

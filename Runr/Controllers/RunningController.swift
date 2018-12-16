@@ -12,36 +12,30 @@ import CoreMotion
 import HealthKit
 import WatchConnectivity
 
+protocol RunningControllerDelegate: class {
+	func create(run: Run)
+	func startLocationUpdates()
+	func stopLocationUpdates()
+	func updateRunState(_ state: RunState)
+	func locations(for run: Run) -> [CLLocation]
+	func update(duration: TimeInterval)
+}
+
 class RunningController: NSObject {
 	
 	private var currentRun: Run?
 	
-	var locationController: LocationController
-	
-	var dataController: DataController
-	
 	private var timer: Timer?
 	
-	private var routeBuilder: HKWorkoutRouteBuilder
+	private var routeBuilder: HKWorkoutRouteBuilder?
 	
-	private var healthStore: HKHealthStore
+	weak var runningControllerDelegate: RunningControllerDelegate?
 	
-	private var wcSessionActivationCompletion: ((WCSession) -> Void)?
+	private var workoutEvents: [HKWorkoutEvent] = []
 	
-	private var connectivityController: ConnectivityController
-	
-	
-	init(locationController: LocationController, dataController: DataController, connectivityController: ConnectivityController) {
-		self.locationController = locationController
-		self.dataController = dataController
-		self.connectivityController = connectivityController
-		
-		healthStore = HKHealthStore()
-		routeBuilder = HKWorkoutRouteBuilder(healthStore: healthStore, device: nil)
+	override init() {
 		
 		super.init()
-		
-		self.locationController.delegate = self
 	}
 	
 	
@@ -50,46 +44,31 @@ class RunningController: NSObject {
 			// Create a new run if starting a new run. If `currentRun` is not nil,
 			// then the run has been paused and just needs to be started again
 			currentRun = Run()
-			dataController.add(run: currentRun!)
 		}
 		
 		let workoutConfiguration = HKWorkoutConfiguration()
 		workoutConfiguration.activityType = .running
 		workoutConfiguration.locationType = .outdoor
 		
-		/// start apple watch if applicable
-		getActiveWCSession { (wcSession) in
-			if wcSession.activationState == .activated && wcSession.isWatchAppInstalled {
-				self.healthStore.startWatchApp(with: workoutConfiguration, completion: { (success, error) in
-					// Handle errors
-					debugPrint("success: \(success)")
-					debugPrint("error: \(String(describing: error?.localizedDescription))")
-				})
-			}
+		startTimer()
+
+		switch runType {
+		case .outdoor:
+			startOutdoorRun()
+		case .indoor:
+			startIndoorRun()
 		}
-		
-//		return
-//		
-//		startTimer()
-//
-//		switch runType {
-//		case .outdoor:
-//			startOutdoorRun()
-//		case .indoor:
-//			startIndoorRun()
-//		}
 	}
 	
 	
 	func pauseRun() {
 		guard let currentRun = currentRun else { return }
 		debugPrint(#function)
-		dataController.update(run: currentRun, endDate: Date())
+		runningControllerDelegate?.updateRunState(.paused)
 		timer?.invalidate()
 		switch currentRun.runType {
 		case .outdoor:
-			dataController.update(run: currentRun, state: .paused)
-			locationController.stopLocationUpdates()
+			runningControllerDelegate?.stopLocationUpdates()
 		case .indoor:
 			break
 		}
@@ -99,25 +78,36 @@ class RunningController: NSObject {
 	func endRun() {
 		guard let currentRun = currentRun else { return }
 		debugPrint(#function)
-		dataController.update(run: currentRun, endDate: Date())
+		runningControllerDelegate?.updateRunState(.ended)
 		timer?.invalidate()
 		switch currentRun.runType {
 		case .outdoor:
-			dataController.update(run: currentRun, state: .ended)
-			locationController.stopLocationUpdates()
+			runningControllerDelegate?.stopLocationUpdates()
 		case .indoor:
 			break
 		}
 		
 		
-		
-		
-		// handle saving the workout and the route to the workout
-		// TODO: handle getting the workout which was saved on the apple watch, if there was any. if user is not
-		// using a watch, create workout here
-		let workout = HKWorkout(activityType: .running, start: currentRun.startDate, end: currentRun.endDate)
-		routeBuilder.finishRoute(with: workout, metadata: [:]) { (_, _) in }
-		
+		let workout = HKWorkout(activityType: .running, start: currentRun.startDate,
+								end: currentRun.endDate, workoutEvents: workoutEvents,
+								totalEnergyBurned: nil, totalDistance: nil, metadata: nil)
+		let healthStore = HKHealthStore()
+		healthStore.save(workout, withCompletion: { (success, error) in
+			debugPrint("success: \(success)   error: \(String(describing: error?.localizedDescription))   \(#line)")
+			
+			guard let locations = self.runningControllerDelegate?.locations(for: currentRun) else { return }
+			let workoutBuilder = HKWorkoutRouteBuilder(healthStore: healthStore, device: nil)
+			workoutBuilder.insertRouteData(locations, completion: { (success, error) in
+				debugPrint("success: \(success)   error: \(String(describing: error?.localizedDescription))   \(#line)")
+				if let error = error {
+					debugPrint("error: \(error.localizedDescription)")
+				} else {
+					workoutBuilder.finishRoute(with: workout, metadata: nil, completion: { (route, error) in
+						debugPrint("route: \(String(describing: route))   error: \(String(describing: error?.localizedDescription))   \(#line)")
+					})
+				}
+			})
+		})
 		
 		self.currentRun = nil
 	}
@@ -129,7 +119,7 @@ class RunningController: NSObject {
 	@objc private func timerUpdated(_ timer: Timer) {
 		guard let currentRun = currentRun else { return }
 		let newDuration: TimeInterval = currentRun.duration + 0.01
-		dataController.update(run: currentRun, duration: newDuration)
+		runningControllerDelegate?.update(duration: newDuration)
 	}
 	
 	
@@ -145,10 +135,10 @@ class RunningController: NSObject {
 	private func startOutdoorRun() {
 		debugPrint(#function)
 		guard let currentRun = currentRun else { return }
-		dataController.update(run: currentRun, runType: .outdoor)
-		dataController.update(run: currentRun, state: .running)
+		runningControllerDelegate?.create(run: currentRun)
+		runningControllerDelegate?.updateRunState(.running)
 		
-		locationController.startUpdatingLocations()
+		runningControllerDelegate?.startLocationUpdates()
 	}
 	
 	
@@ -156,55 +146,6 @@ class RunningController: NSObject {
 	// MARK: - Indoor Run
 	
 	private func startIndoorRun() {
-		guard let currentRun = currentRun else { return }
-		dataController.update(run: currentRun, runType: .indoor)
-		
-	}
-	
-	
-	
-	// MARK: - watchOS functionality
-	
-	private func getActiveWCSession(completion: @escaping (WCSession) -> Void) {
-		guard WCSession.isSupported() else { return }
-		
-		let wcSession = WCSession.default
-		wcSession.delegate = self.connectivityController
-		
-		if wcSession.activationState == .activated {
-			completion(wcSession)
-		} else {
-			wcSession.activate()
-			wcSessionActivationCompletion = completion
-		}
-	}
-}
-
-
-
-// MARK: - LocationControllerDelegate
-
-extension RunningController: LocationControllerDelegate {
-	
-	func didUpdateLocations(with locations: [CLLocation]) {
-		guard let currentRun = currentRun, currentRun.state == .running else { return }
-		
-		debugPrint("new locations: \(locations)")
-		
-		locations.forEach { (cllocation) in
-			guard cllocation.horizontalAccuracy >= 0, cllocation.horizontalAccuracy <= 50.0, cllocation.verticalAccuracy >= 0 else { return }
-			let location = Location(cllocation: cllocation)
-			dataController.update(run: currentRun, newLocations: [location])
-			
-			routeBuilder.insertRouteData([cllocation]) { (_, _) in }
-		}
-	}
-	
-	func didFail(with error: Error) {
-		// TODO: alert the user there has been a failure
-	}
-	
-	func didChangeAuthoriztionStatus(_ status: CLAuthorizationStatus) {
-		// TODO: handle authorization status
+		debugPrint(#function)
 	}
 }

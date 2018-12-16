@@ -14,19 +14,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
 	
-	private lazy var connectivityController: ConnectivityController = {
-		return ConnectivityController()
-	}()
-	
 	private lazy var runrController: RunrController = {
-		return RunrController(connectivityController: connectivityController)
+		return RunrController()
 	}()
 	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
 		
 		if WCSession.isSupported() {
-			WCSession.default.delegate = connectivityController
+			WCSession.default.delegate = runrController.connectivityController
 			WCSession.default.activate()
 		}
 		

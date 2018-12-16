@@ -65,7 +65,6 @@ extension ConnectivityController: WCSessionDelegate {
 	
 	
 	func session(_ session: WCSession, didReceiveUserInfo userInfo: [String: Any] = [:]) {
-		debugPrint(#function, userInfo)
 		connectionDelegate?.session(session, didReceiveUserInfo: userInfo)
 	}
 }
