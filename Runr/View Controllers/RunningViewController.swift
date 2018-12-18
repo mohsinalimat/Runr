@@ -11,8 +11,7 @@ import UIKit
 class RunningViewController: UIViewController {
 	
 	class func build(runningController: RunningController) -> RunningViewController {
-		let storyboard = UIStoryboard(name: className, bundle: nil)
-		let viewController = storyboard.instantiateInitialViewController() as! RunningViewController
+		let viewController = RunningViewController()
 		viewController.runningController = runningController
 		return viewController
 	}
@@ -30,6 +29,10 @@ class RunningViewController: UIViewController {
 		super.viewDidLoad()
 		
 		// Do any additional setup after loading the view.
+	}
+	
+	override func loadView() {
+		view = UIView()
 	}
 	
 	

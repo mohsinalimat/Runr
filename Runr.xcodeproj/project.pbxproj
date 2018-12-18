@@ -15,12 +15,10 @@
 		DD1C6543219A77B0001F3407 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD1C6542219A77B0001F3407 /* HealthKit.framework */; };
 		DD21B4C021321B94004B22E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD21B4BF21321B94004B22E7 /* AppDelegate.swift */; };
 		DD21B4C221321B94004B22E7 /* RunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD21B4C121321B94004B22E7 /* RunViewController.swift */; };
-		DD21B4C521321B94004B22E7 /* RunViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD21B4C321321B94004B22E7 /* RunViewController.storyboard */; };
 		DD21B4C721321B96004B22E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD21B4C621321B96004B22E7 /* Assets.xcassets */; };
 		DD21B4CA21321B96004B22E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD21B4C821321B96004B22E7 /* LaunchScreen.storyboard */; };
 		DD21B4D521321B96004B22E7 /* RunrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD21B4D421321B96004B22E7 /* RunrTests.swift */; };
 		DD304B0E216C4A6100ABE7C2 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD304B0D216C4A6100ABE7C2 /* Coordinate.swift */; };
-		DD304B10216C4AF100ABE7C2 /* RunningViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD304B0F216C4AF100ABE7C2 /* RunningViewController.storyboard */; };
 		DD45F16F21A1277500C1DA72 /* ConnectivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD45F16E21A1277500C1DA72 /* ConnectivityController.swift */; };
 		DD45F17021A1277A00C1DA72 /* ConnectivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD45F16E21A1277500C1DA72 /* ConnectivityController.swift */; };
 		DDAB3B6C21A106CE0014C240 /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDEE3B721334CA400C8DC65 /* LocationController.swift */; };
@@ -44,6 +42,7 @@
 		DDF1C487218BF47E00557C11 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF1C486218BF47E00557C11 /* NotificationController.swift */; };
 		DDF1C489218BF47F00557C11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDF1C488218BF47F00557C11 /* Assets.xcassets */; };
 		DDF1C48E218BF47F00557C11 /* Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = DDF1C471218BF47B00557C11 /* Watch.app */; };
+		DDF2B4F221C8AD7400290969 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF2B4F121C8AD7400290969 /* UIColor+Extensions.swift */; };
 		DDFD6E872176CA3E001E3C76 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDFD6E862176CA3E001E3C76 /* HealthKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -111,7 +110,6 @@
 		DD21B4BC21321B94004B22E7 /* Runr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Runr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD21B4BF21321B94004B22E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD21B4C121321B94004B22E7 /* RunViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunViewController.swift; sourceTree = "<group>"; };
-		DD21B4C421321B94004B22E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/RunViewController.storyboard; sourceTree = "<group>"; };
 		DD21B4C621321B96004B22E7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DD21B4C921321B96004B22E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DD21B4CB21321B96004B22E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -119,7 +117,6 @@
 		DD21B4D421321B96004B22E7 /* RunrTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunrTests.swift; sourceTree = "<group>"; };
 		DD21B4D621321B96004B22E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD304B0D216C4A6100ABE7C2 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
-		DD304B0F216C4AF100ABE7C2 /* RunningViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RunningViewController.storyboard; sourceTree = "<group>"; };
 		DD45F16E21A1277500C1DA72 /* ConnectivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityController.swift; sourceTree = "<group>"; };
 		DDC48B16216DA74900F1262B /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		DDDB8F7721A3C2C600BA5E41 /* RunrController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunrController.swift; sourceTree = "<group>"; };
@@ -143,6 +140,7 @@
 		DDF1C488218BF47F00557C11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DDF1C48A218BF47F00557C11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DDF1C48B218BF47F00557C11 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		DDF2B4F121C8AD7400290969 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		DDFD6E852176CA3E001E3C76 /* Runr.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runr.entitlements; sourceTree = "<group>"; };
 		DDFD6E862176CA3E001E3C76 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -214,19 +212,11 @@
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
-		DD09BA2F216AF144002090B8 /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-				DD21B4C321321B94004B22E7 /* RunViewController.storyboard */,
-				DD304B0F216C4AF100ABE7C2 /* RunningViewController.storyboard */,
-			);
-			path = Storyboards;
-			sourceTree = "<group>";
-		};
 		DD09BA32216B0551002090B8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				DD09BA33216B056A002090B8 /* UIViewController+Extensions.swift */,
+				DDF2B4F121C8AD7400290969 /* UIColor+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -261,7 +251,6 @@
 			children = (
 				DD21B4BF21321B94004B22E7 /* AppDelegate.swift */,
 				DD09BA2E216AF127002090B8 /* View Controllers */,
-				DD09BA2F216AF144002090B8 /* Storyboards */,
 				DDDEE3B0213259A900C8DC65 /* Controllers */,
 				DDDEE3AB21324CDE00C8DC65 /* Model */,
 				DD09BA32216B0551002090B8 /* Extensions */,
@@ -528,9 +517,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD21B4CA21321B96004B22E7 /* LaunchScreen.storyboard in Resources */,
-				DD304B10216C4AF100ABE7C2 /* RunningViewController.storyboard in Resources */,
 				DD21B4C721321B96004B22E7 /* Assets.xcassets in Resources */,
-				DD21B4C521321B94004B22E7 /* RunViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -651,6 +638,7 @@
 				DDDEE3AF2132572900C8DC65 /* Location.swift in Sources */,
 				DD21B4C021321B94004B22E7 /* AppDelegate.swift in Sources */,
 				DDDEE3B2213259D500C8DC65 /* RunningController.swift in Sources */,
+				DDF2B4F221C8AD7400290969 /* UIColor+Extensions.swift in Sources */,
 				DD45F16F21A1277500C1DA72 /* ConnectivityController.swift in Sources */,
 				DDDB8F7821A3C2C600BA5E41 /* RunrController.swift in Sources */,
 				DDDEDF1821A90A09008FBADA /* ConnectivityModel.swift in Sources */,
@@ -702,14 +690,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		DD21B4C321321B94004B22E7 /* RunViewController.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DD21B4C421321B94004B22E7 /* Base */,
-			);
-			name = RunViewController.storyboard;
-			sourceTree = "<group>";
-		};
 		DD21B4C821321B96004B22E7 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

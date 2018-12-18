@@ -9,21 +9,37 @@
 import UIKit
 import CoreLocation
 import HealthKit
+import MapKit
+
+import SnapKit
 
 class RunViewController: UIViewController {
-	
-	@IBOutlet weak var runningView: UIView!
-	
+		
 	static func build(runrController: RunrController) -> RunViewController {
-		let storyboard = UIStoryboard(name: className, bundle: nil)
-		let viewController = storyboard.instantiateInitialViewController() as! RunViewController
+		let viewController = RunViewController()
 		viewController.runrController = runrController
 		return viewController
 	}
 	
-	// MARK: - Variables
 	
-	@objc dynamic private var runrController: RunrController!
+	
+	// MARK: - UI Variables
+	
+	private lazy var mapView: MKMapView = {
+		let mapView = MKMapView()
+		mapView.showsUserLocation = true
+		return mapView
+	}()
+	
+	private lazy var letsRunButton: UIButton = {
+		let button = UIButton(type: UIButton.ButtonType.system)
+		button.setTitle("Let's Run", for: .normal)
+		button.setTitleColor(.white, for: .normal)
+		button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+		button.backgroundColor = UIColor.runrGreen
+		button.layer.cornerRadius = 10.0
+		return button
+	}()
 	
 	private lazy var runningViewController: RunningViewController = {
 		let viewController = RunningViewController.build(runningController: runrController.runningController)
@@ -31,19 +47,17 @@ class RunViewController: UIViewController {
 	}()
 	
 	
+	// MARK: - Variables
+	
+	@objc dynamic private var runrController: RunrController!
+	
+	
 	// MARK: - Lifecycle Methods
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		runningView.addSubview(runningViewController.view)
-		runningViewController.view.translatesAutoresizingMaskIntoConstraints = false
-		NSLayoutConstraint.activate([
-			runningViewController.view.topAnchor.constraint(equalTo: runningView.topAnchor),
-			runningViewController.view.leadingAnchor.constraint(equalTo: runningView.leadingAnchor),
-			runningViewController.view.trailingAnchor.constraint(equalTo: runningView.trailingAnchor),
-			runningViewController.view.bottomAnchor.constraint(equalTo: runningView.bottomAnchor)
-		])
+		self.title = "RUNR"
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -55,6 +69,25 @@ class RunViewController: UIViewController {
 		}
 		
 		self.authorizeHealthKit()
+	}
+	
+	override func loadView() {
+		view = UIView()
+		
+		[mapView, letsRunButton, runningViewController.view].forEach {
+			view.addSubview($0)
+		}
+		
+		mapView.snp.makeConstraints { (make) in
+			make.edges.equalToSuperview()
+		}
+		
+		letsRunButton.snp.makeConstraints { (make) in
+			make.top.equalTo(view.snp.centerY)
+			make.leading.equalTo(view.snp.leading).offset(20)
+			make.trailing.equalTo(view.snp.trailing).offset(-20)
+			make.height.equalTo(45)
+		}
 	}
 	
 	
