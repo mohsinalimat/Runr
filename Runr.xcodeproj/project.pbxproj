@@ -118,7 +118,6 @@
 		DD21B4D621321B96004B22E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD304B0D216C4A6100ABE7C2 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 		DD45F16E21A1277500C1DA72 /* ConnectivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityController.swift; sourceTree = "<group>"; };
-		DDC48B16216DA74900F1262B /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		DDDB8F7721A3C2C600BA5E41 /* RunrController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunrController.swift; sourceTree = "<group>"; };
 		DDDEDF1721A90A09008FBADA /* ConnectivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityModel.swift; sourceTree = "<group>"; };
 		DDDEDF1B21A91848008FBADA /* Encodable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extensions.swift"; sourceTree = "<group>"; };
@@ -266,7 +265,6 @@
 			children = (
 				DD21B4D421321B96004B22E7 /* RunrTests.swift */,
 				DD21B4D621321B96004B22E7 /* Info.plist */,
-				DDC48B16216DA74900F1262B /* Location.gpx */,
 			);
 			path = RunrTests;
 			sourceTree = "<group>";
