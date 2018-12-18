@@ -42,7 +42,7 @@ class RunViewController: UIViewController {
 			runningViewController.view.topAnchor.constraint(equalTo: runningView.topAnchor),
 			runningViewController.view.leadingAnchor.constraint(equalTo: runningView.leadingAnchor),
 			runningViewController.view.trailingAnchor.constraint(equalTo: runningView.trailingAnchor),
-			runningViewController.view.bottomAnchor.constraint(equalTo: runningView.bottomAnchor),
+			runningViewController.view.bottomAnchor.constraint(equalTo: runningView.bottomAnchor)
 		])
 	}
 	

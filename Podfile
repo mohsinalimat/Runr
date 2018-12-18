@@ -7,6 +7,7 @@ target 'Runr' do
 
   # Pods for Runr
   pod 'RealmSwift'
+  pod 'SnapKit'
 
   target 'RunrTests' do
     inherit! :search_paths
