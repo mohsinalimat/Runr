@@ -40,6 +40,7 @@ class DataController {
 	func add(run: Run) {
 		try! realm.write {
 			realm.add(run)
+			allRuns.append(run)
 		}
 	}
 	
@@ -108,6 +109,9 @@ class DataController {
 	func remove(run: Run) {
 		try! realm.write {
 			realm.delete(run)
+			if let index = allRuns.index(of: run) {
+				allRuns.remove(at: index)
+			}
 		}
 	}
 }

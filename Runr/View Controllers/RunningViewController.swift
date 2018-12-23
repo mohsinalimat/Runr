@@ -10,16 +10,29 @@ import UIKit
 
 class RunningViewController: UIViewController {
 	
-	class func build(runningController: RunningController) -> RunningViewController {
+	class func build(runrController: RunrController) -> RunningViewController {
 		let viewController = RunningViewController()
-		viewController.runningController = runningController
+		viewController.runrController = runrController
 		return viewController
 	}
 	
 	
+	
+	// MARK: - UI Variables
+	
+	private lazy var tableView: UITableView = {
+		let tableView = UITableView()
+		tableView.dataSource = self
+		tableView.delegate = self
+		tableView.layer.cornerRadius = 10
+		return tableView
+	}()
+	
+	
+	
 	// MARK: - Variables
 	
-	private var runningController: RunningController!
+	private var runrController: RunrController!
 	
 	
 	
@@ -28,28 +41,39 @@ class RunningViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		// Do any additional setup after loading the view.
+		self.tableView.register(RunTableViewCell.self, forCellReuseIdentifier: RunTableViewCell.identifier)
 	}
 	
 	override func loadView() {
 		view = UIView()
+		
+		[tableView].forEach {
+			view.addSubview($0)
+		}
+		
+		tableView.snp.makeConstraints { (make) in
+			make.top.equalTo(view.snp.top)
+			make.leading.equalTo(view.snp.leading)
+			make.trailing.equalTo(view.snp.trailing)
+			make.bottom.equalTo(view.snp.bottom)
+		}
+	}
+}
+
+
+
+// MARK: - UITableViewDataSource and UITableViewDelegate
+
+extension RunningViewController: UITableViewDataSource, UITableViewDelegate {
+	
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return runrController.allRuns.count
 	}
 	
-	
-	
-	// MARK: - User Actions
-	
-	@IBAction func startRun(_ sender: UIButton) {
-		runningController.startRun(with: .outdoor)
-	}
-	
-	
-	@IBAction func pauseRun(_ sender: UIButton) {
-		runningController.pauseRun()
-	}
-	
-	
-	@IBAction func endRun(_ sender: UIButton) {
-		runningController.endRun()
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCell(withIdentifier: RunTableViewCell.identifier, for: indexPath) as! RunTableViewCell
+		let run = runrController.allRuns[indexPath.row]
+		cell.run = run
+		return cell
 	}
 }

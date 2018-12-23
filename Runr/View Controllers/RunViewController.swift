@@ -42,7 +42,7 @@ class RunViewController: UIViewController {
 	}()
 	
 	private lazy var runningViewController: RunningViewController = {
-		let viewController = RunningViewController.build(runningController: runrController.runningController)
+		let viewController = RunningViewController.build(runrController: runrController)
 		return viewController
 	}()
 	
@@ -87,6 +87,13 @@ class RunViewController: UIViewController {
 			make.leading.equalTo(view.snp.leading).offset(20)
 			make.trailing.equalTo(view.snp.trailing).offset(-20)
 			make.height.equalTo(45)
+		}
+		
+		runningViewController.view.snp.makeConstraints { (make) in
+			make.top.equalTo(letsRunButton.snp.bottom).offset(20)
+			make.leading.equalTo(letsRunButton.snp.leading)
+			make.trailing.equalTo(letsRunButton.snp.trailing)
+			make.bottom.equalTo(view.snp.bottom)
 		}
 	}
 	

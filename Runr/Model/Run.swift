@@ -23,6 +23,8 @@ class Run: Object {
 	
 	@objc dynamic var runType: RunType = .outdoor
 	
+	@objc dynamic var title: String = ""
+	
 	@objc dynamic var startDate: Date = Date()
 	
 	@objc dynamic var endDate: Date = Date()

@@ -18,6 +18,7 @@
 		DD21B4C721321B96004B22E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD21B4C621321B96004B22E7 /* Assets.xcassets */; };
 		DD21B4CA21321B96004B22E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD21B4C821321B96004B22E7 /* LaunchScreen.storyboard */; };
 		DD21B4D521321B96004B22E7 /* RunrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD21B4D421321B96004B22E7 /* RunrTests.swift */; };
+		DD2ABE9621CF44D100F7F0EA /* RunTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2ABE9521CF44D100F7F0EA /* RunTableViewCell.swift */; };
 		DD304B0E216C4A6100ABE7C2 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD304B0D216C4A6100ABE7C2 /* Coordinate.swift */; };
 		DD45F16F21A1277500C1DA72 /* ConnectivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD45F16E21A1277500C1DA72 /* ConnectivityController.swift */; };
 		DD45F17021A1277A00C1DA72 /* ConnectivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD45F16E21A1277500C1DA72 /* ConnectivityController.swift */; };
@@ -116,6 +117,7 @@
 		DD21B4D021321B96004B22E7 /* RunrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RunrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD21B4D421321B96004B22E7 /* RunrTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunrTests.swift; sourceTree = "<group>"; };
 		DD21B4D621321B96004B22E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD2ABE9521CF44D100F7F0EA /* RunTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunTableViewCell.swift; sourceTree = "<group>"; };
 		DD304B0D216C4A6100ABE7C2 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 		DD45F16E21A1277500C1DA72 /* ConnectivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityController.swift; sourceTree = "<group>"; };
 		DDDB8F7721A3C2C600BA5E41 /* RunrController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunrController.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				DD09BA2E216AF127002090B8 /* View Controllers */,
 				DDDEE3B0213259A900C8DC65 /* Controllers */,
 				DDDEE3AB21324CDE00C8DC65 /* Model */,
+				DD2ABE9421CF445900F7F0EA /* Table View Cells */,
 				DD09BA32216B0551002090B8 /* Extensions */,
 				DD21B4C621321B96004B22E7 /* Assets.xcassets */,
 				DD21B4C821321B96004B22E7 /* LaunchScreen.storyboard */,
@@ -267,6 +270,14 @@
 				DD21B4D621321B96004B22E7 /* Info.plist */,
 			);
 			path = RunrTests;
+			sourceTree = "<group>";
+		};
+		DD2ABE9421CF445900F7F0EA /* Table View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				DD2ABE9521CF44D100F7F0EA /* RunTableViewCell.swift */,
+			);
+			path = "Table View Cells";
 			sourceTree = "<group>";
 		};
 		DDDEDF1A21A91831008FBADA /* Extensions */ = {
@@ -638,6 +649,7 @@
 				DDDEE3B2213259D500C8DC65 /* RunningController.swift in Sources */,
 				DDF2B4F221C8AD7400290969 /* UIColor+Extensions.swift in Sources */,
 				DD45F16F21A1277500C1DA72 /* ConnectivityController.swift in Sources */,
+				DD2ABE9621CF44D100F7F0EA /* RunTableViewCell.swift in Sources */,
 				DDDB8F7821A3C2C600BA5E41 /* RunrController.swift in Sources */,
 				DDDEDF1821A90A09008FBADA /* ConnectivityModel.swift in Sources */,
 				DD09BA34216B056A002090B8 /* UIViewController+Extensions.swift in Sources */,
