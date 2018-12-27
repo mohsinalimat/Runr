@@ -34,6 +34,8 @@ class RunningViewController: UIViewController {
 	
 	private var runrController: RunrController!
 	
+	private let cache = NSCache<NSString, UIImage>()
+	
 	
 	
 	// MARK: - Lifecyle Methods
@@ -73,6 +75,7 @@ extension RunningViewController: UITableViewDataSource, UITableViewDelegate {
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: RunTableViewCell.identifier, for: indexPath) as! RunTableViewCell
 		let run = runrController.allRuns[indexPath.row]
+		cell.cache = cache
 		cell.run = run
 		return cell
 	}

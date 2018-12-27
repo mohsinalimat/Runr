@@ -63,7 +63,7 @@ class Run: Object {
 	}
 	
 	
-	convenience init(uuid: UUID = UUID()) {
+	convenience init(uuid: UUID) {
 		self.init()
 		
 		self.uuidString = uuid.uuidString

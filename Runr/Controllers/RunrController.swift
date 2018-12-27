@@ -137,7 +137,6 @@ extension RunrController: LocationControllerDelegate {
 	func didUpdateLocations(with locations: [CLLocation]) {
 		guard let run = runningController.currentRun else { return }
 		let convertedLocations = locations.map { Location(cllocation: $0) }
-		run.locations.append(objectsIn: convertedLocations)
 		dataController.update(run: run, newLocations: convertedLocations)
 	}
 	

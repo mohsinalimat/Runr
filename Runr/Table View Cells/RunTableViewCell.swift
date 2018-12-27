@@ -16,6 +16,8 @@ class RunTableViewCell: UITableViewCell {
 		return "RunTableViewCellIdentifier"
 	}
 	
+	weak var cache: NSCache<NSString, UIImage>?
+	
 	private lazy var runImageView: UIImageView = {
 		let imageView = UIImageView()
 		imageView.layer.backgroundColor = UIColor.red.cgColor
@@ -55,6 +57,8 @@ class RunTableViewCell: UITableViewCell {
 			self.runTitleLabel.text = run.displayTitle
 			self.distanceLabel.text = "\(run.distance)"
 			self.averagePaceLabel.text = "\(run.averagePace)"
+			
+			disclosureImageView.image = cache?.object(forKey: run.uuidString as NSString)
 		}
 	}
 	
@@ -82,7 +86,7 @@ class RunTableViewCell: UITableViewCell {
 		distanceLabel.snp.makeConstraints { (make) in
 			make.top.equalTo(runTitleLabel.snp.bottom).inset(-4)
 			make.leading.equalTo(runTitleLabel.snp.leading)
-			make.bottom.lessThanOrEqualTo(distanceLabel.snp.bottom).inset(5)
+			make.bottom.lessThanOrEqualTo(self.snp.bottom).inset(5)
 		}
 		
 		averagePaceLabel.snp.makeConstraints { (make) in

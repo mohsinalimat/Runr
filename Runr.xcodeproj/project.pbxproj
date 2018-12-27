@@ -28,6 +28,8 @@
 		DD4777FC21D4357400E4E85A /* ImageAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD4777FB21D4357400E4E85A /* ImageAssets.xcassets */; };
 		DD4777FF21D4360700E4E85A /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4777FE21D4360700E4E85A /* UIImage+Extensions.swift */; };
 		DD47780121D4365500E4E85A /* ImageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD47780021D4365500E4E85A /* ImageTests.swift */; };
+		DD47780321D49CA000E4E85A /* MapViewSnapshotController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD47780221D49CA000E4E85A /* MapViewSnapshotController.swift */; };
+		DD47780521D4A17C00E4E85A /* MKCoordinateRegion+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD47780421D4A17C00E4E85A /* MKCoordinateRegion+Extensions.swift */; };
 		DDAB3B6C21A106CE0014C240 /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDEE3B721334CA400C8DC65 /* LocationController.swift */; };
 		DDDB8F7821A3C2C600BA5E41 /* RunrController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB8F7721A3C2C600BA5E41 /* RunrController.swift */; };
 		DDDEDF1821A90A09008FBADA /* ConnectivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDEDF1721A90A09008FBADA /* ConnectivityModel.swift */; };
@@ -132,6 +134,8 @@
 		DD4777FB21D4357400E4E85A /* ImageAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ImageAssets.xcassets; sourceTree = "<group>"; };
 		DD4777FE21D4360700E4E85A /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		DD47780021D4365500E4E85A /* ImageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTests.swift; sourceTree = "<group>"; };
+		DD47780221D49CA000E4E85A /* MapViewSnapshotController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewSnapshotController.swift; sourceTree = "<group>"; };
+		DD47780421D4A17C00E4E85A /* MKCoordinateRegion+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKCoordinateRegion+Extensions.swift"; sourceTree = "<group>"; };
 		DDDB8F7721A3C2C600BA5E41 /* RunrController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunrController.swift; sourceTree = "<group>"; };
 		DDDEDF1721A90A09008FBADA /* ConnectivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityModel.swift; sourceTree = "<group>"; };
 		DDDEDF1B21A91848008FBADA /* Encodable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extensions.swift"; sourceTree = "<group>"; };
@@ -232,6 +236,7 @@
 				DDF2B4F121C8AD7400290969 /* UIColor+Extensions.swift */,
 				DD4777F521D4152600E4E85A /* Date+Extensions.swift */,
 				DD4777FE21D4360700E4E85A /* UIImage+Extensions.swift */,
+				DD47780421D4A17C00E4E85A /* MKCoordinateRegion+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -331,6 +336,7 @@
 				DDDB8F7721A3C2C600BA5E41 /* RunrController.swift */,
 				DDDEE3B1213259D500C8DC65 /* RunningController.swift */,
 				DDDEE3B3213259E300C8DC65 /* DataController.swift */,
+				DD47780221D49CA000E4E85A /* MapViewSnapshotController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -671,10 +677,12 @@
 				DDDEE3B4213259E300C8DC65 /* DataController.swift in Sources */,
 				DD304B0E216C4A6100ABE7C2 /* Coordinate.swift in Sources */,
 				DDDEE3AD21324CF000C8DC65 /* Run.swift in Sources */,
+				DD47780521D4A17C00E4E85A /* MKCoordinateRegion+Extensions.swift in Sources */,
 				DDDEDF1C21A91848008FBADA /* Encodable+Extensions.swift in Sources */,
 				DDDEE3AF2132572900C8DC65 /* Location.swift in Sources */,
 				DD21B4C021321B94004B22E7 /* AppDelegate.swift in Sources */,
 				DDDEE3B2213259D500C8DC65 /* RunningController.swift in Sources */,
+				DD47780321D49CA000E4E85A /* MapViewSnapshotController.swift in Sources */,
 				DD4777F621D4152600E4E85A /* Date+Extensions.swift in Sources */,
 				DDF2B4F221C8AD7400290969 /* UIColor+Extensions.swift in Sources */,
 				DD45F16F21A1277500C1DA72 /* ConnectivityController.swift in Sources */,

@@ -43,7 +43,7 @@ class RunningController: NSObject {
 		if currentRun == nil {
 			// Create a new run if starting a new run. If `currentRun` is not nil,
 			// then the run has been paused and just needs to be started again
-			currentRun = Run()
+			currentRun = Run(uuid: UUID())
 		}
 		
 		let workoutConfiguration = HKWorkoutConfiguration()
@@ -86,6 +86,8 @@ class RunningController: NSObject {
 		case .indoor:
 			break
 		}
+		
+		MapViewSnapshotController.generateMapSnapshot(for: currentRun)
 		
 		
 		let workout = HKWorkout(activityType: .running, start: currentRun.startDate,
