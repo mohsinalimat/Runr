@@ -21,11 +21,14 @@ class RunrController: NSObject {
 	
 	var locationController: LocationController
 	
-	override init() {
+	var cacheController: CacheController
+	
+	init(with cacheController: CacheController) {
 		self.connectivityController = ConnectivityController()
 		self.dataController = DataController()
 		self.locationController = LocationController()
-		self.runningController = RunningController()
+		self.runningController = RunningController(with: cacheController)
+		self.cacheController = cacheController
 		
 		super.init()
 		

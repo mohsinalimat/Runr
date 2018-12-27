@@ -15,8 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	var window: UIWindow?
 	
 	private lazy var runrController: RunrController = {
-		return RunrController()
+		return RunrController(with: cacheController)
 	}()
+	
+	private lazy var cacheController: CacheController = CacheController()
 	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
@@ -26,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			WCSession.default.activate()
 		}
 		
-		let mainViewController = RunViewController.build(runrController: runrController)
+		let mainViewController = RunViewController.build(runrController: runrController, cacheController: cacheController)
 		let navigationController = UINavigationController(rootViewController: mainViewController)
 		self.window = UIWindow(frame: UIScreen.main.bounds)
 		self.window?.rootViewController = navigationController

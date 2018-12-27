@@ -10,9 +10,10 @@ import UIKit
 
 class RunningViewController: UIViewController {
 	
-	class func build(runrController: RunrController) -> RunningViewController {
+	class func build(runrController: RunrController, cacheController: CacheController) -> RunningViewController {
 		let viewController = RunningViewController()
 		viewController.runrController = runrController
+		viewController.cacheController = cacheController
 		return viewController
 	}
 	
@@ -34,7 +35,7 @@ class RunningViewController: UIViewController {
 	
 	private var runrController: RunrController!
 	
-	private let cache = NSCache<NSString, UIImage>()
+	private var cacheController: CacheController!
 	
 	
 	
@@ -75,7 +76,7 @@ extension RunningViewController: UITableViewDataSource, UITableViewDelegate {
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: RunTableViewCell.identifier, for: indexPath) as! RunTableViewCell
 		let run = runrController.allRuns[indexPath.row]
-		cell.cache = cache
+		cell.cacheController = cacheController
 		cell.run = run
 		return cell
 	}

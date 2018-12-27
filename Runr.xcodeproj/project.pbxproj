@@ -32,6 +32,8 @@
 		DD47780521D4A17C00E4E85A /* MKCoordinateRegion+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD47780421D4A17C00E4E85A /* MKCoordinateRegion+Extensions.swift */; };
 		DDAB3B6C21A106CE0014C240 /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDEE3B721334CA400C8DC65 /* LocationController.swift */; };
 		DDDB8F7821A3C2C600BA5E41 /* RunrController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB8F7721A3C2C600BA5E41 /* RunrController.swift */; };
+		DDDEB5F221D5632E003F7641 /* CacheController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDEB5F121D5632E003F7641 /* CacheController.swift */; };
+		DDDEB5F321D56337003F7641 /* CacheController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDEB5F121D5632E003F7641 /* CacheController.swift */; };
 		DDDEDF1821A90A09008FBADA /* ConnectivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDEDF1721A90A09008FBADA /* ConnectivityModel.swift */; };
 		DDDEDF1921A90A0D008FBADA /* ConnectivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDEDF1721A90A09008FBADA /* ConnectivityModel.swift */; };
 		DDDEDF1C21A91848008FBADA /* Encodable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDEDF1B21A91848008FBADA /* Encodable+Extensions.swift */; };
@@ -137,6 +139,7 @@
 		DD47780221D49CA000E4E85A /* MapViewSnapshotController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewSnapshotController.swift; sourceTree = "<group>"; };
 		DD47780421D4A17C00E4E85A /* MKCoordinateRegion+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKCoordinateRegion+Extensions.swift"; sourceTree = "<group>"; };
 		DDDB8F7721A3C2C600BA5E41 /* RunrController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunrController.swift; sourceTree = "<group>"; };
+		DDDEB5F121D5632E003F7641 /* CacheController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheController.swift; sourceTree = "<group>"; };
 		DDDEDF1721A90A09008FBADA /* ConnectivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityModel.swift; sourceTree = "<group>"; };
 		DDDEDF1B21A91848008FBADA /* Encodable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extensions.swift"; sourceTree = "<group>"; };
 		DDDEE3AC21324CF000C8DC65 /* Run.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Run.swift; sourceTree = "<group>"; };
@@ -374,6 +377,7 @@
 				DDDEE3B721334CA400C8DC65 /* LocationController.swift */,
 				DD45F16E21A1277500C1DA72 /* ConnectivityController.swift */,
 				DDDEDF1721A90A09008FBADA /* ConnectivityModel.swift */,
+				DDDEB5F121D5632E003F7641 /* CacheController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -680,6 +684,7 @@
 				DD47780521D4A17C00E4E85A /* MKCoordinateRegion+Extensions.swift in Sources */,
 				DDDEDF1C21A91848008FBADA /* Encodable+Extensions.swift in Sources */,
 				DDDEE3AF2132572900C8DC65 /* Location.swift in Sources */,
+				DDDEB5F221D5632E003F7641 /* CacheController.swift in Sources */,
 				DD21B4C021321B94004B22E7 /* AppDelegate.swift in Sources */,
 				DDDEE3B2213259D500C8DC65 /* RunningController.swift in Sources */,
 				DD47780321D49CA000E4E85A /* MapViewSnapshotController.swift in Sources */,
@@ -716,6 +721,7 @@
 				DDDEDF1D21A9185A008FBADA /* Encodable+Extensions.swift in Sources */,
 				DDDEDF1921A90A0D008FBADA /* ConnectivityModel.swift in Sources */,
 				DD1C6540219A7555001F3407 /* WorkoutInterfaceController.swift in Sources */,
+				DDDEB5F321D56337003F7641 /* CacheController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

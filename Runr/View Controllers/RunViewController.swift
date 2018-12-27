@@ -15,9 +15,10 @@ import SnapKit
 
 class RunViewController: UIViewController {
 		
-	static func build(runrController: RunrController) -> RunViewController {
+	static func build(runrController: RunrController, cacheController: CacheController) -> RunViewController {
 		let viewController = RunViewController()
 		viewController.runrController = runrController
+		viewController.cacheController = cacheController
 		return viewController
 	}
 	
@@ -42,7 +43,7 @@ class RunViewController: UIViewController {
 	}()
 	
 	private lazy var runningViewController: RunningViewController = {
-		let viewController = RunningViewController.build(runrController: runrController)
+		let viewController = RunningViewController.build(runrController: runrController, cacheController: self.cacheController)
 		return viewController
 	}()
 	
@@ -50,6 +51,8 @@ class RunViewController: UIViewController {
 	// MARK: - Variables
 	
 	@objc dynamic private var runrController: RunrController!
+	
+	private var cacheController: CacheController!
 	
 	
 	// MARK: - Lifecycle Methods

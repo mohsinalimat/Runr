@@ -33,8 +33,11 @@ class RunningController: NSObject {
 	
 	private var workoutEvents: [HKWorkoutEvent] = []
 	
-	override init() {
-		
+	private var cacheController: CacheController
+	
+	
+	init(with cacheController: CacheController) {
+		self.cacheController = cacheController
 		super.init()
 	}
 	
@@ -87,7 +90,7 @@ class RunningController: NSObject {
 			break
 		}
 		
-		MapViewSnapshotController.generateMapSnapshot(for: currentRun)
+		MapViewSnapshotController.generateMapSnapshot(for: currentRun, saveWith: self.cacheController)
 		
 		
 		let workout = HKWorkout(activityType: .running, start: currentRun.startDate,

@@ -16,7 +16,7 @@ class RunTableViewCell: UITableViewCell {
 		return "RunTableViewCellIdentifier"
 	}
 	
-	weak var cache: NSCache<NSString, UIImage>?
+	weak var cacheController: CacheController?
 	
 	private lazy var runImageView: UIImageView = {
 		let imageView = UIImageView()
@@ -58,7 +58,7 @@ class RunTableViewCell: UITableViewCell {
 			self.distanceLabel.text = "\(run.distance)"
 			self.averagePaceLabel.text = "\(run.averagePace)"
 			
-			disclosureImageView.image = cache?.object(forKey: run.uuidString as NSString)
+			runImageView.image = cacheController?.image(for: run.uuidString)
 		}
 	}
 	

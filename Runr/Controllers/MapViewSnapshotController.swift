@@ -11,11 +11,9 @@ import MapKit
 
 class MapViewSnapshotController {
 	
-	static func generateMapSnapshot(for run: Run) {
+	static func generateMapSnapshot(for run: Run, saveWith cacheController: CacheController? = nil) {
 		guard run.locations.count > 0 else { return }
-		
-		let cache = NSCache<NSString, UIImage>()
-		
+				
 		let options = MKMapSnapshotter.Options()
 		options.mapType = .standard
 		options.showsPointsOfInterest = false
@@ -28,7 +26,7 @@ class MapViewSnapshotController {
 		let snapshotter = MKMapSnapshotter(options: options)
 		snapshotter.start { (snapshot, error) in
 			guard let image = snapshot?.image, error == nil else { return }
-			cache.setObject(image, forKey: run.uuidString as NSString)
+			cacheController?.set(image: image, for: run.uuidString)
 		}
 	}
 }
