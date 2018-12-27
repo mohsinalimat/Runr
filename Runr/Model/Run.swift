@@ -23,7 +23,7 @@ class Run: Object {
 	
 	@objc dynamic var runType: RunType = .outdoor
 	
-	@objc dynamic var title: String = ""
+	@objc dynamic var title: String?
 	
 	@objc dynamic var startDate: Date = Date()
 	
@@ -67,5 +67,18 @@ class Run: Object {
 		self.init()
 		
 		self.uuidString = uuid.uuidString
+	}
+}
+
+
+extension Run {
+	
+	/// Returns the title if this run has one else returns a descriptive string representing the day and time of day
+	var displayTitle: String {
+		if let title = title {
+			return title
+		} else {
+			return startDate.dayPlusTimeOfDay + " Run"
+		}
 	}
 }
