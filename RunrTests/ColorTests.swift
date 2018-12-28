@@ -28,4 +28,9 @@ class ColorTests: XCTestCase {
 		let color = UIColor(named: "SecondaryTextColor")
 		XCTAssertNotNil(color)
 	}
+	
+	func testRunrGrayColor() {
+		let color = UIColor(named: "RunrGray")
+		XCTAssertNotNil(color)
+	}
 }

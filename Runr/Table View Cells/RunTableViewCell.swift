@@ -20,8 +20,9 @@ class RunTableViewCell: UITableViewCell {
 	
 	private lazy var runImageView: UIImageView = {
 		let imageView = UIImageView()
-		imageView.layer.backgroundColor = UIColor.red.cgColor
+		imageView.layer.backgroundColor = UIColor.runrGray.cgColor
 		imageView.layer.cornerRadius = 14
+		imageView.clipsToBounds = true
 		return imageView
 	}()
 	

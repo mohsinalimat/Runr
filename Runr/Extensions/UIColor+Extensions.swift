@@ -17,4 +17,8 @@ extension UIColor {
 	static var secondaryTextColor: UIColor {
 		return UIColor(named: "SecondaryTextColor")!
 	}
+	
+	static var runrGray: UIColor {
+		return UIColor(named: "RunrGray")!
+	}
 }

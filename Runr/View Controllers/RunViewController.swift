@@ -39,6 +39,7 @@ class RunViewController: UIViewController {
 		button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
 		button.backgroundColor = UIColor.runrGreen
 		button.layer.cornerRadius = 10.0
+		button.addTarget(self, action: #selector(startStopRun(_:)), for: .touchUpInside)
 		return button
 	}()
 	
@@ -128,6 +129,20 @@ class RunViewController: UIViewController {
 	
 	
 	// TODO: remove me and move to RunManagerViewController
+	
+	
+	var isRunning: Bool = false
+	
+	@objc func startStopRun(_ sender: UIButton) {
+		debugPrint(#function, isRunning)
+		if isRunning {
+			runrController.runningController.endRun()
+			isRunning = false
+		} else {
+			runrController.runningController.startRun(with: .outdoor)
+			isRunning = true
+		}
+	}
 	
 	@IBAction func startRun(_ sender: UIButton) {
 		runrController.runningController.startRun(with: .outdoor)

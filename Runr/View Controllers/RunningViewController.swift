@@ -44,6 +44,8 @@ class RunningViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		self.title = "Runs"
+		
 		self.tableView.register(RunTableViewCell.self, forCellReuseIdentifier: RunTableViewCell.identifier)
 	}
 	
