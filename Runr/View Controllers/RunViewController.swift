@@ -43,6 +43,20 @@ class RunViewController: UIViewController {
 		return button
 	}()
 	
+	private lazy var runningNavigationController: UINavigationController = {
+		let navigationController = UINavigationController(rootViewController: runningViewController)
+		let font = UIFont.systemFont(ofSize: 16, weight: .bold)
+		navigationController.navigationBar.titleTextAttributes = [
+			NSAttributedString.Key.font: font,
+			NSAttributedString.Key.foregroundColor: UIColor.runrGray
+		]
+		navigationController.navigationBar.barTintColor = UIColor.white
+		navigationController.navigationBar.backIndicatorImage = UIImage.backArrow
+		navigationController.view.layer.cornerRadius = 25
+		navigationController.view.layer.masksToBounds = true
+		return navigationController
+	}()
+	
 	private lazy var runningViewController: RunningViewController = {
 		let viewController = RunningViewController.build(runrController: runrController, cacheController: self.cacheController)
 		return viewController
@@ -78,7 +92,7 @@ class RunViewController: UIViewController {
 	override func loadView() {
 		view = UIView()
 		
-		[mapView, letsRunButton, runningViewController.view].forEach {
+		[mapView, letsRunButton, runningNavigationController.view].forEach {
 			view.addSubview($0)
 		}
 		
@@ -93,7 +107,7 @@ class RunViewController: UIViewController {
 			make.height.equalTo(45)
 		}
 		
-		runningViewController.view.snp.makeConstraints { (make) in
+		runningNavigationController.view.snp.makeConstraints { (make) in
 			make.top.equalTo(letsRunButton.snp.bottom).offset(20)
 			make.leading.equalTo(letsRunButton.snp.leading)
 			make.trailing.equalTo(letsRunButton.snp.trailing)

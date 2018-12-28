@@ -13,4 +13,8 @@ extension UIImage {
 	static var disclosureIndicator: UIImage {
 		return UIImage(named: "DisclosureIndicator")!
 	}
+	
+	static var backArrow: UIImage {
+		return UIImage(named: "BackArrow")
+	}
 }
