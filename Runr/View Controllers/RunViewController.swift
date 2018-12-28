@@ -51,9 +51,12 @@ class RunViewController: UIViewController {
 			NSAttributedString.Key.foregroundColor: UIColor.runrGray
 		]
 		navigationController.navigationBar.barTintColor = UIColor.white
-		navigationController.navigationBar.backIndicatorImage = UIImage.backArrow
 		navigationController.view.layer.cornerRadius = 25
 		navigationController.view.layer.masksToBounds = true
+		
+		navigationController.navigationBar.backIndicatorImage = UIImage.backArrow
+		navigationController.navigationBar.backIndicatorTransitionMaskImage = UIImage.backArrow
+		
 		return navigationController
 	}()
 	

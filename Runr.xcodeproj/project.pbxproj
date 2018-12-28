@@ -34,6 +34,7 @@
 		DDDB8F7821A3C2C600BA5E41 /* RunrController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB8F7721A3C2C600BA5E41 /* RunrController.swift */; };
 		DDDEB5F221D5632E003F7641 /* CacheController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDEB5F121D5632E003F7641 /* CacheController.swift */; };
 		DDDEB5F321D56337003F7641 /* CacheController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDEB5F121D5632E003F7641 /* CacheController.swift */; };
+		DDDEB5FC21D5A62B003F7641 /* RunDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDEB5FB21D5A62B003F7641 /* RunDetailViewController.swift */; };
 		DDDEDF1821A90A09008FBADA /* ConnectivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDEDF1721A90A09008FBADA /* ConnectivityModel.swift */; };
 		DDDEDF1921A90A0D008FBADA /* ConnectivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDEDF1721A90A09008FBADA /* ConnectivityModel.swift */; };
 		DDDEDF1C21A91848008FBADA /* Encodable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDEDF1B21A91848008FBADA /* Encodable+Extensions.swift */; };
@@ -140,6 +141,7 @@
 		DD47780421D4A17C00E4E85A /* MKCoordinateRegion+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKCoordinateRegion+Extensions.swift"; sourceTree = "<group>"; };
 		DDDB8F7721A3C2C600BA5E41 /* RunrController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunrController.swift; sourceTree = "<group>"; };
 		DDDEB5F121D5632E003F7641 /* CacheController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheController.swift; sourceTree = "<group>"; };
+		DDDEB5FB21D5A62B003F7641 /* RunDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunDetailViewController.swift; sourceTree = "<group>"; };
 		DDDEDF1721A90A09008FBADA /* ConnectivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityModel.swift; sourceTree = "<group>"; };
 		DDDEDF1B21A91848008FBADA /* Encodable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extensions.swift"; sourceTree = "<group>"; };
 		DDDEE3AC21324CF000C8DC65 /* Run.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Run.swift; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 			children = (
 				DD21B4C121321B94004B22E7 /* RunViewController.swift */,
 				DD09BA30216AF21B002090B8 /* RunningViewController.swift */,
+				DDDEB5FB21D5A62B003F7641 /* RunDetailViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -692,6 +695,7 @@
 				DDF2B4F221C8AD7400290969 /* UIColor+Extensions.swift in Sources */,
 				DD45F16F21A1277500C1DA72 /* ConnectivityController.swift in Sources */,
 				DD2ABE9621CF44D100F7F0EA /* RunTableViewCell.swift in Sources */,
+				DDDEB5FC21D5A62B003F7641 /* RunDetailViewController.swift in Sources */,
 				DDDB8F7821A3C2C600BA5E41 /* RunrController.swift in Sources */,
 				DD4777FF21D4360700E4E85A /* UIImage+Extensions.swift in Sources */,
 				DDDEDF1821A90A09008FBADA /* ConnectivityModel.swift in Sources */,

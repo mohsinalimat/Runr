@@ -82,4 +82,11 @@ extension RunningViewController: UITableViewDataSource, UITableViewDelegate {
 		cell.run = run
 		return cell
 	}
+	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		let run = runrController.allRuns[indexPath.row]
+		let runDetailViewController = RunDetailViewController.build(with: run)
+		navigationController?.pushViewController(runDetailViewController, animated: true)
+		tableView.deselectRow(at: indexPath, animated: false)
+	}
 }
