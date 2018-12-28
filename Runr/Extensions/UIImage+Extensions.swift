@@ -15,6 +15,6 @@ extension UIImage {
 	}
 	
 	static var backArrow: UIImage {
-		return UIImage(named: "BackArrow")
+		return UIImage(named: "BackArrow")!
 	}
 }

@@ -22,4 +22,9 @@ class ImageTests: XCTestCase {
 		let image = UIImage(named: "DisclosureIndicator")
 		XCTAssertNotNil(image)
 	}
+	
+	func testBackArrow() {
+		let image = UIImage(named: "BackArrow")
+		XCTAssertNotNil(image)
+	}
 }
