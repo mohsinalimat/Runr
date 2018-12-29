@@ -50,7 +50,7 @@ class Run: Object {
 	}
 	
 	@objc dynamic var averageHeartRate: Int {
-		
+		guard heartRates.count > 0 else { return -1 }
 		let sum = heartRates.reduce(0) { (result, next) -> Double in
 			return result + next.heartRate
 		}
@@ -67,6 +67,16 @@ class Run: Object {
 		self.init()
 		
 		self.uuidString = uuid.uuidString
+	}
+	
+	
+	override class func keyPathsForValuesAffectingValue(forKey key: String) -> Set<String> {
+		switch key {
+		case #keyPath(Run.averagePace):
+			return [#keyPath(Run.distance), #keyPath(Run.duration)]
+		default:
+			return super.keyPathsForValuesAffectingValue(forKey: key)
+		}
 	}
 }
 

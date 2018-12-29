@@ -92,7 +92,9 @@ class RunDetailViewController: UIViewController {
 	
 	// MARK: - Variables
 	
-	private var run: Run!
+	@objc dynamic private var run: Run!
+	
+	private var runObservers: [NSKeyValueObservation] = []
 	
 	
 	
@@ -104,6 +106,8 @@ class RunDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
 		
 		title = run.displayTitle
+		
+		setupObservers()
     }
 	
 	override func loadView() {
@@ -127,6 +131,33 @@ class RunDetailViewController: UIViewController {
 			make.trailing.equalTo(runChartView.snp.trailing)
 			make.bottom.lessThanOrEqualTo(view.snp.bottom).inset(5)
 		}
+	}
+	
+	
+	
+	// MARK: - Observers
+	
+	private func setupObservers() {
+		runObservers = [
+			self.observe(\RunDetailViewController.run?.averagePace, options: [.initial], changeHandler: { (object, _) in
+				object.averagePaceLabel.text = "\(object.run.averagePace)"
+			}),
+			self.observe(\RunDetailViewController.run?.distance, options: [.initial], changeHandler: { (object, _) in
+				object.averagePaceLabel.text = "\(object.run.distance)"
+			}),
+			self.observe(\RunDetailViewController.run?.duration, options: [.initial], changeHandler: { (object, _) in
+				object.averagePaceLabel.text = "\(object.run.duration)"
+			}),
+			self.observe(\RunDetailViewController.run?.elevation, options: [.initial], changeHandler: { (object, _) in
+				object.averagePaceLabel.text = "\(object.run.elevation)"
+			}),
+			self.observe(\RunDetailViewController.run?.averageHeartRate, options: [.initial], changeHandler: { (object, _) in
+				object.averagePaceLabel.text = "\(object.run.averageHeartRate)"
+			}),
+			self.observe(\RunDetailViewController.run?.estimatedCalories, options: [.initial], changeHandler: { (object, _) in
+				object.averagePaceLabel.text = "\(object.run.estimatedCalories)"
+			})
+		]
 	}
 }
 
