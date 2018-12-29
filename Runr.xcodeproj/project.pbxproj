@@ -18,6 +18,7 @@
 		DD21B4C721321B96004B22E7 /* AppIconAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD21B4C621321B96004B22E7 /* AppIconAssets.xcassets */; };
 		DD21B4CA21321B96004B22E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD21B4C821321B96004B22E7 /* LaunchScreen.storyboard */; };
 		DD21B4D521321B96004B22E7 /* RunrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD21B4D421321B96004B22E7 /* RunrTests.swift */; };
+		DD29A73221D7393900D6CEB6 /* LetsRunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD29A73121D7393900D6CEB6 /* LetsRunViewController.swift */; };
 		DD2ABE9621CF44D100F7F0EA /* RunTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2ABE9521CF44D100F7F0EA /* RunTableViewCell.swift */; };
 		DD304B0E216C4A6100ABE7C2 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD304B0D216C4A6100ABE7C2 /* Coordinate.swift */; };
 		DD45F16F21A1277500C1DA72 /* ConnectivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD45F16E21A1277500C1DA72 /* ConnectivityController.swift */; };
@@ -128,6 +129,7 @@
 		DD21B4D021321B96004B22E7 /* RunrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RunrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD21B4D421321B96004B22E7 /* RunrTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunrTests.swift; sourceTree = "<group>"; };
 		DD21B4D621321B96004B22E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD29A73121D7393900D6CEB6 /* LetsRunViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetsRunViewController.swift; sourceTree = "<group>"; };
 		DD2ABE9521CF44D100F7F0EA /* RunTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunTableViewCell.swift; sourceTree = "<group>"; };
 		DD304B0D216C4A6100ABE7C2 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 		DD45F16E21A1277500C1DA72 /* ConnectivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityController.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				DD21B4C121321B94004B22E7 /* RunViewController.swift */,
 				DD09BA30216AF21B002090B8 /* RunningViewController.swift */,
 				DDDEB5FB21D5A62B003F7641 /* RunDetailViewController.swift */,
+				DD29A73121D7393900D6CEB6 /* LetsRunViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -695,6 +698,7 @@
 				DDF2B4F221C8AD7400290969 /* UIColor+Extensions.swift in Sources */,
 				DD45F16F21A1277500C1DA72 /* ConnectivityController.swift in Sources */,
 				DD2ABE9621CF44D100F7F0EA /* RunTableViewCell.swift in Sources */,
+				DD29A73221D7393900D6CEB6 /* LetsRunViewController.swift in Sources */,
 				DDDEB5FC21D5A62B003F7641 /* RunDetailViewController.swift in Sources */,
 				DDDB8F7821A3C2C600BA5E41 /* RunrController.swift in Sources */,
 				DD4777FF21D4360700E4E85A /* UIImage+Extensions.swift in Sources */,
