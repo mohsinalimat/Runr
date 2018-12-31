@@ -8,11 +8,13 @@
 
 import UIKit
 
+/// The delegate for the LetsRunViewController
 protocol LetsRunDelegate: class {
 	func startRun(with type: RunSelectionType)
 	func cancel()
 }
 
+/// The selection type
 enum RunSelectionType {
 	case open
 	case timed(time: TimeInterval)
@@ -28,7 +30,9 @@ class LetsRunViewController: UIViewController {
 		return viewController
 	}
 	
-	private weak var delegate: LetsRunDelegate?
+	
+	
+	// MARK: - UI Variables
 	
 	private lazy var chooseRunLabel: UILabel = {
 		let label = UILabel()
@@ -42,48 +46,60 @@ class LetsRunViewController: UIViewController {
 	private lazy var openRunButton: UIButton = {
 		let button = UIButton()
 		button.setImage(UIImage.openGoalIcon, for: .normal)
+		button.addTarget(self, action: #selector(openButtonAction(_:)), for: .touchUpInside)
 		return button
 	}()
 	
 	private lazy var openRunLabel: UILabel = {
 		let label = UILabel()
 		label.text = "Open"
+		label.font = UIFont.systemFont(ofSize: 19, weight: .medium)
+		label.textColor = .runrGray
 		return label
 	}()
 	
 	private lazy var timedRunButton: UIButton = {
 		let button = UIButton()
 		button.setImage(UIImage.timedGoalIcon, for: .normal)
+		button.addTarget(self, action: #selector(timedButtonAction(_:)), for: .touchUpInside)
 		return button
 	}()
 	
 	private lazy var timedLabel: UILabel = {
 		let label = UILabel()
 		label.text = "Timed"
+		label.font = UIFont.systemFont(ofSize: 19, weight: .medium)
+		label.textColor = .runrGray
 		return label
 	}()
 	
 	private lazy var distanceRunButton: UIButton = {
 		let button = UIButton()
 		button.setImage(UIImage.distanceGoalIcon, for: .normal)
+		button.addTarget(self, action: #selector(distanceButtonAction(_:)), for: .touchUpInside)
 		return button
 	}()
 	
 	private lazy var distanceLabel: UILabel = {
 		let label = UILabel()
 		label.text = "Distance"
+		label.font = UIFont.systemFont(ofSize: 19, weight: .medium)
+		label.textColor = .runrGray
 		return label
 	}()
 	
 	private lazy var caloriesRunButton: UIButton = {
 		let button = UIButton()
 		button.setImage(UIImage.caloriesGoalIcon, for: .normal)
+		button.addTarget(self, action: #selector(caloriesButtonAction(_:)), for: .touchUpInside)
 		return button
 	}()
 	
 	private lazy var caloriesLabel: UILabel = {
 		let label = UILabel()
 		label.text = "Calories"
+		label.font = UIFont.systemFont(ofSize: 19, weight: .medium)
+		label.textColor = .runrGray
 		return label
 	}()
 	
@@ -120,10 +136,20 @@ class LetsRunViewController: UIViewController {
 		let button = UIButton()
 		button.setTitle("Cancel", for: .normal)
 		button.setTitleColor(.runrGray, for: .normal)
+		button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
 		button.addTarget(self, action: #selector(cancel(_:)), for: .touchUpInside)
 		return button
 	}()
 	
+	
+	
+	// MARK: - Variables
+	
+	private weak var delegate: LetsRunDelegate?
+	
+	
+	
+	// MARK: - Lifecyle Methods
 	
 	override func loadView() {
 		view = UIView()
@@ -168,8 +194,27 @@ class LetsRunViewController: UIViewController {
 	@objc private func cancel(_ sender: UIButton) {
 		delegate?.cancel()
 	}
+	
+	@objc func openButtonAction(_ sender: UIButton) {
+		debugPrint(#function)
+	}
+	
+	@objc func timedButtonAction(_ sender: UIButton) {
+		debugPrint(#function)
+	}
+	
+	@objc func distanceButtonAction(_ sender: UIButton) {
+		debugPrint(#function)
+	}
+	
+	@objc func caloriesButtonAction(_ sender: UIButton) {
+		debugPrint(#function)
+	}
 }
 
+
+
+// MARK: - UIStackView Extension
 
 private extension UIStackView {
 	

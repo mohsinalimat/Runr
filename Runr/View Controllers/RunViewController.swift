@@ -76,6 +76,19 @@ class RunViewController: UIViewController {
 		return viewController
 	}()
 	
+	/// The top constraint for the currently shown view controller
+	var topConstraint: Constraint?
+	
+	/// The leading constraint for the currently shown view controller
+	var leadingConstraint: Constraint?
+	
+	/// The trailing constraint for the currently shown view controller
+	var trailingConstraint: Constraint?
+	
+	/// The bottom constraint for the currently shown view controller
+	var bottomConstraint: Constraint?
+	
+	
 	
 	// MARK: - Variables
 	
@@ -83,6 +96,7 @@ class RunViewController: UIViewController {
 	
 	private var cacheController: CacheController!
 	
+	/// The current `ViewType`. Calls the `updateView(from:, to:)` function with the new value
 	private var viewType: ViewType = .normal {
 		didSet {
 			guard viewType != oldValue else { return }
@@ -92,23 +106,6 @@ class RunViewController: UIViewController {
 	
 	
 	// MARK: - Lifecycle Methods
-	
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		
-		self.title = "RUNR"
-	}
-	
-	override func viewDidAppear(_ animated: Bool) {
-		super.viewDidAppear(animated)
-		
-		let locationStatus = CLLocationManager.authorizationStatus()
-		if locationStatus != .authorizedWhenInUse || locationStatus != .authorizedAlways {
-			self.runrController.locationController.locationManager.requestWhenInUseAuthorization()
-		}
-		
-		self.authorizeHealthKit()
-	}
 	
 	override func loadView() {
 		view = UIView()
@@ -136,11 +133,22 @@ class RunViewController: UIViewController {
 		}
 	}
 	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		
+		self.title = "RUNR"
+	}
 	
-	var topConstraint: Constraint?
-	var leadingConstraint: Constraint?
-	var trailingConstraint: Constraint?
-	var bottomConstraint: Constraint?
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		
+		let locationStatus = CLLocationManager.authorizationStatus()
+		if locationStatus != .authorizedWhenInUse || locationStatus != .authorizedAlways {
+			self.runrController.locationController.locationManager.requestWhenInUseAuthorization()
+		}
+		
+		self.authorizeHealthKit()
+	}
 	
 	
 	
@@ -170,31 +178,23 @@ class RunViewController: UIViewController {
 	}
 	
 	
-	// TODO: remove me and move to RunManagerViewController
 	
-	@IBAction func startRun(_ sender: UIButton) {
-		runrController.runningController.startRun(with: .outdoor)
-	}
+	// MARK: - Actions
 	
-	
-	@IBAction func pauseRun(_ sender: UIButton) {
-		runrController.runningController.pauseRun()
-	}
-	
-	
-	@IBAction func endRun(_ sender: UIButton) {
-		runrController.runningController.endRun()
-	}
-	
-	
+	/// Called when the user presses the `LetsRunButton`
 	@objc private func letsRunAction(_ sender: UIButton) {
 		self.viewType = .letsRun
 	}
 	
 	
 	
-	// MARK: - UI moving
+	// MARK: - UI Updating
 	
+	/// Updates the view based on the type passed in. Will remove (animate) one view out
+	/// and remove it, then add (animate) another view back in
+	/// - Parameters:
+	///   - oldViewType: The previous view type
+	///   - newViewType: The new view type
 	private func updateView(from oldViewType: ViewType, to newViewType: ViewType) {
 		if oldViewType == .normal, newViewType == .letsRun {
 			
@@ -242,7 +242,10 @@ class RunViewController: UIViewController {
 			})
 		}
 	}
-	
+
+	/// Inserts the `LetsRunViewController` and sets up its constraints. Sets the initial
+	/// bottom constraint's offset to that of `self.view.bounds.height` so it is initially off the screen.
+	/// Intended to be animated back into view
 	private func setupLetsRunViewConstraints() {
 		self.view.addSubview(letsRunViewController.view)
 		letsRunViewController.view.snp.makeConstraints { (make) in
@@ -252,6 +255,9 @@ class RunViewController: UIViewController {
 		}
 	}
 	
+	/// Inserts the `runningNavigationController` and sets up its constraints. Sets the initial
+	/// bottom constraint's offset to that of `self.view.bounds.height` so it is initially off the screen.
+	/// Intended to be animated back into view
 	private func setupRunningNavigationControllerConstraints() {
 		self.view.addSubview(runningNavigationController.view)
 		runningNavigationController.view.snp.makeConstraints { (make) in
