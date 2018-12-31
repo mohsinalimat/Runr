@@ -8,12 +8,27 @@
 
 import UIKit
 
+protocol LetsRunDelegate: class {
+	func startRun(with type: RunSelectionType)
+	func cancel()
+}
+
+enum RunSelectionType {
+	case open
+	case timed(time: TimeInterval)
+	case distance(distance: Double)
+	case calories(calories: Int)
+}
+
 class LetsRunViewController: UIViewController {
 	
-	class func build() -> LetsRunViewController {
+	class func build(delegate: LetsRunDelegate) -> LetsRunViewController {
 		let viewController = LetsRunViewController()
+		viewController.delegate = delegate
 		return viewController
 	}
+	
+	private weak var delegate: LetsRunDelegate?
 	
 	private lazy var chooseRunLabel: UILabel = {
 		let label = UILabel()
@@ -105,6 +120,7 @@ class LetsRunViewController: UIViewController {
 		let button = UIButton()
 		button.setTitle("Cancel", for: .normal)
 		button.setTitleColor(.runrGray, for: .normal)
+		button.addTarget(self, action: #selector(cancel(_:)), for: .touchUpInside)
 		return button
 	}()
 	
@@ -143,6 +159,14 @@ class LetsRunViewController: UIViewController {
 		super.viewDidLoad()
 		
 		title = "Choose a Run Type"
+	}
+	
+	
+	
+	// MARK: - Actions
+	
+	@objc private func cancel(_ sender: UIButton) {
+		delegate?.cancel()
 	}
 }
 

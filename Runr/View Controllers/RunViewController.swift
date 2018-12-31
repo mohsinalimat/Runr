@@ -72,7 +72,7 @@ class RunViewController: UIViewController {
 	}()
 	
 	private lazy var letsRunViewController: LetsRunViewController = {
-		let viewController = LetsRunViewController.build()
+		let viewController = LetsRunViewController.build(delegate: self)
 		return viewController
 	}()
 	
@@ -218,6 +218,28 @@ class RunViewController: UIViewController {
 					self.view.layoutIfNeeded()
 				})
 			})
+		} else if oldViewType == .letsRun, newViewType == .normal {
+			
+			UIView.animate(withDuration: 0.3, animations: {
+				// perform animations
+				self.bottomConstraint?.update(offset: self.view.bounds.height)
+				self.topConstraint?.update(offset: self.view.bounds.height)
+				self.view.layoutIfNeeded()
+			}, completion: { (_) in
+				// completion
+				self.letsRunViewController.view.snp.removeConstraints()
+				self.letsRunViewController.view.removeFromSuperview()
+				
+				self.setupRunningNavigationControllerConstraints()
+				self.view.layoutIfNeeded()
+				
+				UIView.animate(withDuration: 0.3, animations: {
+					self.bottomConstraint?.update(offset: 0)
+					self.topConstraint?.update(offset: 20)
+					self.letsRunButton.isHidden = false
+					self.view.layoutIfNeeded()
+				})
+			})
 		}
 	}
 	
@@ -228,5 +250,30 @@ class RunViewController: UIViewController {
 			trailingConstraint = make.trailing.equalTo(letsRunButton.snp.trailing).constraint
 			bottomConstraint = make.bottom.equalTo(view.snp.bottom).offset(self.view.bounds.height).constraint
 		}
+	}
+	
+	private func setupRunningNavigationControllerConstraints() {
+		self.view.addSubview(runningNavigationController.view)
+		runningNavigationController.view.snp.makeConstraints { (make) in
+			topConstraint = make.top.equalTo(letsRunButton.snp.bottom).offset(self.view.bounds.height).constraint
+			leadingConstraint = make.leading.equalTo(letsRunButton.snp.leading).constraint
+			trailingConstraint = make.trailing.equalTo(letsRunButton.snp.trailing).constraint
+			bottomConstraint = make.bottom.equalTo(view.snp.bottom).offset(self.view.bounds.height).constraint
+		}
+	}
+}
+
+
+
+// MARK: - LetsRunDelegate
+
+extension RunViewController: LetsRunDelegate {
+	
+	func startRun(with type: RunSelectionType) {
+		debugPrint(#function)
+	}
+	
+	func cancel() {
+		self.viewType = .normal
 	}
 }
