@@ -18,6 +18,10 @@ class ImageTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 	
+	
+	
+	// MARK: - General Images Tests
+	
 	func testDisclosureIcon() {
 		let image = UIImage(named: "DisclosureIndicator")
 		XCTAssertNotNil(image)
@@ -25,6 +29,30 @@ class ImageTests: XCTestCase {
 	
 	func testBackArrow() {
 		let image = UIImage(named: "BackArrow")
+		XCTAssertNotNil(image)
+	}
+	
+	
+	
+	// MARK: - Lets Run View Controller Images
+	
+	func testOpenGoalIcon() {
+		let image = UIImage(named: "OpenGoal")
+		XCTAssertNotNil(image)
+	}
+	
+	func testTimedGoalIcon() {
+		let image = UIImage(named: "TimedGoal")
+		XCTAssertNotNil(image)
+	}
+	
+	func testDistanceGoalIcon() {
+		let image = UIImage(named: "DistanceGoal")
+		XCTAssertNotNil(image)
+	}
+	
+	func testCaloriesGoalIcon() {
+		let image = UIImage(named: "CaloriesGoal")
 		XCTAssertNotNil(image)
 	}
 }

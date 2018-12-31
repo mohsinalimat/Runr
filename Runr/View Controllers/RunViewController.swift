@@ -13,6 +13,12 @@ import MapKit
 
 import SnapKit
 
+enum ViewType {
+	case normal
+	case letsRun
+	case running
+}
+
 class RunViewController: UIViewController {
 		
 	static func build(runrController: RunrController, cacheController: CacheController) -> RunViewController {
@@ -39,7 +45,7 @@ class RunViewController: UIViewController {
 		button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
 		button.backgroundColor = UIColor.runrGreen
 		button.layer.cornerRadius = 10.0
-		button.addTarget(self, action: #selector(startStopRun(_:)), for: .touchUpInside)
+		button.addTarget(self, action: #selector(letsRunAction(_:)), for: .touchUpInside)
 		return button
 	}()
 	
@@ -65,12 +71,24 @@ class RunViewController: UIViewController {
 		return viewController
 	}()
 	
+	private lazy var letsRunViewController: LetsRunViewController = {
+		let viewController = LetsRunViewController.build()
+		return viewController
+	}()
+	
 	
 	// MARK: - Variables
 	
 	@objc dynamic private var runrController: RunrController!
 	
 	private var cacheController: CacheController!
+	
+	private var viewType: ViewType = .normal {
+		didSet {
+			guard viewType != oldValue else { return }
+			updateView(from: oldValue, to: viewType)
+		}
+	}
 	
 	
 	// MARK: - Lifecycle Methods
@@ -111,12 +129,19 @@ class RunViewController: UIViewController {
 		}
 		
 		runningNavigationController.view.snp.makeConstraints { (make) in
-			make.top.equalTo(letsRunButton.snp.bottom).offset(20)
-			make.leading.equalTo(letsRunButton.snp.leading)
-			make.trailing.equalTo(letsRunButton.snp.trailing)
-			make.bottom.equalTo(view.snp.bottom)
+			topConstraint = make.top.equalTo(letsRunButton.snp.bottom).offset(20).constraint
+			leadingConstraint = make.leading.equalTo(letsRunButton.snp.leading).constraint
+			trailingConstraint = make.trailing.equalTo(letsRunButton.snp.trailing).constraint
+			bottomConstraint = make.bottom.equalTo(view.snp.bottom).constraint
 		}
 	}
+	
+	
+	var topConstraint: Constraint?
+	var leadingConstraint: Constraint?
+	var trailingConstraint: Constraint?
+	var bottomConstraint: Constraint?
+	
 	
 	
 	// TODO: move me elsewhere
@@ -147,20 +172,6 @@ class RunViewController: UIViewController {
 	
 	// TODO: remove me and move to RunManagerViewController
 	
-	
-	var isRunning: Bool = false
-	
-	@objc func startStopRun(_ sender: UIButton) {
-		debugPrint(#function, isRunning)
-		if isRunning {
-			runrController.runningController.endRun()
-			isRunning = false
-		} else {
-			runrController.runningController.startRun(with: .outdoor)
-			isRunning = true
-		}
-	}
-	
 	@IBAction func startRun(_ sender: UIButton) {
 		runrController.runningController.startRun(with: .outdoor)
 	}
@@ -173,5 +184,49 @@ class RunViewController: UIViewController {
 	
 	@IBAction func endRun(_ sender: UIButton) {
 		runrController.runningController.endRun()
+	}
+	
+	
+	@objc private func letsRunAction(_ sender: UIButton) {
+		self.viewType = .letsRun
+	}
+	
+	
+	
+	// MARK: - UI moving
+	
+	private func updateView(from oldViewType: ViewType, to newViewType: ViewType) {
+		if oldViewType == .normal, newViewType == .letsRun {
+			
+			UIView.animate(withDuration: 0.3, animations: {
+				// perform animations
+				self.bottomConstraint?.update(offset: self.view.bounds.height)
+				self.topConstraint?.update(offset: self.view.bounds.height)
+				self.letsRunButton.isHidden = true
+				self.view.layoutIfNeeded()
+			}, completion: { _ in
+				// completion
+				self.runningNavigationController.view.snp.removeConstraints()
+				self.runningNavigationController.view.removeFromSuperview()
+				
+				self.setupLetsRunViewConstraints()
+				self.view.layoutIfNeeded()
+				
+				UIView.animate(withDuration: 0.3, animations: {
+					// perform animations
+					self.bottomConstraint?.update(offset: 0)
+					self.view.layoutIfNeeded()
+				})
+			})
+		}
+	}
+	
+	private func setupLetsRunViewConstraints() {
+		self.view.addSubview(letsRunViewController.view)
+		letsRunViewController.view.snp.makeConstraints { (make) in
+			leadingConstraint = make.leading.equalTo(letsRunButton.snp.leading).constraint
+			trailingConstraint = make.trailing.equalTo(letsRunButton.snp.trailing).constraint
+			bottomConstraint = make.bottom.equalTo(view.snp.bottom).offset(self.view.bounds.height).constraint
+		}
 	}
 }
