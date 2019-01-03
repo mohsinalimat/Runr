@@ -1,5 +1,5 @@
 //
-//  RunManagerViewController.swift
+//  RunningListViewController.swift
 //  Runr
 //
 //  Created by Philip Sawyer on 10/7/18.
@@ -8,10 +8,10 @@
 
 import UIKit
 
-class RunningViewController: UIViewController {
+class RunListViewController: UIViewController {
 	
-	class func build(runrController: RunrController, cacheController: CacheController) -> RunningViewController {
-		let viewController = RunningViewController()
+	class func build(runrController: RunrController, cacheController: CacheController) -> RunListViewController {
+		let viewController = RunListViewController()
 		viewController.runrController = runrController
 		viewController.cacheController = cacheController
 		return viewController
@@ -69,7 +69,7 @@ class RunningViewController: UIViewController {
 
 // MARK: - UITableViewDataSource and UITableViewDelegate
 
-extension RunningViewController: UITableViewDataSource, UITableViewDelegate {
+extension RunListViewController: UITableViewDataSource, UITableViewDelegate {
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return runrController.allRuns.count

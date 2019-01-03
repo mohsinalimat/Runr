@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			WCSession.default.activate()
 		}
 		
-		let mainViewController = RunViewController.build(runrController: runrController, cacheController: cacheController)
+		let mainViewController = RunMainViewController.build(runrController: runrController, cacheController: cacheController)
 		let navigationController = UINavigationController(rootViewController: mainViewController)
 		self.window = UIWindow(frame: UIScreen.main.bounds)
 		self.window?.rootViewController = navigationController
