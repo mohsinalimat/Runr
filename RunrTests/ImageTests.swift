@@ -32,6 +32,16 @@ class ImageTests: XCTestCase {
 		XCTAssertNotNil(image)
 	}
 	
+	func testMinusButton() {
+		let image = UIImage(named: "MinusButton")
+		XCTAssertNotNil(image)
+	}
+	
+	func testAddButton() {
+		let image = UIImage(named: "AddButton")
+		XCTAssertNotNil(image)
+	}
+	
 	
 	
 	// MARK: - Lets Run View Controller Images

@@ -31,6 +31,8 @@
 		DD47780121D4365500E4E85A /* ImageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD47780021D4365500E4E85A /* ImageTests.swift */; };
 		DD47780321D49CA000E4E85A /* MapViewSnapshotController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD47780221D49CA000E4E85A /* MapViewSnapshotController.swift */; };
 		DD47780521D4A17C00E4E85A /* MKCoordinateRegion+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD47780421D4A17C00E4E85A /* MKCoordinateRegion+Extensions.swift */; };
+		DD54D1B921DF0775007DF100 /* LetsRunInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD54D1B821DF0775007DF100 /* LetsRunInputViewController.swift */; };
+		DD54D1BB21DF0894007DF100 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD54D1BA21DF0894007DF100 /* UIButton+Extensions.swift */; };
 		DDAB3B6C21A106CE0014C240 /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDEE3B721334CA400C8DC65 /* LocationController.swift */; };
 		DDAB86F221DDA2E9000D409D /* RunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAB86F121DDA2E9000D409D /* RunViewController.swift */; };
 		DDDB8F7821A3C2C600BA5E41 /* RunrController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB8F7721A3C2C600BA5E41 /* RunrController.swift */; };
@@ -142,6 +144,8 @@
 		DD47780021D4365500E4E85A /* ImageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTests.swift; sourceTree = "<group>"; };
 		DD47780221D49CA000E4E85A /* MapViewSnapshotController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewSnapshotController.swift; sourceTree = "<group>"; };
 		DD47780421D4A17C00E4E85A /* MKCoordinateRegion+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKCoordinateRegion+Extensions.swift"; sourceTree = "<group>"; };
+		DD54D1B821DF0775007DF100 /* LetsRunInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetsRunInputViewController.swift; sourceTree = "<group>"; };
+		DD54D1BA21DF0894007DF100 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
 		DDAB86F121DDA2E9000D409D /* RunViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunViewController.swift; sourceTree = "<group>"; };
 		DDDB8F7721A3C2C600BA5E41 /* RunrController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunrController.swift; sourceTree = "<group>"; };
 		DDDEB5F121D5632E003F7641 /* CacheController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheController.swift; sourceTree = "<group>"; };
@@ -237,6 +241,7 @@
 				DDDEB5FB21D5A62B003F7641 /* RunDetailViewController.swift */,
 				DD29A73121D7393900D6CEB6 /* LetsRunViewController.swift */,
 				DDAB86F121DDA2E9000D409D /* RunViewController.swift */,
+				DD54D1B721DF0637007DF100 /* Lets Run Subviews */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -249,6 +254,7 @@
 				DD4777F521D4152600E4E85A /* Date+Extensions.swift */,
 				DD4777FE21D4360700E4E85A /* UIImage+Extensions.swift */,
 				DD47780421D4A17C00E4E85A /* MKCoordinateRegion+Extensions.swift */,
+				DD54D1BA21DF0894007DF100 /* UIButton+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -321,6 +327,14 @@
 				DD4777F721D433AD00E4E85A /* ColorAssets.xcassets */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		DD54D1B721DF0637007DF100 /* Lets Run Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				DD54D1B821DF0775007DF100 /* LetsRunInputViewController.swift */,
+			);
+			path = "Lets Run Subviews";
 			sourceTree = "<group>";
 		};
 		DDDEDF1A21A91831008FBADA /* Extensions */ = {
@@ -683,6 +697,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD54D1B921DF0775007DF100 /* LetsRunInputViewController.swift in Sources */,
 				DDDEE3B821334CA400C8DC65 /* LocationController.swift in Sources */,
 				DD21B4C221321B94004B22E7 /* RunMainViewController.swift in Sources */,
 				DDDEE3B621325E0C00C8DC65 /* HeartRateObject.swift in Sources */,
@@ -695,6 +710,7 @@
 				DDDEE3AF2132572900C8DC65 /* Location.swift in Sources */,
 				DDDEB5F221D5632E003F7641 /* CacheController.swift in Sources */,
 				DD21B4C021321B94004B22E7 /* AppDelegate.swift in Sources */,
+				DD54D1BB21DF0894007DF100 /* UIButton+Extensions.swift in Sources */,
 				DDDEE3B2213259D500C8DC65 /* RunningController.swift in Sources */,
 				DD47780321D49CA000E4E85A /* MapViewSnapshotController.swift in Sources */,
 				DDAB86F221DDA2E9000D409D /* RunViewController.swift in Sources */,
