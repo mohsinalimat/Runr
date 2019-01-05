@@ -33,6 +33,8 @@
 		DD47780521D4A17C00E4E85A /* MKCoordinateRegion+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD47780421D4A17C00E4E85A /* MKCoordinateRegion+Extensions.swift */; };
 		DD54D1B921DF0775007DF100 /* LetsRunInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD54D1B821DF0775007DF100 /* LetsRunInputViewController.swift */; };
 		DD54D1BB21DF0894007DF100 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD54D1BA21DF0894007DF100 /* UIButton+Extensions.swift */; };
+		DD85E39121E06EFE00C64856 /* LetsRunSelectTimeSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD85E39021E06EFE00C64856 /* LetsRunSelectTimeSubViewController.swift */; };
+		DD85E39321E077ED00C64856 /* LetsRunSelectValueSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD85E39221E077ED00C64856 /* LetsRunSelectValueSubViewController.swift */; };
 		DDAB3B6C21A106CE0014C240 /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDEE3B721334CA400C8DC65 /* LocationController.swift */; };
 		DDAB86F221DDA2E9000D409D /* RunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAB86F121DDA2E9000D409D /* RunViewController.swift */; };
 		DDDB8F7821A3C2C600BA5E41 /* RunrController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB8F7721A3C2C600BA5E41 /* RunrController.swift */; };
@@ -146,6 +148,8 @@
 		DD47780421D4A17C00E4E85A /* MKCoordinateRegion+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKCoordinateRegion+Extensions.swift"; sourceTree = "<group>"; };
 		DD54D1B821DF0775007DF100 /* LetsRunInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetsRunInputViewController.swift; sourceTree = "<group>"; };
 		DD54D1BA21DF0894007DF100 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
+		DD85E39021E06EFE00C64856 /* LetsRunSelectTimeSubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetsRunSelectTimeSubViewController.swift; sourceTree = "<group>"; };
+		DD85E39221E077ED00C64856 /* LetsRunSelectValueSubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetsRunSelectValueSubViewController.swift; sourceTree = "<group>"; };
 		DDAB86F121DDA2E9000D409D /* RunViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunViewController.swift; sourceTree = "<group>"; };
 		DDDB8F7721A3C2C600BA5E41 /* RunrController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunrController.swift; sourceTree = "<group>"; };
 		DDDEB5F121D5632E003F7641 /* CacheController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheController.swift; sourceTree = "<group>"; };
@@ -333,6 +337,8 @@
 			isa = PBXGroup;
 			children = (
 				DD54D1B821DF0775007DF100 /* LetsRunInputViewController.swift */,
+				DD85E39021E06EFE00C64856 /* LetsRunSelectTimeSubViewController.swift */,
+				DD85E39221E077ED00C64856 /* LetsRunSelectValueSubViewController.swift */,
 			);
 			path = "Lets Run Subviews";
 			sourceTree = "<group>";
@@ -697,11 +703,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD85E39121E06EFE00C64856 /* LetsRunSelectTimeSubViewController.swift in Sources */,
 				DD54D1B921DF0775007DF100 /* LetsRunInputViewController.swift in Sources */,
 				DDDEE3B821334CA400C8DC65 /* LocationController.swift in Sources */,
 				DD21B4C221321B94004B22E7 /* RunMainViewController.swift in Sources */,
 				DDDEE3B621325E0C00C8DC65 /* HeartRateObject.swift in Sources */,
 				DD09BA31216AF21B002090B8 /* RunListViewController.swift in Sources */,
+				DD85E39321E077ED00C64856 /* LetsRunSelectValueSubViewController.swift in Sources */,
 				DDDEE3B4213259E300C8DC65 /* DataController.swift in Sources */,
 				DD304B0E216C4A6100ABE7C2 /* Coordinate.swift in Sources */,
 				DDDEE3AD21324CF000C8DC65 /* Run.swift in Sources */,
