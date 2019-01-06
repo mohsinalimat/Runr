@@ -22,6 +22,7 @@ class LetsRunSelectTimeSubViewController: LetsRunSubViewController {
 	private lazy var datePicker: UIDatePicker = {
 		let datePicker = UIDatePicker()
 		datePicker.datePickerMode = .countDownTimer
+		datePicker.addTarget(self, action: #selector(dateUpdated(_:)), for: .valueChanged)
 		return datePicker
 	}()
 	
@@ -38,6 +39,15 @@ class LetsRunSelectTimeSubViewController: LetsRunSubViewController {
 		
 		datePicker.snp.makeConstraints { (make) in
 			make.edges.equalToSuperview()
+			make.height.equalTo(120)
 		}
+	}
+	
+	
+	
+	// MARK: - Actions
+	
+	@objc private func dateUpdated(_ sender: UIDatePicker) {
+		self.value = sender.countDownDuration
 	}
 }

@@ -8,6 +8,8 @@
 
 import UIKit
 
+import SnapKit
+
 /// The delegate for the LetsRunViewController
 protocol LetsRunDelegate: class {
 	func startRun(with type: RunSelectionType)
@@ -19,7 +21,7 @@ enum RunSelectionType {
 	case open
 	case timed(time: TimeInterval)
 	case distance(distance: Double)
-	case calories(calories: Int)
+	case calories(calories: Double)
 }
 
 class LetsRunViewController: UIViewController {
@@ -147,6 +149,16 @@ class LetsRunViewController: UIViewController {
 	
 	private weak var delegate: LetsRunDelegate?
 	
+	private var selectionSubview: LetsRunInputViewController?
+	
+	var wholeStackLeadingConstraint: Constraint?
+	
+	var wholeStackTrailingConstraint: Constraint?
+	
+	var selectionSubviewLeadingConstraint: Constraint?
+	
+	var selectionSubviewTrailingConstraint: Constraint?
+	
 	
 	
 	// MARK: - Lifecyle Methods
@@ -169,8 +181,8 @@ class LetsRunViewController: UIViewController {
 		
 		wholeStackView.snp.makeConstraints { (make) in
 			make.top.equalTo(chooseRunLabel.snp.bottom).inset(-15)
-			make.leading.equalTo(view.snp.leading)
-			make.trailing.equalTo(view.snp.trailing)
+			self.wholeStackLeadingConstraint = make.leading.equalTo(view.snp.leading).constraint
+			self.wholeStackTrailingConstraint = make.trailing.equalTo(view.snp.trailing).constraint
 		}
 		
 		cancelButton.snp.makeConstraints { (make) in
@@ -192,23 +204,73 @@ class LetsRunViewController: UIViewController {
 	// MARK: - Actions
 	
 	@objc private func cancel(_ sender: UIButton) {
-		delegate?.cancel()
+		if self.selectionSubview != nil {
+			transitionBackToOriginalView()
+		} else {
+			delegate?.cancel()
+		}
 	}
 	
 	@objc func openButtonAction(_ sender: UIButton) {
-		debugPrint(#function)
+		delegate?.startRun(with: .open)
 	}
 	
 	@objc func timedButtonAction(_ sender: UIButton) {
-		debugPrint(#function)
+		selectionSubview = LetsRunInputViewController.build(with: .timed(time: 0), delegate: self.delegate)
+		transitionToSelectionSubview()
 	}
 	
 	@objc func distanceButtonAction(_ sender: UIButton) {
-		debugPrint(#function)
+		selectionSubview = LetsRunInputViewController.build(with: .distance(distance: 0), delegate: self.delegate)
+		transitionToSelectionSubview()
 	}
 	
 	@objc func caloriesButtonAction(_ sender: UIButton) {
-		debugPrint(#function)
+		selectionSubview = LetsRunInputViewController.build(with: .calories(calories: 0), delegate: self.delegate)
+		transitionToSelectionSubview()
+	}
+	
+	private func transitionToSelectionSubview() {
+		guard let selectionSubview = self.selectionSubview?.view else { return }
+		
+		view.addSubview(selectionSubview)
+		selectionSubview.snp.makeConstraints { (make) in
+			make.top.equalTo(chooseRunLabel.snp.bottom).inset(-15)
+			self.selectionSubviewLeadingConstraint = make.leading.equalTo(view.snp.leading).offset(self.view.bounds.width).constraint
+			self.selectionSubviewTrailingConstraint = make.trailing.equalTo(view.snp.trailing).offset(self.view.bounds.width).constraint
+			make.bottom.equalTo(cancelButton.snp.top).offset(-25)
+		}
+		view.layoutIfNeeded()
+		
+		UIView.animate(withDuration: 0.3) {
+			self.wholeStackLeadingConstraint?.update(offset: -self.view.bounds.width)
+			self.wholeStackTrailingConstraint?.update(offset: -self.view.bounds.width)
+			
+			self.selectionSubviewLeadingConstraint?.update(offset: 0)
+			self.selectionSubviewTrailingConstraint?.update(offset: 0)
+			
+			self.chooseRunLabel.text = self.selectionSubview?.titleString
+			
+			self.view.layoutIfNeeded()
+		}
+	}
+	
+	private func transitionBackToOriginalView() {
+		UIView.animate(withDuration: 0.3, animations: {
+			self.wholeStackLeadingConstraint?.update(offset: 0)
+			self.wholeStackTrailingConstraint?.update(offset: 0)
+			
+			self.selectionSubviewLeadingConstraint?.update(offset: self.view.bounds.width)
+			self.selectionSubviewTrailingConstraint?.update(offset: self.view.bounds.width)
+			
+			self.view.layoutIfNeeded()
+		}, completion: { (_) in
+			self.selectionSubviewLeadingConstraint = nil
+			self.selectionSubviewTrailingConstraint = nil
+			self.selectionSubview = nil
+			
+			self.title = "Choose a Run Type"
+		})
 	}
 }
 

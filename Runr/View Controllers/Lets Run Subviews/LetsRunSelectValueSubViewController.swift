@@ -22,13 +22,21 @@ class LetsRunSelectValueSubViewController: LetsRunSubViewController {
 	
 	private lazy var minusButton: UIButton = {
 		let button = UIButton.minusButton
-		button.addTarget(self, action: #selector(decrementValue(_:)), for: .touchDownRepeat)
+		button.addTarget(self, action: #selector(decrementValue(_:)), for: .touchDown)
+		button.snp.makeConstraints({ (make) in
+			make.height.equalTo(40)
+			make.width.equalTo(button.snp.height)
+		})
 		return button
 	}()
 	
 	private lazy var addButton: UIButton = {
 		let button = UIButton.addButton
-		button.addTarget(self, action: #selector(incrementValue(_:)), for: .touchDownRepeat)
+		button.addTarget(self, action: #selector(incrementValue(_:)), for: .touchDown)
+		button.snp.makeConstraints({ (make) in
+			make.height.equalTo(40)
+			make.width.equalTo(button.snp.height)
+		})
 		return button
 	}()
 	
@@ -42,12 +50,14 @@ class LetsRunSelectValueSubViewController: LetsRunSubViewController {
 	private lazy var descriptionLabel: UILabel = {
 		let label = UILabel()
 		label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+		label.text = descriptionString
 		return label
 	}()
 	
 	private lazy var mainStackView: UIStackView = {
 		let stackView = UIStackView(arrangedSubviews: [minusButton, valueLabel, addButton])
 		stackView.axis = .horizontal
+		stackView.alignment = .center
 		return stackView
 	}()
 	
@@ -56,6 +66,19 @@ class LetsRunSelectValueSubViewController: LetsRunSubViewController {
 	// MARK: - Variables
 	
 	private var runSelectionType: RunSelectionType!
+	
+	private var valueObserver: NSKeyValueObservation?
+	
+	private var descriptionString: String {
+		switch runSelectionType! {
+		case .open, .timed:
+			return "" // should not get here in this view
+		case .distance:
+			return "Miles"
+		case .calories:
+			return "Calories"
+		}
+	}
 	
 	
 	
@@ -71,7 +94,7 @@ class LetsRunSelectValueSubViewController: LetsRunSubViewController {
 		mainStackView.snp.makeConstraints { (make) in
 			make.top.equalTo(view.snp.top)
 			make.leading.equalTo(view.snp.leading).inset(25)
-			make.trailing.equalTo(view.snp.trailing).inset(-25)
+			make.trailing.equalTo(view.snp.trailing).inset(25)
 		}
 		
 		descriptionLabel.snp.makeConstraints { (make) in
@@ -81,6 +104,21 @@ class LetsRunSelectValueSubViewController: LetsRunSubViewController {
 		}
 	}
 	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		
+		setupObservers()
+	}
+	
+	
+	
+	// MARK: - Observers
+	
+	private func setupObservers() {
+		valueObserver = self.observe(\.value, options: [.initial], changeHandler: { (object, _) in
+			self.valueLabel.text = String(format: "%.2f", object.value)
+		})
+	}
 	
 	
 	// MARK: - Actions
