@@ -22,7 +22,8 @@ class LetsRunSelectValueSubViewController: LetsRunSubViewController {
 	
 	private lazy var minusButton: UIButton = {
 		let button = UIButton.minusButton
-		button.addTarget(self, action: #selector(decrementValue(_:)), for: .touchDown)
+		button.addTarget(self, action: #selector(minusButtonDown(_:)), for: .touchDown)
+		button.addTarget(self, action: #selector(minusButtonUp(_:)), for: [.touchUpInside, .touchUpOutside])
 		button.snp.makeConstraints({ (make) in
 			make.height.equalTo(40)
 			make.width.equalTo(button.snp.height)
@@ -32,7 +33,8 @@ class LetsRunSelectValueSubViewController: LetsRunSubViewController {
 	
 	private lazy var addButton: UIButton = {
 		let button = UIButton.addButton
-		button.addTarget(self, action: #selector(incrementValue(_:)), for: .touchDown)
+		button.addTarget(self, action: #selector(addButtonDown(_:)), for: .touchDown)
+		button.addTarget(self, action: #selector(addButtonUp(_:)), for: [.touchUpInside, .touchUpOutside])
 		button.snp.makeConstraints({ (make) in
 			make.height.equalTo(40)
 			make.width.equalTo(button.snp.height)
@@ -67,7 +69,13 @@ class LetsRunSelectValueSubViewController: LetsRunSubViewController {
 	
 	private var runSelectionType: RunSelectionType!
 	
+	let feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+	
 	private var valueObserver: NSKeyValueObservation?
+	
+	private var decrementTimer: Timer?
+	
+	private var incrementTimer: Timer?
 	
 	private var descriptionString: String {
 		switch runSelectionType! {
@@ -116,33 +124,62 @@ class LetsRunSelectValueSubViewController: LetsRunSubViewController {
 	
 	private func setupObservers() {
 		valueObserver = self.observe(\.value, options: [.initial], changeHandler: { (object, _) in
-			self.valueLabel.text = String(format: "%.2f", object.value)
+			switch object.runSelectionType! {
+			case .open, .timed:
+			break // shouldn't get here
+			case .distance:
+				self.valueLabel.text = String(format: "%.2f", object.value)
+			case .calories:
+				self.valueLabel.text = "\(Int(object.value))" //String(format: "%", object.value)
+			}
 		})
 	}
 	
 	
 	// MARK: - Actions
 	
-	@objc func decrementValue(_ sender: UIButton) {
-		guard value >= 0.1 else { return }
+	@objc func decrementValue() {
+		guard value >= 0.01 else { return }
 		switch runSelectionType! {
 		case .calories:
-			value -= 1
+			value -= 10
+			feedbackGenerator.impactOccurred()
 		case .distance:
-			value -= 0.1
+			value -= 0.01
+			feedbackGenerator.impactOccurred()
 		case .open, .timed:
 			break
 		}
 	}
 	
-	@objc func incrementValue(_ sender: UIButton) {
+	@objc func incrementValue() {
 		switch runSelectionType! {
 		case .calories:
-			value += 1
+			value += 10
+			feedbackGenerator.impactOccurred()
 		case .distance:
-			value += 0.1
+			value += 0.01
+			feedbackGenerator.impactOccurred()
 		case .open, .timed:
 			break
 		}
+	}
+	
+	@objc private func minusButtonDown(_ sender: UIButton) {
+		decrementValue()
+		decrementTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(decrementValue), userInfo: nil, repeats: true)
+	}
+	
+	@objc private func minusButtonUp(_ sender: UIButton) {
+		decrementTimer?.invalidate()
+	}
+	
+	@objc private func addButtonDown(_ sender: UIButton) {
+		incrementValue()
+		incrementTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(incrementValue), userInfo: nil, repeats: true)
+	}
+	
+	@objc private func addButtonUp(_ sender: UIButton) {
+		incrementTimer?.invalidate()
 	}
 }
