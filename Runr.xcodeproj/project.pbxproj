@@ -53,6 +53,7 @@
 		DDDEE3B821334CA400C8DC65 /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDEE3B721334CA400C8DC65 /* LocationController.swift */; };
 		DDE26A5C219FBC840097D731 /* MainInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE26A5B219FBC840097D731 /* MainInterfaceController.swift */; };
 		DDE26A60219FBE1A0097D731 /* WorkoutInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDE26A5F219FBE1A0097D731 /* WorkoutInterface.storyboard */; };
+		DDEAD22D21E5A73E0078F55C /* DetailSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEAD22C21E5A73E0078F55C /* DetailSubViewController.swift */; };
 		DDF1C475218BF47C00557C11 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF1C473218BF47C00557C11 /* MainInterface.storyboard */; };
 		DDF1C477218BF47E00557C11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDF1C476218BF47E00557C11 /* Assets.xcassets */; };
 		DDF1C47E218BF47E00557C11 /* Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DDF1C47D218BF47E00557C11 /* Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -164,6 +165,7 @@
 		DDDEE3B721334CA400C8DC65 /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
 		DDE26A5B219FBC840097D731 /* MainInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInterfaceController.swift; sourceTree = "<group>"; };
 		DDE26A5F219FBE1A0097D731 /* WorkoutInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WorkoutInterface.storyboard; sourceTree = "<group>"; };
+		DDEAD22C21E5A73E0078F55C /* DetailSubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSubViewController.swift; sourceTree = "<group>"; };
 		DDF1C471218BF47B00557C11 /* Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Watch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF1C474218BF47C00557C11 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		DDF1C476218BF47E00557C11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 				DD29A73121D7393900D6CEB6 /* LetsRunViewController.swift */,
 				DDAB86F121DDA2E9000D409D /* RunViewController.swift */,
 				DD54D1B721DF0637007DF100 /* Lets Run Subviews */,
+				DDEAD22B21E5A67A0078F55C /* Sub View Controllers */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -409,6 +412,14 @@
 				DDDEB5F121D5632E003F7641 /* CacheController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		DDEAD22B21E5A67A0078F55C /* Sub View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DDEAD22C21E5A73E0078F55C /* DetailSubViewController.swift */,
+			);
+			path = "Sub View Controllers";
 			sourceTree = "<group>";
 		};
 		DDF1C472218BF47C00557C11 /* Watch */ = {
@@ -718,6 +729,7 @@
 				DDDEE3AF2132572900C8DC65 /* Location.swift in Sources */,
 				DDDEB5F221D5632E003F7641 /* CacheController.swift in Sources */,
 				DD21B4C021321B94004B22E7 /* AppDelegate.swift in Sources */,
+				DDEAD22D21E5A73E0078F55C /* DetailSubViewController.swift in Sources */,
 				DD54D1BB21DF0894007DF100 /* UIButton+Extensions.swift in Sources */,
 				DDDEE3B2213259D500C8DC65 /* RunningController.swift in Sources */,
 				DD47780321D49CA000E4E85A /* MapViewSnapshotController.swift in Sources */,

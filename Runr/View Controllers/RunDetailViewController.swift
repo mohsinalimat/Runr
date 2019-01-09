@@ -28,64 +28,9 @@ class RunDetailViewController: UIViewController {
 		return view
 	}()
 	
-	private lazy var averagePaceLabel: UILabel = UILabel.valueLabel()
-	
-	private lazy var averagePaceDescriptionLabel: UILabel = UILabel.descriptionLabel(with: "Avg Pace")
-	
-	private lazy var distanceLabel: UILabel = UILabel.valueLabel()
-	
-	private lazy var distanceDescriptionLabel: UILabel = UILabel.descriptionLabel(with: "Distance")
-	
-	private lazy var durationLabel: UILabel = UILabel.valueLabel()
-	
-	private lazy var durationDescriptionLabel: UILabel = UILabel.descriptionLabel(with: "Duration")
-	
-	private lazy var elevationLabel: UILabel = UILabel.valueLabel()
-	
-	private lazy var elevationDescriptionLabel: UILabel = UILabel.descriptionLabel(with: "Elevation")
-	
-	private lazy var heartRateLabel: UILabel = UILabel.valueLabel(color: .red)
-	
-	private lazy var heartRateDescriptionLabel: UILabel = UILabel.descriptionLabel(with: "Avg Heart Rate")
-	
-	private lazy var estimatedCaloriesLabel: UILabel = UILabel.valueLabel()
-	
-	private lazy var estimatedCaloriesDescriptionLabel: UILabel = UILabel.descriptionLabel(with: "Est Calories")
-	
-	private lazy var paceStackView: UIStackView = UIStackView.detailStackView(with: [averagePaceLabel, averagePaceDescriptionLabel])
-	
-	private lazy var distanceStackView: UIStackView = UIStackView.detailStackView(with: [distanceLabel, distanceDescriptionLabel])
-	
-	private lazy var durationStackView: UIStackView = UIStackView.detailStackView(with: [durationLabel, durationDescriptionLabel])
-	
-	private lazy var elevationStackView: UIStackView = UIStackView.detailStackView(with: [elevationLabel, elevationDescriptionLabel])
-	
-	private lazy var heartRateStackView: UIStackView = UIStackView.detailStackView(with: [heartRateLabel, heartRateDescriptionLabel])
-	
-	private lazy var estimatedCaloriesStackView: UIStackView = UIStackView.detailStackView(with: [estimatedCaloriesLabel,
-																								  estimatedCaloriesDescriptionLabel])
-	
-	private lazy var topStackView: UIStackView = {
-		let stackView = UIStackView(arrangedSubviews: [paceStackView, distanceStackView, durationStackView])
-		stackView.axis = .horizontal
-		stackView.alignment = .fill
-		stackView.distribution = .fillEqually
-		return stackView
-	}()
-	
-	private lazy var bottomStackView: UIStackView = {
-		let stackView = UIStackView(arrangedSubviews: [elevationStackView, heartRateStackView, estimatedCaloriesStackView])
-		stackView.axis = .horizontal
-		stackView.alignment = .fill
-		stackView.distribution = .fillEqually
-		return stackView
-	}()
-	
-	private lazy var wholeStackView: UIStackView = {
-		let stackView = UIStackView(arrangedSubviews: [topStackView, bottomStackView])
-		stackView.axis = .vertical
-		stackView.spacing = 20
-		return stackView
+	private var detailSubviewController: DetailSubViewController = {
+		let detailSubView = DetailSubViewController.build()
+		return detailSubView
 	}()
 	
 	
@@ -114,7 +59,7 @@ class RunDetailViewController: UIViewController {
 		view = UIView()
 		view.layer.backgroundColor = UIColor.white.cgColor
 		
-		[runChartView, wholeStackView].forEach {
+		[runChartView, detailSubviewController.view].forEach {
 			view.addSubview($0)
 		}
 		
@@ -125,7 +70,7 @@ class RunDetailViewController: UIViewController {
 			make.height.equalTo(50)
 		}
 		
-		wholeStackView.snp.makeConstraints { (make) in
+		detailSubviewController.view.snp.makeConstraints { (make) in
 			make.top.equalTo(runChartView.snp.bottom).inset(-5)
 			make.leading.equalTo(runChartView.snp.leading)
 			make.trailing.equalTo(runChartView.snp.trailing)
@@ -140,56 +85,23 @@ class RunDetailViewController: UIViewController {
 	private func setupObservers() {
 		runObservers = [
 			self.observe(\RunDetailViewController.run?.averagePace, options: [.initial], changeHandler: { (object, _) in
-				object.averagePaceLabel.text = "\(object.run.averagePace)"
+				object.detailSubviewController.averagePaceLabel.text = "\(object.run.averagePace)"
 			}),
 			self.observe(\RunDetailViewController.run?.distance, options: [.initial], changeHandler: { (object, _) in
-				object.averagePaceLabel.text = "\(object.run.distance)"
+				object.detailSubviewController.averagePaceLabel.text = "\(object.run.distance)"
 			}),
 			self.observe(\RunDetailViewController.run?.duration, options: [.initial], changeHandler: { (object, _) in
-				object.averagePaceLabel.text = "\(object.run.duration)"
+				object.detailSubviewController.averagePaceLabel.text = "\(object.run.duration)"
 			}),
 			self.observe(\RunDetailViewController.run?.elevation, options: [.initial], changeHandler: { (object, _) in
-				object.averagePaceLabel.text = "\(object.run.elevation)"
+				object.detailSubviewController.averagePaceLabel.text = "\(object.run.elevation)"
 			}),
 			self.observe(\RunDetailViewController.run?.averageHeartRate, options: [.initial], changeHandler: { (object, _) in
-				object.averagePaceLabel.text = "\(object.run.averageHeartRate)"
+				object.detailSubviewController.averagePaceLabel.text = "\(object.run.averageHeartRate)"
 			}),
 			self.observe(\RunDetailViewController.run?.estimatedCalories, options: [.initial], changeHandler: { (object, _) in
-				object.averagePaceLabel.text = "\(object.run.estimatedCalories)"
+				object.detailSubviewController.averagePaceLabel.text = "\(object.run.estimatedCalories)"
 			})
 		]
-	}
-}
-
-
-private extension UILabel {
-	
-	static func valueLabel(color: UIColor = .black) -> UILabel {
-		let label = UILabel()
-		label.font = UIFont.systemFont(ofSize: 30, weight: .medium)
-		label.textAlignment = .center
-		label.textColor = color
-		return label
-	}
-	
-	static func descriptionLabel(with text: String) -> UILabel {
-		let label = UILabel()
-		label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-		label.textAlignment = .center
-		label.textColor = UIColor.runrGray
-		label.text = text
-		return label
-	}
-}
-
-
-private extension UIStackView {
-	
-	static func detailStackView(with subviews: [UIView]) -> UIStackView {
-		let stackView = UIStackView(arrangedSubviews: subviews)
-		stackView.alignment = .center
-		stackView.axis = .vertical
-		stackView.spacing = 1
-		return stackView
 	}
 }
